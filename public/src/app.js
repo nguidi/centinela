@@ -1,6 +1,5 @@
 import DefineMap from 'can-define/map/';
 import route from 'can-route';
-import 'can-route-pushstate';
 import Session from '~/models/session';
 // Uncomment this line if you don't have a Feathers Server running, but want to test auth.
 // import '~/models/fixtures/';
@@ -39,9 +38,16 @@ const AppViewModel = DefineMap.extend({
    */
   title: {
     value: 'Centinela'
-  }
+  },
+
+  /**
+   * The `page` where we are.
+   */
+  page: 'string'
 });
 
-route('/{page}', {page: 'home'});
+
+route('/{page}');
+route.ready();
 
 export default AppViewModel;

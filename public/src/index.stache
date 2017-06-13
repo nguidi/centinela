@@ -1,20 +1,73 @@
 <html>
-  <head>
-    <title>{{title}}</title>
-  </head>
-  <body>
-    <can-import from="centinela/styles.less" />
-    <can-import from="centinela/app" export-as="viewModel" />
+	<head>
+		<title>
+			{{title}}
+		</title>
+	</head>
+	<body>
+		<can-import from="bootstrap/less/bootstrap.less" />
+		<can-import from="centinela/bootstrap.theme.css" />
+		<can-import from="font-awesome/less/font-awesome.less" />
+		<can-import from="centinela/styles.less" />
+		<can-import from="centinela/app" export-as="viewModel" />
+		<can-import from="can-stache/helpers/route" />
+		
+		<div class="wrapper">
+			<div class="block-center mt-xl {{#eq page 'register'}} wd-xlg {{else}} wd-xl {{/eq}}">
+				<div class="panel panel-dark panel-flat">
+					<div class="panel-heading text-center">
+						<a href="#">
+							<img src="src/images/logo-w-s.png" alt="Image" class="block-center logo">
+						</a>
+					</div>
+					<div class="panel-body">
+						{{#switch page}}
+							{{#case "password-recover"}}
+								<can-import from="centinela/components/user/recover-password/">
+									{{#if isPending}}
+										Loading...
+									{{else}}
+										<user-recover-password/>
+									{{/if}}
+								</can-import>
+							{{/case}}
+							{{#case "register"}}
+								<can-import from="centinela/components/user/register/">
+									{{#if isPending}}
+										Loading...
+									{{else}}
+										<user-register/>
+									{{/if}}
+								</can-import>
+							{{/case}}
+							{{#default}}
+								<can-import from="centinela/components/user/login/">
+									{{#if isPending}}
+										Loading...
+									{{else}}
+										<user-login/>
+									{{/if}}
+								</can-import>
+							{{/default}}
+						{{/switch}}
+					</div>
+				</div>
+				<div class="p-lg text-center">
+					<span>©</span>
+					<span>2017</span>
+					<span>-</span>
+					<span>Centinela</span>
+				</div>
+			</div>
+		</div>
 
-    <h1>{{message}}</h1>
-
-    {{#switch env.NODE_ENV}}
-      {{#case "production"}}
-        <script src="{{joinBase 'steal.production.js'}}"></script>
-      {{/case}}
-      {{#default}}
-        <script src="/node_modules/steal/steal.js"></script>
-      {{/default}}
-    {{/switch}}
-  </body>
+		{{#switch env.NODE_ENV}}
+			{{#case "production"}}
+				<script src="{{joinBase 'steal.production.js'}}"></script>
+			{{/case}}
+			{{#default}}
+				<script src="/node_modules/steal/steal.js"></script>
+			{{/default}}
+		{{/switch}}
+	</body>
 </html>
