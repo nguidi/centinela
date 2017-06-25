@@ -32,84 +32,162 @@
 			</li>
 		</ul>
 	</div>
-	<form role="form">
+	<form>
 		<div class="tab-content">
 			<div class="tab-pane active" role="tabpanel" id="step1">
-				<h3>Ingrese sus datos</h3>
+				<p>Ingrese a continuación sus datos</p>
 				<div class="form-group">
-					<label for="email" class="col-sm-3 control-label">
-						Email
-					</label>
-					<div class="col-sm-9">
-						<input type="email" class="form-control" name="email" placeholder="Email">
-					</div>
+					<label for="email" class="control-label">Email</label>
+					<input type="email" class="form-control" name="email" placeholder="Email">
 				</div>
 				<div class="form-group">
-					<label for="password" class="col-sm-3 control-label">Contraseña</label>
-					<div class="col-sm-9">
-						<input type="password" class="form-control" name="password" placeholder="Contraseña">
-					</div>
+					<label for="password" class="control-label">Contraseña</label>
+					<input type="password" class="form-control" name="password" placeholder="Contraseña">
 				</div>
 				<div class="form-group">
-					<label for="firstName" class="col-sm-3 control-label">Nombre</label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="firstName" placeholder="Nombre">
-					</div>
+					<label for="firstName" class="control-label">Nombre</label>
+					<input type="text" class="form-control" name="firstName" placeholder="Nombre">
 				</div>
 				<div class="form-group">
-					<label for="lastName" class="col-sm-3 control-label">Apellido</label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="apellido" placeholder="Apellido">
-					</div>
+					<label for="lastName" class="control-label">Apellido</label>
+					<input type="text" class="form-control" name="apellido" placeholder="Apellido">
 				</div>
 				<div class="form-group">
-					<label for="dni" class="col-sm-3 control-label">DNI</label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="dni" placeholder="DNI">
-					</div>
+					<label for="dni" class="control-label">DNI</label>
+					<input type="text" class="form-control" name="dni" placeholder="DNI">
 				</div>
 				<div class="form-group">
-					<label for="lastName" class="col-sm-3 control-label">Apellido</label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="apellido" placeholder="Apellido">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="birthday" class="col-sm-3 control-label">Fecha de Nacimiento</label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="birthday" placeholder="Fecha de Nacimiento" data-provide="datepicker">
-					</div>
+					<label for="birthday" class="control-label">Fecha de Nacimiento</label>
+					<input type="text" class="form-control" name="birthday" placeholder="Fecha de Nacimiento" data-provide="datepicker">
 				</div>
 				<ul class="list-inline pull-right">
 					<li>
-						<button type="button" class="btn btn-primary next-step">
+						<button type="button" class="btn btn-primary next-step" ($click)="nextStep()">
 							Siguiente
 						</button>
 					</li>
 				</ul>
 			</div>
 			<div class="tab-pane" role="tabpanel" id="step2">
-				<h3>Step 2</h3>
-				<p>This is step 2</p>
+				<p>Ingrese a continuación sus datos de contacto</p>
+				<div class="form-group">
+					<label for="country" class="control-label">País</label>
+					<input type="text" class="form-control" name="country" placeholder="País">
+				</div>
+				<div class="form-group">
+					<label for="state" class="control-label">Provincia</label>
+					<input type="text" class="form-control" name="state" placeholder="Provincia">
+				</div>
+				<div class="form-group">
+					<label for="city" class="control-label">Ciudad</label>
+					<input type="text" class="form-control" name="city" placeholder="Ciudad">
+				</div>
+				<div class="form-group">
+					<label for="postalCode" class="control-label">Código Postal</label>
+					<input type="text" class="form-control" name="postalCode" placeholder="Código Postal">
+				</div>
+				<div class="form-group">
+					<label for="address" class="control-label">Dirección</label>
+					<input type="text" class="form-control" name="address" placeholder="Dirección">
+				</div>
+				<div class="form-group">
+					<label for="phone" class="control-label">Teléfono</label>
+					<input type="text" class="form-control" name="phone" placeholder="Teléfono" >
+				</div>
 				<ul class="list-inline pull-right">
-					<li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-					<li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+					<li>
+						<button type="button" class="btn btn-default prev-step" ($click)="prevStep()">
+							Anterior
+						</button>
+					</li>
+					<li>
+						<button type="button" class="btn btn-primary next-step" ($click)="nextStep()">
+							Siguiente
+						</button>
+					</li>
 				</ul>
 			</div>
 			<div class="tab-pane" role="tabpanel" id="step3">
-				<h3>Step 3</h3>
-				<p>This is step 3</p>
+				<p>Ingrese a continuación los datos de su organización</p>
+				<div class="form-group">
+					<label for="organizationName" class="control-label">Nombre</label>
+					<input type="text" class="form-control" name="organizationName" placeholder="Nombre de la organización">
+				</div>
+				<div class="form-group">
+					<label for="organizationCUIT" class="control-label">CUIT</label>
+					<input type="text" class="form-control" name="organizationCUIT" placeholder="CUIT de la organización">
+				</div>
 				<ul class="list-inline pull-right">
-					<li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-					<li><button type="button" class="btn btn-default next-step">Skip</button></li>
-					<li><button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
+					<li>
+						<button type="button" class="btn btn-default prev-step" ($click)="prevStep()">
+							Anterior
+						</button>
+					</li>
+					<li>
+						<button type="button" class="btn btn-primary next-step" ($click)="nextStep()">
+							Siguiente
+						</button>
+					</li>
 				</ul>
 			</div>
 			<div class="tab-pane" role="tabpanel" id="complete">
-				<h3>Complete</h3>
-				<p>You have successfully completed all steps.</p>
+				<p>Revise los datos ingresados en los pasos anteriores</p>
+				<h4><ins>Sus datos</ins></h4>
+				<dl class="dl-horizontal">
+					<dt>Email</dt>
+					<dd>...</dd>
+					<dt>Nombre</dt>
+					<dd>...</dd>
+					<dt>Apellido</dt>
+					<dd>...</dd>
+					<dt>DNI</dt>
+					<dd>...</dd>
+					<dt>Fecha de Nacimiento</dt>
+					<dd>...</dd>
+				</dl>
+				<h4><ins>Datos de contacto</ins></h4>
+				<dl class="dl-horizontal">
+					<dt>País</dt>
+					<dd>...</dd>
+					<dt>Provincia</dt>
+					<dd>...</dd>
+					<dt>Ciudad</dt>
+					<dd>...</dd>
+					<dt>Código Postal</dt>
+					<dd>...</dd>
+					<dt>Dirección</dt>
+					<dd>...</dd>
+					<dt>Teléfono</dt>
+					<dd>...</dd>
+				</dl>
+				<h4><ins>Datos de su organización</ins></h4>
+				<dl class="dl-horizontal">
+					<dt>Nombre</dt>
+					<dd>...</dd>
+					<dt>CUIT</dt>
+					<dd>...</dd>
+				</dl>					
+				<ul class="list-inline pull-right">
+					<li>
+						<button type="button" class="btn btn-default prev-step" ($click)="prevStep()">
+							Anterior
+						</button>
+					</li>
+					<li>
+						<button type="button" class="btn btn-primary next-step" ($click)="register()">
+							Registrarse
+						</button>
+					</li>
+				</ul>
 			</div>
 			<div class="clearfix"></div>
 		</div>
 	</form>
+</div>
+<div class="register-success">
+	<p class="text-center">Te has registrado correctamente!</p>
+	<p class="text-center">Ya podes acceder a Centinela!</p>
+	<a href="{{routeUrl page='login' }}" class="btn btn-block btn-primary">
+		Ingresar
+	</a>
 </div>
