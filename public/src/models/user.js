@@ -6,26 +6,80 @@ import feathersServiceBehavior from 'can-connect-feathers/service';
 import behaviors from './behaviors';
 import algebra from './algebra';
 
-var User = DefineMap.extend('User', {
-  _id: 'any',
-  email: 'string',
-  password: 'string'
-});
+var	Contact
+=	DefineMap
+		.extend(
+		    {
+				country: 'string'
+			,	state: 'string'
+			,	city: 'string'
+			,	postalcode: 'string'
+			,	address: 'string'
+			,	phone: 'string'
+			}
+		);
 
-User.List = DefineList.extend({
-  '#': User
-});
+var	Organization
+=	DefineMap
+		.extend(
+			{
+				name: 'string'
+			,	cuit: 'string'
+			}
+		);
 
-User.connection = connect([
-  feathersServiceBehavior,
-  ...behaviors
-], {
-  Map: User,
-  List: User.List,
-  feathersService: feathersClient.service('/users'),
-  name: 'users',
-  algebra
-});
+var User
+= DefineMap
+		.extend(
+			'User'
+		,	{
+				seal: false
+			}
+		,	{
+				_id: 'any'
+			,	email: 'string'
+			,	password: 'string'
+			,	confpassword: 'string'
+			,	name: 'string'
+			,	lastname: 'string'
+			,	dni: 'string'
+			,	birthday: 'string'
+			,	contact:
+				{
+					value: Contact
+				}
+			,	contact:
+				{
+					value: Contact
+				}
+			,	organization:
+				{
+					value: Organization
+				}
+			}
+		);
+
+User.List
+=	DefineList
+		.extend(
+			{
+				'#': User
+			}
+		);
+
+User.connection = connect(
+	[
+		feathersServiceBehavior
+	,	...behaviors
+	]
+,	{
+		Map: User
+	,	List: User.List
+	,	feathersService: feathersClient.service('/users')
+	,	name: 'users'
+	,	algebra
+	}
+);
 
 User.algebra = algebra;
 

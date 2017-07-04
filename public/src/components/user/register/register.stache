@@ -1,7 +1,7 @@
 <div class="wizard">
 	<div class="wizard-inner">
 		<div class="connecting-line"></div>
-		<ul class="nav nav-tabs" role="tablist">
+		<ul class="wizard-steps nav nav-tabs" role="tablist">
 			<li role="presentation" class="active">
 				<a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Datos del usuario">
 					<span class="round-tab">
@@ -32,34 +32,108 @@
 			</li>
 		</ul>
 	</div>
-	<form>
+	<form
+		data-fv-framework="bootstrap"
+		data-fv-icon-valid="fa fa-check"
+		data-fv-icon-invalid="fa fa-times"
+		data-fv-icon-validating="fa fa-refresh">
+
 		<div class="tab-content">
 			<div class="tab-pane active" role="tabpanel" id="step1">
 				<p>Ingrese a continuación sus datos</p>
 				<div class="form-group">
-					<label for="email" class="control-label">Email</label>
-					<input type="email" class="form-control" name="email" placeholder="Email">
+					<label for="email" class="control-label">Email *</label>
+					<input type="email" class="form-control" name="email" placeholder="Email" {($value)}="user.email" 
+						data-fv-notempty="true"
+						data-fv-notempty-message="Debe ingresar un email." 
+
+						maxlength="128"
+						minlength="8"
+						data-fv-stringlength-message="El email debe tener entre de 8 y 128 caracteres de largo."
+
+						data-fv-field="email"
+						data-fv-emailaddress-message="El email ingresado es incorrecto.">
 				</div>
 				<div class="form-group">
-					<label for="password" class="control-label">Contraseña</label>
-					<input type="password" class="form-control" name="password" placeholder="Contraseña">
+					<label for="password" class="control-label">Contraseña *</label>
+					<input type="password" class="form-control" name="password" placeholder="Contraseña" {($value)}="user.password" 
+						data-fv-notempty="true"
+						data-fv-notempty-message="Debe ingresar una contraseña." 
+
+						maxlength="24"
+						minlength="8"
+						data-fv-stringlength-message="La contraseña debe tener entre de 8 y 24 caracteres de largo."
+
+						data-fv-regexp="true"
+						data-fv-regexp-regexp="^[a-zA-Z0-9]+$"
+						data-fv-regexp-message="La contraseña solo puede contener caracteres alfanumericos">
 				</div>
 				<div class="form-group">
-					<label for="firstName" class="control-label">Nombre</label>
-					<input type="text" class="form-control" name="firstName" placeholder="Nombre">
+					<label for="password" class="control-label">Confirme la contraseña *</label>
+					<input type="password" class="form-control" name="passwordConfirm" placeholder="Repita su contraseña"
+						data-fv-notempty="true"
+						data-fv-notempty-message="Debe ingresar una contraseña." 
+
+						data-fv-identical="true"
+						data-fv-identical-field="password"
+						data-fv-identical-message="Las contraseñas ingresadas no coinciden.">
 				</div>
 				<div class="form-group">
-					<label for="lastName" class="control-label">Apellido</label>
-					<input type="text" class="form-control" name="apellido" placeholder="Apellido">
+					<label for="firstName" class="control-label">Nombre *</label>
+					<input type="text" class="form-control" name="firstName" placeholder="Nombre" {($value)}="user.name" 
+						data-fv-notempty="true"
+						data-fv-notempty-message="Debe ingresar su nombre."
+
+						maxlength="32"
+						minlength="3"
+						data-fv-stringlength-message="El nombre debe tener entre de 3 y 32 caracteres de largo."
+
+						data-fv-regexp="true"
+						data-fv-regexp-regexp="^[a-zA-Z\s]+$"
+						data-fv-regexp-message="El nombre solo puede contener caracteres alfabeticos">
 				</div>
 				<div class="form-group">
-					<label for="dni" class="control-label">DNI</label>
-					<input type="text" class="form-control" name="dni" placeholder="DNI">
+					<label for="lastName" class="control-label">Apellido *</label>
+					<input type="text" class="form-control" name="apellido" placeholder="Apellido" {($value)}="user.lastname" 
+						data-fv-notempty="true"
+						data-fv-notempty-message="Debe ingresar su apellido."
+
+						maxlength="32"
+						minlength="3"
+						data-fv-stringlength-message="El apellido debe tener entre de 3 y 32 caracteres de largo."
+
+						data-fv-regexp="true"
+						data-fv-regexp-regexp="^[a-zA-Z\s]+$"
+						data-fv-regexp-message="El apellido solo puede contener caracteres alfabeticos">
 				</div>
 				<div class="form-group">
-					<label for="birthday" class="control-label">Fecha de Nacimiento</label>
-					<input type="text" class="form-control" name="birthday" placeholder="Fecha de Nacimiento" data-provide="datepicker">
+					<label for="dni" class="control-label">DNI *</label>
+					<input type="text" class="form-control" name="dni" placeholder="DNI" {($value)}="user.dni" 
+						data-fv-notempty="true"
+						data-fv-notempty-message="Debe ingresar su DNI."
+
+						maxlength="8"
+						minlength="7"
+						data-fv-stringlength-message="El DNI debe tener entre de 7 y 8 caracteres de largo."
+
+						data-fv-regexp="true"
+						data-fv-regexp-regexp="^[0-9]+$"
+						data-fv-regexp-message="El nombre solo puede contener caracteres numericos.">
 				</div>
+				<div class="form-group">
+					<label for="birthday" class="control-label">Fecha de Nacimiento *</label>
+					<input type="text" class="form-control" name="birthday" placeholder="DD/MM/AAAA" {($value)}="user.birthday" 
+						data-fv-notempty="true"
+						data-fv-notempty-message="Debe ingresar su fecha de nacimiento."
+
+						data-fv-date="true"
+						data-fv-date-format="DD/MM/YYYY"
+						data-fv-date-message="El formato de la fecha o la fecha ingresada no es valida." >
+						
+				</div>
+				<p class="text-muted">
+					<strong><i class="fa fa-asterisk" aria-hidden="true"></i></strong> El campo es obligatorio.
+				</p>
 				<ul class="list-inline pull-right">
 					<li>
 						<button type="button" class="btn btn-primary next-step" ($click)="nextStep()">
@@ -72,27 +146,31 @@
 				<p>Ingrese a continuación sus datos de contacto</p>
 				<div class="form-group">
 					<label for="country" class="control-label">País</label>
-					<input type="text" class="form-control" name="country" placeholder="País">
+					<input type="text" class="form-control" name="country" placeholder="País" {($value)}="user.contact.country">
 				</div>
 				<div class="form-group">
 					<label for="state" class="control-label">Provincia</label>
-					<input type="text" class="form-control" name="state" placeholder="Provincia">
+					<input type="text" class="form-control" name="state" placeholder="Provincia" {($value)}="user.contact.state" disabled>
 				</div>
 				<div class="form-group">
 					<label for="city" class="control-label">Ciudad</label>
-					<input type="text" class="form-control" name="city" placeholder="Ciudad">
+					<input type="text" class="form-control" name="city" placeholder="Ciudad" {($value)}="user.contact.city" disabled>
 				</div>
 				<div class="form-group">
 					<label for="postalCode" class="control-label">Código Postal</label>
-					<input type="text" class="form-control" name="postalCode" placeholder="Código Postal">
+					<input type="text" class="form-control" name="postalCode" placeholder="Código Postal" {($value)}="user.contact.postalcode"
+						minlength="4"
+						data-fv-stringlength-message="El código postal debe tener por lo menos 4 caracteres.">
 				</div>
 				<div class="form-group">
 					<label for="address" class="control-label">Dirección</label>
-					<input type="text" class="form-control" name="address" placeholder="Dirección">
+					<input type="text" class="form-control" name="address" placeholder="Dirección" {($value)}="user.contact.address"
+						minlength="4"
+						data-fv-stringlength-message="La Dirección debe tener por lo menos 4 caracteres.">
 				</div>
 				<div class="form-group">
 					<label for="phone" class="control-label">Teléfono</label>
-					<input type="text" class="form-control" name="phone" placeholder="Teléfono" >
+					<input type="text" class="form-control" name="phone" placeholder="Teléfono" {($value)}="user.contact.phone">
 				</div>
 				<ul class="list-inline pull-right">
 					<li>
@@ -110,13 +188,27 @@
 			<div class="tab-pane" role="tabpanel" id="step3">
 				<p>Ingrese a continuación los datos de su organización</p>
 				<div class="form-group">
-					<label for="organizationName" class="control-label">Nombre</label>
-					<input type="text" class="form-control" name="organizationName" placeholder="Nombre de la organización">
+					<label for="organizationName" class="control-label">Nombre *</label>
+					<input type="text" class="form-control" name="organizationName" placeholder="Nombre de la organización" {($value)}="user.organization.name"
+						data-fv-notempty="true"
+						data-fv-notempty-message="Debe ingresar el nombre de su organización." 
+
+						minlength="3"
+						data-fv-stringlength-message="El nombre de la organización debe tener por lo menos 3 caracteres.">
 				</div>
 				<div class="form-group">
-					<label for="organizationCUIT" class="control-label">CUIT</label>
-					<input type="text" class="form-control" name="organizationCUIT" placeholder="CUIT de la organización">
+					<label for="organizationCUIT" class="control-label">CUIT *</label>
+					<input type="text" class="form-control" name="organizationCUIT" placeholder="CUIT de la organización" {($value)}="user.organization.cuit"
+						data-fv-notempty="true"
+						data-fv-notempty-message="Debe ingresar el CUIT de su organización." 
+
+						minlength="11"
+						maxlength="11"
+						data-fv-stringlength-message="El CUIT de la organización debe tener 11 caracteres.">
 				</div>
+				<p class="text-muted">
+					<strong><i class="fa fa-asterisk" aria-hidden="true"></i></strong> El campo es obligatorio.
+				</p>
 				<ul class="list-inline pull-right">
 					<li>
 						<button type="button" class="btn btn-default prev-step" ($click)="prevStep()">
@@ -135,37 +227,37 @@
 				<h4><ins>Sus datos</ins></h4>
 				<dl class="dl-horizontal">
 					<dt>Email</dt>
-					<dd>...</dd>
+					<dd>{{user.email}}</dd>
 					<dt>Nombre</dt>
-					<dd>...</dd>
+					<dd>{{user.name}}</dd>
 					<dt>Apellido</dt>
-					<dd>...</dd>
+					<dd>{{user.lastname}}</dd>
 					<dt>DNI</dt>
-					<dd>...</dd>
+					<dd>{{user.dni}}</dd>
 					<dt>Fecha de Nacimiento</dt>
-					<dd>...</dd>
+					<dd>{{user.birthday}}</dd>
 				</dl>
 				<h4><ins>Datos de contacto</ins></h4>
 				<dl class="dl-horizontal">
 					<dt>País</dt>
-					<dd>...</dd>
+					<dd>{{user.contact.country}}</dd>
 					<dt>Provincia</dt>
-					<dd>...</dd>
+					<dd>{{user.contact.state}}</dd>
 					<dt>Ciudad</dt>
-					<dd>...</dd>
+					<dd>{{user.contact.city}}</dd>
 					<dt>Código Postal</dt>
-					<dd>...</dd>
+					<dd>{{user.contact.postalcode}}</dd>
 					<dt>Dirección</dt>
-					<dd>...</dd>
+					<dd>{{user.contact.address}}</dd>
 					<dt>Teléfono</dt>
-					<dd>...</dd>
+					<dd>{{user.contact.phone}}</dd>
 				</dl>
 				<h4><ins>Datos de su organización</ins></h4>
 				<dl class="dl-horizontal">
 					<dt>Nombre</dt>
-					<dd>...</dd>
+					<dd>{{user.organization.name}}</dd>
 					<dt>CUIT</dt>
-					<dd>...</dd>
+					<dd>{{user.organization.cuit}}</dd>
 				</dl>					
 				<ul class="list-inline pull-right">
 					<li>
