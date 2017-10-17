@@ -10,12 +10,13 @@ const configuration = require('feathers-configuration');
 const hooks = require('feathers-hooks');
 const rest = require('feathers-rest');
 const socketio = require('feathers-socketio');
+const swagger = require('feathers-swagger');
 
 const middleware = require('./middleware');
 const services = require('./services');
 const appHooks = require('./app.hooks');
 
-const mongodb = require('./mongodb');
+const mongoose = require('./mongoose');
 
 const app = feathers();
 
@@ -36,9 +37,21 @@ app.get('/', function(req, res) {
 });
 // Set up Plugins and providers
 app.configure(hooks());
-app.configure(mongodb);
+app.configure(mongoose);
 app.configure(rest());
 app.configure(socketio());
+app.configure(
+	swagger(
+		{
+			docsPath: '/docs/api'
+		,	info:
+			{
+				title: 'Centinela RESTfull API'
+			,	description: 'Descripción de la REST API de Centinela'
+			}
+		}
+	)
+);
 
 // Set up our services (see `services/index.js`)
 app.configure(services);
