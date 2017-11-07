@@ -1,5 +1,7 @@
 import DefineMap from 'can-define/map/';
 import route from 'can-route';
+import 'can-stache-bindings'
+
 import Session from '~/models/session';
 // Uncomment this line if you don't have a Feathers Server running, but want to test auth.
 // import '~/models/fixtures/';
@@ -21,16 +23,13 @@ const AppViewModel = DefineMap.extend({
    */
   session: {
     get () {
+      console.log(Session.current)
       return Session.current;
     }
   },
 
   logout () {
     return Session.current.destroy();
-  },
-
-  message: {
-    value: 'Hello World!'
   },
 
   /**

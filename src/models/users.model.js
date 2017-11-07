@@ -36,21 +36,17 @@ module.exports = function (app) {
 				,	lastName: { type: String, required: true}
 				,	dni: { type: Number, required: true}
 				,	birthday: { type: Date, required: true }
-				,	contact:
-					{
-						phone: { type: Number, required: true}
-					}
 				,	license:
 					{
-						number: { type: Number, required: true}
-					,	creationDate: { type: Date, required: true }
-					,	expirationDate: { type: Date, required: true }
+						number: { type: Number}
+					,	creationDate: { type: Date }
+					,	expirationDate: { type: Date }
 					}
 				}
 			,	createdAt: { type: Date, default: Date.now }
 			,	updatedAt: { type: Date, default: Date.now }
-				}
-			);
+			}
+		);
 
 	return mongooseClient.model('users', users);
 };
