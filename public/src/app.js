@@ -1,5 +1,6 @@
 import DefineMap from 'can-define/map/';
 import route from 'can-route';
+import $ from 'jquery'
 import 'can-stache-bindings'
 
 import Session from '~/models/session';

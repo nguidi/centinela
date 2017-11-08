@@ -3,23 +3,39 @@
 		<div class="connecting-line"></div>
 		<ul class="wizard-steps nav nav-tabs" role="tablist">
 			<li role="presentation" class="active">
-				<a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Datos del usuario">
+				<a href="#user" data-toggle="tab" aria-controls="user" role="tab" title="Datos del usuario" ($click)="setStep('user')">
 					<span class="round-tab">
 						<i class="fa fa-user"></i>
 					</span>
 				</a>
 			</li>
 			<li role="presentation" class="disabled">
-				<a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Datos de contacto">
+				<a href="#organization" data-toggle="tab" aria-controls="step3" role="tab" title="Datos de la organización" ($click)="setStep('organization')">
 					<span class="round-tab">
-						<i class="fa fa-phone"></i>
+						<i class="fa fa-briefcase"></i>
 					</span>
 				</a>
 			</li>
 			<li role="presentation" class="disabled">
-				<a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Datos de la organización">
+				<a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Detalles">
 					<span class="round-tab">
-						<i class="fa fa-building"></i>
+						<i class="fa fa-check"></i>
+					</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="wizard-steps nav nav-tabs" role="tablist">
+			<li role="presentation" class="active">
+				<a href="#user" data-toggle="tab" aria-controls="user" role="tab" title="Datos del usuario" ($click)="setStep('user')">
+					<span class="round-tab">
+						<i class="fa fa-user"></i>
+					</span>
+				</a>
+			</li>
+			<li role="presentation" class="disabled">
+				<a href="#organization" data-toggle="tab" aria-controls="step3" role="tab" title="Datos de la organización" ($click)="setStep('organization')">
+					<span class="round-tab">
+						<i class="fa fa-briefcase"></i>
 					</span>
 				</a>
 			</li>
@@ -39,7 +55,7 @@
 		data-fv-icon-validating="fa fa-refresh">
 
 		<div class="tab-content">
-			<div class="tab-pane active" role="tabpanel" id="step1">
+			<div class="tab-pane active" role="tabpanel" id="user">
 				<p>Ingrese a continuación sus datos</p>
 				<div class="form-group">
 					<label for="email" class="control-label">Email *</label>
@@ -142,50 +158,8 @@
 					</li>
 				</ul>
 			</div>
-			<div class="tab-pane" role="tabpanel" id="step2">
-				<p>Ingrese a continuación sus datos de contacto</p>
-				<div class="form-group">
-					<label for="country" class="control-label">País</label>
-					<input type="text" class="form-control" name="country" placeholder="País" {($value)}="user.contact.country">
-				</div>
-				<div class="form-group">
-					<label for="state" class="control-label">Provincia</label>
-					<input type="text" class="form-control" name="state" placeholder="Provincia" {($value)}="user.contact.state" disabled>
-				</div>
-				<div class="form-group">
-					<label for="city" class="control-label">Ciudad</label>
-					<input type="text" class="form-control" name="city" placeholder="Ciudad" {($value)}="user.contact.city" disabled>
-				</div>
-				<div class="form-group">
-					<label for="postalCode" class="control-label">Código Postal</label>
-					<input type="text" class="form-control" name="postalCode" placeholder="Código Postal" {($value)}="user.contact.postalcode"
-						minlength="4"
-						data-fv-stringlength-message="El código postal debe tener por lo menos 4 caracteres.">
-				</div>
-				<div class="form-group">
-					<label for="address" class="control-label">Dirección</label>
-					<input type="text" class="form-control" name="address" placeholder="Dirección" {($value)}="user.contact.address"
-						minlength="4"
-						data-fv-stringlength-message="La Dirección debe tener por lo menos 4 caracteres.">
-				</div>
-				<div class="form-group">
-					<label for="phone" class="control-label">Teléfono</label>
-					<input type="text" class="form-control" name="phone" placeholder="Teléfono" {($value)}="user.contact.phone">
-				</div>
-				<ul class="list-inline pull-right">
-					<li>
-						<button type="button" class="btn btn-default prev-step" ($click)="prevStep()">
-							Anterior
-						</button>
-					</li>
-					<li>
-						<button type="button" class="btn btn-primary next-step" ($click)="nextStep()">
-							Siguiente
-						</button>
-					</li>
-				</ul>
-			</div>
-			<div class="tab-pane" role="tabpanel" id="step3">
+			
+			<div class="tab-pane" role="tabpanel" id="organization">
 				<p>Ingrese a continuación los datos de su organización</p>
 				<div class="form-group">
 					<label for="organizationName" class="control-label">Nombre *</label>
@@ -236,21 +210,6 @@
 					<dd>{{user.dni}}</dd>
 					<dt>Fecha de Nacimiento</dt>
 					<dd>{{user.birthday}}</dd>
-				</dl>
-				<h4><ins>Datos de contacto</ins></h4>
-				<dl class="dl-horizontal">
-					<dt>País</dt>
-					<dd>{{user.contact.country}}</dd>
-					<dt>Provincia</dt>
-					<dd>{{user.contact.state}}</dd>
-					<dt>Ciudad</dt>
-					<dd>{{user.contact.city}}</dd>
-					<dt>Código Postal</dt>
-					<dd>{{user.contact.postalcode}}</dd>
-					<dt>Dirección</dt>
-					<dd>{{user.contact.address}}</dd>
-					<dt>Teléfono</dt>
-					<dd>{{user.contact.phone}}</dd>
 				</dl>
 				<h4><ins>Datos de su organización</ins></h4>
 				<dl class="dl-horizontal">

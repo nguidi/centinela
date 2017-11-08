@@ -1,0 +1,169 @@
+<can-import from="can-stache/helpers/route" />
+
+<div class="wrapper skin-blue">
+    <header class="main-header">
+
+    <!-- Logo -->
+    <a href="#" class="logo">
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg">
+        <img src="images/favicon.ico">
+        <span> Centinela </span>
+      </span>
+    </a>
+
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+      <!-- Navbar Right Menu -->
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="images/alerandom.jpg" class="user-image" alt="User Image">
+              <span class="hidden-xs">Alexander Random</span>
+            </a>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+          <li>
+            <a href="#" data-toggle="control-sidebar"><i class="fa fa-sign-out"></i></a>
+          </li>
+        </ul>
+      </div>
+
+    </nav>
+  </header>
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar" style="height: auto;">
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu tree" data-widget="tree">
+        <li class="header">MENU</li>
+        <li class="menu-option active">
+          <a href="{{routeUrl page='users'}}" on:click="setOption(scope.element)">
+            <i class="fa fa-users"></i>
+            <span>Usuarios</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+        </li>
+        <li class="menu-option">
+          <a href="{{routeUrl page='equipment'}}" on:click="setOption(scope.element)">
+            <i class="fa fa-camera"></i>
+            <span>Equipamiento</span>
+            <span class="pull-right-container">
+               <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+        </li>
+        <li class="menu-option">
+          <a href="{{routeUrl page='batteries'}}" on:click="setOption(scope.element)">
+            <i class="fa fa-battery-3"></i>
+            <span>Baterias</span>
+            <span class="pull-right-container">
+               <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+        </li>
+        <li class="menu-option">
+          <a href="{{routeUrl page='uavs'}}" on:click="setOption(scope.element)">
+            <i class="fa fa-plane"></i>
+            <span>UAVs</span>
+            <span class="pull-right-container">
+               <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+        </li>
+        <li class="menu-option treeview">
+          <a href="#" on:click="toggleTree(scope.element)">
+            <i class="fa fa-map-marker"></i>
+            <span>Vuelos</span>
+            <span class="pull-right-container">
+              <i class="tree-marker fa fa-angle-down pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li>
+                <a href="{{routeUrl page='flights'}}" class="tree-option" on:click="setOption(scope.element)">
+                    <i class="fa fa-circle-o"></i>
+                    Realizados
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="{{routeUrl page='planification'}}" class="tree-option" on:click="setOption(scope.element)">
+                    <i class="fa fa-circle-o"></i>
+                    Planificación
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+  <div class="content-wrapper">
+    {{#switch page}}
+        {{#case "users"}}
+            <can-import from="centinela/components/app/users/">
+                {{#if isPending}}
+                    Loading...
+                {{else}}
+                    <app-users/>
+                {{/if}}
+            </can-import>
+        {{/case}}
+        {{#case "equipment"}}
+            <can-import from="centinela/components/app/equipment/">
+                {{#if isPending}}
+                    Loading...
+                {{else}}
+                    <app-equipment/>
+                {{/if}}
+            </can-import>
+        {{/case}}
+        {{#case "batteries"}}
+            <can-import from="centinela/components/app/batteries/">
+                {{#if isPending}}
+                    Loading...
+                {{else}}
+                    <app-batteries/>
+                {{/if}}
+            </can-import>
+        {{/case}}
+        {{#case "uavs"}}
+            <can-import from="centinela/components/app/uavs/">
+                {{#if isPending}}
+                    Loading...
+                {{else}}
+                    <app-uavs/>
+                {{/if}}
+            </can-import>
+        {{/case}}
+        {{#case "app-flights"}}
+            <can-import from="centinela/components/app/flights/">
+                {{#if isPending}}
+                    Loading...
+                {{else}}
+                    <app-flights/>
+                {{/if}}
+            </can-import>
+        {{/case}}
+        {{#case "planification"}}
+            <can-import from="centinela/components/app/planification/">
+                {{#if isPending}}
+                    Loading...
+                {{else}}
+                    <app-planification/>
+                {{/if}}
+            </can-import>
+        {{/case}}
+    {{/switch}}
+  </div>
+</div>

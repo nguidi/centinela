@@ -15,6 +15,20 @@ import 'centinela/components/user/recover-password/recover-password-test';
 
 import 'centinela/components/user/register/register-test';
 
+import 'centinela/components/app/home/home-test';
+
+import 'centinela/components/app/users/users-test';
+
+import 'centinela/components/app/equipment/equipment-test';
+
+import 'centinela/components/app/batteries/batteries-test';
+
+import 'centinela/components/app/uavs/uavs-test';
+
+import 'centinela/components/app/flights/flights-test';
+
+import 'centinela/components/app/planification/planification-test';
+
 F.attach(QUnit);
 
 QUnit.module('centinela functional smoke test', {

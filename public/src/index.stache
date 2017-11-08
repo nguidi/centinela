@@ -12,12 +12,15 @@
 		<can-import from="centinela/app" export-as="viewModel" />
 		<can-import from="can-stache/helpers/route" />
 		
-			{{#if(session)}}
-				<div>
-					<p>Logged IN</p>
-					<button on:click="logout()"> Logout </button>
-				</div>
-			{{else}}
+			
+				<can-import from="centinela/components/app/home/">
+					{{#if isPending}}
+						Loading...
+					{{else}}
+						<app-home/>
+					{{/if}}
+				</can-import>
+			<!--
 				<div class="wrapper">
 					<div class="panel-wrapper block-center mt-xl {{#eq page 'register'}} wd-xlg {{else}} wd-xl {{/eq}}">
 						<div class="panel panel-dark panel-flat">
@@ -66,7 +69,7 @@
 						</div>
 					</div>
 				</div>
-			{{/if}}
+			-->
 
 		{{#switch env.NODE_ENV}}
 			{{#case "production"}}

@@ -24,7 +24,7 @@ export const ViewModel
 				//	todas las validaciones del formulario
 			,	nextStep: function()
 				{
-					//	Obtengo el paso actual del wizard
+					//	Obtengo el validador del formulario
 					var FormValidator
 					=	$('form').data('formValidation');
 
@@ -44,16 +44,70 @@ export const ViewModel
 						//	avanzo al siguiente paso del wizard
 						var $active = $('.wizard .nav-tabs li.active');
 						$active.next().removeClass('disabled');
-						$active.next().find('a[data-toggle="tab"]').click();
+						$('a[href="'+$currentStep+'"]').click();
+						$active.addClass('done');
 
 					}
 				}
 
 				//	Permite volver al paso anterior
 			,	prevStep: function()
-				{
+				{				
+					//	Obtengo el paso activo y a partir de el me muevo al anterior
 					var $active = $('.wizard .nav-tabs li.active');
 					$active.prev().find('a[data-toggle="tab"]').click();
+
+					//	Deshabilito el ultimo paso
+					$('.wizard .nav-tabs li').last()
+						.addClass('disabled')
+						.removeClass('done');
+				}
+
+				//	Vuelve a un paso determinado
+			,	setStep: function(stepToGo)
+				{
+					console.log(arguments)
+					//	Obtengo el paso actual del wizard
+					var	$currentStep
+					=	'#'+$('.tab-pane.active').attr('id');
+
+					if ($currentStep != 'complete') {
+						//	Obtengo el validador del formulario
+						var FormValidator
+						=	$('form').data('formValidation');
+
+						//	Fuerzo la validación el formulario
+						//	Si algun campo no se valido, se mostrara el
+						//	error de validación
+						FormValidator.validateContainer($currentStep);
+
+						//	Verifico que todo el formulario este OK
+						if (FormValidator.isValidContainer($currentStep)) {
+
+							//	Si el formulario se valido correctamente
+							//	marco el paso como correcto
+							$('.wizard .nav-tabs li a[tab-name="'+$currentStep+'"]').parent()
+								.removeClass('with-errors')
+								.addClass('done');
+
+							$('a[href="'+$currentStep+'"]').click();
+
+						} else {
+
+							//	Si el formulario tiene alguna falla
+							//	marco el paso como iconrrecto
+							$('.wizard .nav-tabs li a[tab-name="'+$currentStep+'"]').parent()
+							.removeClass('done')
+							.addClass('with-errors');
+
+						}
+				
+					}
+
+					//	Deshabilito el paso complete
+					$('.wizard .nav-tabs li').last()
+						.addClass('disabled')
+						.removeClass('done');
 				}
 
 				//	Registrar el nuevo usuario
