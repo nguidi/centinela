@@ -29,6 +29,8 @@ import 'centinela/components/app/flights/flights-test';
 
 import 'centinela/components/app/planification/planification-test';
 
+import 'centinela/components/app/dashboard/dashboard-test';
+
 F.attach(QUnit);
 
 QUnit.module('centinela functional smoke test', {

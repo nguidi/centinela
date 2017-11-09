@@ -17,7 +17,7 @@
 					{{#if isPending}}
 						Loading...
 					{{else}}
-						<app-home/>
+						<app-home page:from="page"/>
 					{{/if}}
 				</can-import>
 			<!--

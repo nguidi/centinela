@@ -1,6 +1,5 @@
 import Component from 'can-component';
 import DefineMap from 'can-define/map/';
-import route from 'can-route';
 import './home.less';
 import view from './home.stache';
 
@@ -18,6 +17,7 @@ export const ViewModel = DefineMap.extend(
       $(el).parent().find('ul.treeview-menu').toggleClass('active');
       $(el).parent().find('i.tree-marker').toggleClass('fa-angle-down fa-angle-up')
     }
+  , page: 'string'
   }
 );
 
