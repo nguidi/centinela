@@ -2,4 +2,5 @@
   "host": "centinela-app.feathersjs.com",
   "port": "PORT",
   "index": "../public/production.html",
+  "mongodb": "mongodb://centinela:EaFNu0CzzW6dmCdQWSuygmg4g0O0AZ1nGVaY19X69xM8VtFoJksFhYwoC9caixGsLwqNFX4EN7s18EHyD4lSeA==@centinela.documents.azure.com:10255/?ssl=true"  
 }

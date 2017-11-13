@@ -13,6 +13,10 @@
     "url": ""
   },
   "private": true,
+  "engines": {
+    "node": ">= 7.10.0",
+    "npm": ">= 4.2.0"
+  },
   "scripts": {
     "test": "testee test.html --browsers firefox --reporter Spec",
     "start": "done-serve --port 3030",
@@ -46,6 +50,19 @@
       }
     },
     "serviceBaseURL": "",
+    "bundle": [
+      "centinela/components/app/batteries/",
+      "centinela/components/app/dashboard/",
+      "centinela/components/app/equipment/",
+      "centinela/components/app/flights/",
+      "centinela/components/app/home/",
+      "centinela/components/app/planification/",
+      "centinela/components/app/uavs/",
+      "centinela/components/app/users/",
+      "centinela/components/user/login/",
+      "centinela/components/user/recover-password/",
+      "centinela/components/user/register/"
+    ],
     "meta": {
       "bootstrap-datepicker": {
         "format": "global"

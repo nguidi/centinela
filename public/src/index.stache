@@ -11,65 +11,65 @@
 		<can-import from="centinela/styles.less" />
 		<can-import from="centinela/app" export-as="viewModel" />
 		<can-import from="can-stache/helpers/route" />
-		
-			
-				<can-import from="centinela/components/app/home/">
-					{{#if isPending}}
-						Loading...
-					{{else}}
-						<app-home page:from="page"/>
-					{{/if}}
-				</can-import>
-			<!--
-				<div class="wrapper">
-					<div class="panel-wrapper block-center mt-xl {{#eq page 'register'}} wd-xlg {{else}} wd-xl {{/eq}}">
-						<div class="panel panel-dark panel-flat">
-							<div class="panel-heading text-center">
-								<a href="#">
-									<img src="src/images/logo-w-s.png" alt="Image" class="block-center logo">
-								</a>
-							</div>
-							<div class="panel-body">
-								{{#switch page}}
-									{{#case "password-recover"}}
-										<can-import from="centinela/components/user/recover-password/">
-											{{#if isPending}}
-												Loading...
-											{{else}}
-												<user-recover-password/>
-											{{/if}}
-										</can-import>
-									{{/case}}
-									{{#case "register"}}
-										<can-import from="centinela/components/user/register/">
-											{{#if isPending}}
-												Loading...
-											{{else}}
-												<user-register/>
-											{{/if}}
-										</can-import>
-									{{/case}}
-									{{#default}}
-										<can-import from="centinela/components/user/login/">
-											{{#if isPending}}
-												Loading...
-											{{else}}
-												<user-login/>
-											{{/if}}
-										</can-import>
-									{{/default}}
-								{{/switch}}
-							</div>
+
+		{{#if session.userId}}
+			<can-import from="centinela/components/app/home/">
+				{{#if isPending}}
+					Loading...
+				{{else}}
+					<app-home page:from="page"/>
+				{{/if}}
+			</can-import>
+		{{else}}
+			<div class="wrapper">
+				<div class="panel-wrapper block-center login-box {{#eq page 'register'}} wd-xlg {{/eq}}">
+					<div class="panel panel-dark panel-flat">
+						<div class="panel-heading text-center">
+							<a href="#">
+								<img src="src/images/logo-w-s.png" alt="Image" class="block-center logo">
+							</a>
 						</div>
-						<div class="p-lg text-center">
-							<span>©</span>
-							<span>2017</span>
-							<span>-</span>
-							<span>Centinela</span>
+						<div class="panel-body">
+							{{#switch page}}
+								{{#case "password-recover"}}
+									<can-import from="centinela/components/user/recover-password/">
+										{{#if isPending}}
+											Loading...
+										{{else}}
+											<user-recover-password/>
+										{{/if}}
+									</can-import>
+								{{/case}}
+								{{#case "register"}}
+									<can-import from="centinela/components/user/register/">
+										{{#if isPending}}
+											Loading...
+										{{else}}
+											<user-register/>
+										{{/if}}
+									</can-import>
+								{{/case}}
+								{{#default}}
+									<can-import from="centinela/components/user/login/">
+										{{#if isPending}}
+											Loading...
+										{{else}}
+											<user-login/>
+										{{/if}}
+									</can-import>
+								{{/default}}
+							{{/switch}}
 						</div>
 					</div>
+					<div class="p-lg text-center">
+						<span>©</span>
+						<span>2017</span>
+						<span>-</span>
+						<span>Centinela</span>
+					</div>
 				</div>
-			-->
+			</div>
+		{{/if}}
 
 		{{#switch env.NODE_ENV}}
 			{{#case "production"}}
