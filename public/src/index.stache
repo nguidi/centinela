@@ -27,7 +27,7 @@
 					<div class="panel panel-dark panel-flat">
 						<div class="panel-heading text-center">
 							<a href="#">
-								<img src="src/images/logo-w-s.png" alt="Image" class="block-center logo">
+								<img src="/images/logo-w-s.png" alt="Image" class="block-center logo">
 							</a>
 						</div>
 						<div class="panel-body">
