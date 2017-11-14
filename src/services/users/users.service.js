@@ -76,34 +76,56 @@ module.exports = function () {
 	}
 
 	//	Custom methods
-	app.use('/recoverPassword', {
-		find(params, cb) {
-		  // do complex stuff here
-			console.log(params.query.email)
-			
-		  var fromEmail = new MailHelper.Email('recover@centinela.azurewebsites.net');
-			var toEmail = new MailHelper.Email('neri3004@gmail.com.com');
-			var subject = 'Sending with SendGrid is Fun';
-			var content = new MailHelper.Content('text/plain', 'and easy to do anywhere, even with Node.js');
-			var mail = new MailHelper.Mail(fromEmail, subject, toEmail, content);
-			 
-			var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
-			var request = sg.emptyRequest({
-				method: 'POST',
-				path: '/v3/mail/send',
-				body: mail.toJSON()
-			});
-			 
-			sg.API(request, function (error, response) {
-				if (error) {
-					console.log('Error response received');
-				}
-				console.log(response.statusCode);
-				console.log(response.body);
-				console.log(response.headers);
-				cb();
-			});
-		}
+	app.use(
+		'/recoverPassword'
+	,	{
+			find(params, cb)
+			{
+				app.service('users')
+					.find(
+						{
+							query: { email: params.query.email }
+						}
+					).then(
+						function(result)
+						{
+							console.log(result)
+							if (result.total) {
+								// do complex stuff here
+								const user = result.data[0];
+								
+								var fromEmail = new MailHelper.Email('no-reply@centinela.azurewebsites.net');
+								var toEmail = new MailHelper.Email(user.email);
+								var subject = 'Recupere su cuenta';
+								var content = new MailHelper.Content('text/plain', 'Para recuperar su contraseña, por favor ingrese al siguiente enlace http://centinela.azurewebsites.net/recoverme/'+user._id);
+								var mail = new MailHelper.Mail(fromEmail, subject, toEmail, content);
+								
+								var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
+								var request
+								=	sg.emptyRequest(
+										{
+											method: 'POST'
+										,	path: '/v3/mail/send'
+										,	body: mail.toJSON()
+										}
+									);
+
+								sg.API(
+									request
+								, function (error, response)
+									{
+										if (error) {
+											console.log('Error response received');
+										}
+										cb(null,'Email sent');
+									}
+								);
+							} else {
+								cb(404,'User not found');
+							}
+						}
+					);
+			}
 	  }
 	);
 

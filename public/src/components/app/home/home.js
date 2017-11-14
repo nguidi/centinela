@@ -2,6 +2,7 @@ import Component from 'can-component';
 import DefineMap from 'can-define/map/';
 import './home.less';
 import view from './home.stache';
+import Session from '~/models/session';
 
 export const ViewModel = DefineMap.extend(
   {
@@ -16,6 +17,11 @@ export const ViewModel = DefineMap.extend(
     {
       $(el).parent().find('ul.treeview-menu').toggleClass('active');
       $(el).parent().find('i.tree-marker').toggleClass('fa-angle-down fa-angle-up')
+    }
+  , logout: function()
+    {
+      console.log("logout")
+      //Session.current.destroy();
     }
   , page: 'string'
   }

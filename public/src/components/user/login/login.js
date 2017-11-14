@@ -7,6 +7,11 @@ import feathersClient from 'centinela/models/feathers-client'
 import './login.less';
 import view from './login.stache';
 
+import 'bootstrap/dist/js/bootstrap';
+import 'formvalidation';
+import 'node_modules/formvalidation/dist/js/framework/bootstrap.js';
+import 'node_modules/formvalidation/dist/css/formvalidation.css';
+
 export const ViewModel = DefineMap.extend({
   user: {
     value: {
@@ -18,7 +23,7 @@ export const ViewModel = DefineMap.extend({
   {
     // Comenzamos a cargar, animamos el boton de ingreso
     $(el).button('loading');
-
+    console.log("login")
     // Intentamos autentificar el usuario
     feathersClient
       .authenticate(
@@ -43,7 +48,7 @@ export const ViewModel = DefineMap.extend({
           //  Volvemos el boton de ingreso a su estado normal
           $(el).button('reset');
           //  Ingresamos al home de la app
-                    
+          console.log(user)
         }
       ).catch(function(error){
           //  Ocurrio un error al autentificar

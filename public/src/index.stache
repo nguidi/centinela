@@ -12,7 +12,7 @@
 		<can-import from="centinela/app" export-as="viewModel" />
 		<can-import from="can-stache/helpers/route" />
 
-		{{#if session.userId}}
+		{{#session}}
 			<can-import from="centinela/components/app/home/">
 				{{#if isPending}}
 					Loading...
@@ -20,7 +20,8 @@
 					<app-home page:from="page"/>
 				{{/if}}
 			</can-import>
-		{{else}}
+		{{/session}}
+		{{^session}}
 			<div class="wrapper">
 				<div class="panel-wrapper block-center login-box {{#eq page 'register'}} wd-xlg {{/eq}}">
 					<div class="panel panel-dark panel-flat">
@@ -37,6 +38,15 @@
 											Loading...
 										{{else}}
 											<user-recover-password/>
+										{{/if}}
+									</can-import>
+								{{/case}}
+								{{#case "email-sent"}}
+									<can-import from="centinela/components/user/email-sent/">
+										{{#if isPending}}
+											Loading...
+										{{else}}
+											<user-register/>
 										{{/if}}
 									</can-import>
 								{{/case}}
@@ -69,7 +79,7 @@
 					</div>
 				</div>
 			</div>
-		{{/if}}
+		{{/session}}
 
 		{{#switch env.NODE_ENV}}
 			{{#case "production"}}

@@ -7,6 +7,8 @@ import Session from '~/models/session';
 // Uncomment this line if you don't have a Feathers Server running, but want to test auth.
 // import '~/models/fixtures/';
 
+window.Session = Session;
+
 const AppViewModel = DefineMap.extend({
 
   /**
@@ -24,8 +26,8 @@ const AppViewModel = DefineMap.extend({
    */
   session: {
     get () {
-      console.log(Session.current)
-      return Session.current;
+      //console.log(true)
+      return true;//Session.current || DefineMap({});
     }
   },
 
