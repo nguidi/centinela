@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const createService = require('feathers-mongoose');
 const swagger = require('feathers-swagger');
 require('mongoose-schema-jsonschema')(mongoose);
-const sendGridMail = require('@sendgrid/mail');;
+var MailHelper = require('sendgrid').mail;
 
 const createModel = require('../../models/users.model');
 const hooks = require('./users.hooks');
@@ -66,8 +66,6 @@ module.exports = function () {
 		)
 	);
 
-	//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 Copied!
-
 	// Get our initialized service so that we can register hooks and filters
 	const service = app.service('users');
 
@@ -77,22 +75,34 @@ module.exports = function () {
 		service.filter(filters);
 	}
 
-	sendGridMail.setApiKey('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');
-
 	//	Custom methods
 	app.use('/recoverPassword', {
 		find(params, cb) {
 		  // do complex stuff here
-		  console.log(params.query.email)
-		  const msg = {
-			to: params.query.email,
-			from: 'test@example.com',
-			subject: 'Sending with SendGrid is Fun',
-			text: 'and easy to do anywhere, even with Node.js',
-			html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-		  };
-		  sendGridMail.send(msg)
-		  cb()
+			console.log(params.query.email)
+			
+		  var fromEmail = new MailHelper.Email('recover@centinela.azurewebsites.net');
+			var toEmail = new MailHelper.Email('neri3004@gmail.com.com');
+			var subject = 'Sending with SendGrid is Fun';
+			var content = new MailHelper.Content('text/plain', 'and easy to do anywhere, even with Node.js');
+			var mail = new MailHelper.Mail(fromEmail, subject, toEmail, content);
+			 
+			var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
+			var request = sg.emptyRequest({
+				method: 'POST',
+				path: '/v3/mail/send',
+				body: mail.toJSON()
+			});
+			 
+			sg.API(request, function (error, response) {
+				if (error) {
+					console.log('Error response received');
+				}
+				console.log(response.statusCode);
+				console.log(response.body);
+				console.log(response.headers);
+				cb();
+			});
 		}
 	  }
 	);
