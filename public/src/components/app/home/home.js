@@ -2,7 +2,8 @@ import Component from 'can-component';
 import DefineMap from 'can-define/map/';
 import './home.less';
 import view from './home.stache';
-import Session from '~/models/session';
+import feathersClient from '~/models/feathers-client';
+import User from '~/models/user';
 
 export const ViewModel = DefineMap.extend(
   {
@@ -18,10 +19,21 @@ export const ViewModel = DefineMap.extend(
       $(el).parent().find('ul.treeview-menu').toggleClass('active');
       $(el).parent().find('i.tree-marker').toggleClass('fa-angle-down fa-angle-up')
     }
+  , user: {
+    value: undefined
+  }
   , logout: function()
     {
-      console.log("logout")
-      //Session.current.destroy();
+      var self = this;
+      $('#logout').one(
+        'hidden.bs.modal'
+      , function (e)
+        {
+          feathersClient.logout();
+          self.user = undefined;
+        }
+      );
+      $('#logout').modal('hide');
     }
   , page: 'string'
   }
@@ -30,5 +42,13 @@ export const ViewModel = DefineMap.extend(
 export default Component.extend({
   tag: 'app-home',
   ViewModel,
-  view
+  view,
+  events:
+  {
+    inserted: function()
+    {
+      //	Validador de Formularios
+      $('.modal').modal({ show: false })
+    }
+  }
 });

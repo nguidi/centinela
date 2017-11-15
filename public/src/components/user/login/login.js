@@ -13,24 +13,28 @@ import 'node_modules/formvalidation/dist/js/framework/bootstrap.js';
 import 'node_modules/formvalidation/dist/css/formvalidation.css';
 
 export const ViewModel = DefineMap.extend({
-  user: {
+  loginForm: {
     value: {
       email: ''
     , password: ''
     }
   }
+, user: {
+  value: undefined
+}
 , login: function(el)
   {
+    //  Guardamos el scope
+    var self = this;
     // Comenzamos a cargar, animamos el boton de ingreso
     $(el).button('loading');
-    console.log("login")
     // Intentamos autentificar el usuario
     feathersClient
       .authenticate(
         {
           strategy: 'local'
-        , email: this.user.email
-        , password: this.user.password
+        , email: this.loginForm.email
+        , password: this.loginForm.password
         }
       ).then(response => {
           //  Usuario autentificado, obtenemos el token de acceso
@@ -47,15 +51,14 @@ export const ViewModel = DefineMap.extend({
           feathersClient.set('user', user);
           //  Volvemos el boton de ingreso a su estado normal
           $(el).button('reset');
-          //  Ingresamos al home de la app
-          console.log(user)
+          //  Seteamos el usuario logeado e ingresamos al home de la app
+          self.user = user;
         }
       ).catch(function(error){
           //  Ocurrio un error al autentificar
           //  Volvemos el boton a su estado normal
           $(el).button('reset');
           //  Mostramos un aviso en pantalla
-
       });
   }
 });

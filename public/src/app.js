@@ -4,10 +4,12 @@ import $ from 'jquery'
 import 'can-stache-bindings'
 
 import Session from '~/models/session';
+import feathersClient from '~/models/feathers-client';
+import User from '~/models/user';
 // Uncomment this line if you don't have a Feathers Server running, but want to test auth.
 // import '~/models/fixtures/';
 
-window.Session = Session;
+window.Session = Session
 
 const AppViewModel = DefineMap.extend({
 
@@ -20,14 +22,10 @@ const AppViewModel = DefineMap.extend({
   },
 
   /**
-   * Session.current is provided by the can-connect-feathers session behavior.
-   * It will automatically populate when `new Session().save()` occurs in the app
-   * or on refresh after login.
+   * Current user
    */
-  session: {
-    get() {
-      return Session.get();
-    }
+  user: {
+    value: undefined
   },
 
   logout () {
@@ -44,7 +42,34 @@ const AppViewModel = DefineMap.extend({
   /**
    * The `page` where we are.
    */
-  page: 'string'
+  page: 'string',
+
+  init: function()
+  {
+    var self = this;
+    feathersClient
+      .authenticate()
+      .then(response => {
+          //  Usuario autentificado, obtenemos el token de acceso
+          //  y lo almacenamos en el localstorage
+          return feathersClient.passport.verifyJWT(response.accessToken);
+        }
+      ).then(payload => {
+          //  Usamos el ID del usuario autentificado para obtener el
+          //  Usuario logeado
+          return feathersClient.service('users').get(payload.userId);
+        }
+      ).then(user => {
+          //  Guardamos el usuario logeado en el cliente
+          feathersClient.set('user', user);
+          self.user = user;
+        }
+      ).catch(
+        err => {
+          self.user = undefined;
+        }
+      );
+  }
 });
 
 

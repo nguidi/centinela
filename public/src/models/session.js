@@ -20,11 +20,6 @@ export const Session = DefineMap.extend('Session', {
       }
     }
   },
-  isLoggedIn: {
-    get() {
-      return (typeof this.userId !== 'undefined')
-    }
-  },
   exp: 'number',
   aud: 'string',
   iat: 'number',

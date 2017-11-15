@@ -11,17 +11,15 @@
 		<can-import from="centinela/app" export-as="viewModel" />
 		<can-import from="can-stache/helpers/route" />
 
-		{{#if session.isResolved}}
-			{{#session.value.isLoggedIn}}
+		{{#if user}}
 			<can-import from="centinela/components/app/home/">
 				{{#if isPending}}
 					Loading...
 				{{else}}
-					<app-home page:from="page"/>
+					<app-home page:from="page" user:bind="user"/>
 				{{/if}}
 			</can-import>
-			{{/session.value.isLoggedIn}}
-			{{^session.value.isLoggedIn}}
+		{{else}}
 			<div class="wrapper">
 				<div class="panel-wrapper block-center login-box {{#eq page 'register'}} wd-xlg {{/eq}}">
 					<div class="panel panel-dark panel-flat">
@@ -64,7 +62,7 @@
 										{{#if isPending}}
 											Loading...
 										{{else}}
-											<user-login/>
+											<user-login  user:bind="user"/>
 										{{/if}}
 									</can-import>
 								{{/default}}
@@ -79,7 +77,6 @@
 					</div>
 				</div>
 			</div>
-			{{/session.value.isLoggedIn}}
 		{{/if}}
 
 		{{#switch env.NODE_ENV}}
