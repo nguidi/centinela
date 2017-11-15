@@ -14,11 +14,10 @@
 		<div class="checkbox c-checkbox pull-left mt0">
 			<label>
 				<input type="checkbox" value="" name="remember">
-				<span class="fa fa-check"></span>
 				Recordarme
 			</label>
 		</div>
-		<div class="pull-right">
+		<div class="pull-right recover-password">
 			<a href="{{routeUrl page='password-recover'}}" class="text-muted">
 				¿Olvidó su contraseña?
 			</a>

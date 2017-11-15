@@ -24,29 +24,6 @@
 				</a>
 			</li>
 		</ul>
-		<ul class="wizard-steps nav nav-tabs" role="tablist">
-			<li role="presentation" class="active">
-				<a href="#user" data-toggle="tab" aria-controls="user" role="tab" title="Datos del usuario" ($click)="setStep('user')">
-					<span class="round-tab">
-						<i class="fa fa-user"></i>
-					</span>
-				</a>
-			</li>
-			<li role="presentation" class="disabled">
-				<a href="#organization" data-toggle="tab" aria-controls="step3" role="tab" title="Datos de la organización" ($click)="setStep('organization')">
-					<span class="round-tab">
-						<i class="fa fa-briefcase"></i>
-					</span>
-				</a>
-			</li>
-			<li role="presentation" class="disabled">
-				<a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Detalles">
-					<span class="round-tab">
-						<i class="fa fa-check"></i>
-					</span>
-				</a>
-			</li>
-		</ul>
 	</div>
 	<form
 		data-fv-framework="bootstrap"
@@ -152,7 +129,7 @@
 				</p>
 				<ul class="list-inline pull-right">
 					<li>
-						<button type="button" class="btn btn-primary next-step" ($click)="nextStep()">
+						<button type="button" class="btn btn-primary next-step" ($click)="setStep('organization')">
 							Siguiente
 						</button>
 					</li>
@@ -185,7 +162,7 @@
 				</p>
 				<ul class="list-inline pull-right">
 					<li>
-						<button type="button" class="btn btn-default prev-step" ($click)="prevStep()">
+						<button type="button" class="btn btn-default prev-step" ($click)="setStep('organization')">
 							Anterior
 						</button>
 					</li>
