@@ -25,9 +25,8 @@ const AppViewModel = DefineMap.extend({
    * or on refresh after login.
    */
   session: {
-    get () {
-      //console.log(true)
-      return true;//Session.current || DefineMap({});
+    get() {
+      return Session.get();
     }
   },
 

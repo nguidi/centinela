@@ -7,12 +7,12 @@
 	<body>
 		<can-import from="bootstrap/less/bootstrap.less" />
 		<can-import from="centinela/bootstrap.theme.css" />
-		<can-import from="font-awesome/less/font-awesome.less" />
 		<can-import from="centinela/styles.less" />
 		<can-import from="centinela/app" export-as="viewModel" />
 		<can-import from="can-stache/helpers/route" />
 
-		{{#session}}
+		{{#if session.isResolved}}
+			{{#session.value.isLoggedIn}}
 			<can-import from="centinela/components/app/home/">
 				{{#if isPending}}
 					Loading...
@@ -20,8 +20,8 @@
 					<app-home page:from="page"/>
 				{{/if}}
 			</can-import>
-		{{/session}}
-		{{^session}}
+			{{/session.value.isLoggedIn}}
+			{{^session.value.isLoggedIn}}
 			<div class="wrapper">
 				<div class="panel-wrapper block-center login-box {{#eq page 'register'}} wd-xlg {{/eq}}">
 					<div class="panel panel-dark panel-flat">
@@ -79,7 +79,8 @@
 					</div>
 				</div>
 			</div>
-		{{/session}}
+			{{/session.value.isLoggedIn}}
+		{{/if}}
 
 		{{#switch env.NODE_ENV}}
 			{{#case "production"}}
