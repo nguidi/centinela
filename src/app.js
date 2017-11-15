@@ -44,6 +44,7 @@ app.configure(
 	swagger(
 		{
 			docsPath: '/docs/api'
+		,	uiIndex: path.join(app.get('public'), 'docs/index.html')
 		,	info:
 			{
 				title: 'Centinela RESTfull API'
