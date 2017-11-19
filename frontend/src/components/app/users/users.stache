@@ -1,0 +1,228 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+    Gestión de Usuarios
+    </h1>
+    <ol class="breadcrumb">
+    <li>
+        <a href="#">
+            <i class="fa fa-users"></i>
+            Home
+        </a>
+    </li>
+    <li class="active">
+        Usuarios
+    </li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">
+                    Usuarios de la organización
+                </h3>
+                <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#createUser">
+                    Nuevo usuario
+                </button>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                    <div class="row">
+                        <div class="col-sm-6"></div>
+                        <div class="col-sm-6"></div>
+                    </div>
+                    {{#if instances.isResolved}}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-bordered table-hover dataTable">
+                                <thead>
+                                    <tr role="row">
+                                        <th>
+                                            Email
+                                        </th>
+                                        <th>
+                                            Nombre y apellido
+                                        </th>
+                                        <th>
+                                            DNI
+                                        </th>
+                                        <th>
+                                            Rol
+                                        </th>
+                                        <th class="actions text-center">
+                                            <i class="fa fa-cogs"></i>                                   
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each instances.value}}
+                                        <tr role="row">
+                                            <td>{{email}}</td>
+                                            <td>{{person.lastName}}, {{person.name}}</td>
+                                            <td>{{person.dni}}</td>
+                                            <td>{{profile.name}}</td>
+                                            <td>
+                                                <a class="pull-right" on:click="setToRemove(.)">
+                                                    <i class="fa fa-times text-danger pull-right"></i>
+                                                </a>
+                                                <a class="pull-right" on:click="setToEdit(.)">
+                                                    <i class="fa fa-pencil text-primary pull-right"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
+                                Mostrando {{instances.value.length}} de {{instances.value.total}}
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="dataTables_paginate paging_simple_numbers">
+                                <ul class="pagination">
+                                    <li class="paginate_button previous disabled">
+                                        <a href="#">
+                                            Anterior
+                                        </a>
+                                    </li>
+                                    <li class="paginate_button active">
+                                        <a href="#">
+                                            1
+                                        </a>
+                                    </li>
+                                    <li class="paginate_button next disabled" id="example2_next">
+                                        <a href="#">
+                                            Siguiente
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+    </div>
+</section>
+<!-- /.content -->
+
+<!-- .modal-content -->
+<div id="createUser" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">
+            Nuevo usuario
+        </h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+            <p>A continuación ingrese los datos del nuevo usuario:</p>
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="email" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" name="email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="dni" class="col-sm-2 control-label">DNI</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="dni" placeholder="DNI">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="profile" class="col-sm-2 control-label">
+                        Rol
+                    </label>
+                    <div class="col-sm-10">
+                        <select class="form-control">
+                            <option value="1">Administrador</option>
+                            <option value="2">Despachante</option>
+                            <option value="3">Piloto de UAV</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-footer -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" on:click="create()">Crear</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- .modal-content -->
+<div id="editUser" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">
+            Editar usuario
+        </h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+            <p>A continuación edite el rol del usuario <b>{{instance.person.lastName}} {{instance.person.name}}</b></p>
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="profile" class="col-sm-2 control-label">
+                        Rol
+                    </label>
+                    <div class="col-sm-10">
+                        <select class="form-control">
+                            <option value="1" {{#eq(instance.profile.type,1)}} selected {{/eq}}>Administrador</option>
+                            <option value="2" {{#eq(instance.profile.type,2)}} selected {{/eq}}>Despachante</option>
+                            <option value="3" {{#eq(instance.profile.type,3)}} selected {{/eq}}>Piloto de UAV</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-footer -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" on:click="update()">Guardar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- .modal-content -->
+<div id="removeUser" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">
+            Eliminar usuario
+        </h4>
+      </div>
+      <div class="modal-body">
+        <p>¿Está seguro que desea eliminar el usuario <b>{{instance.person.lastName}} {{instance.person.name}}</b> de la organización?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" on:click="destroy()">Eliminar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
