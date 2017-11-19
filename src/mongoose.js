@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 module.exports = function () {
   const app = this;
 
-  mongoose.connect(app.get('mongodb'), {
+  let mongodbpath = app.get('mongodb').replace('{{user}}',process.env.MONGODB_USER).replace('{{password}}',process.env.MONGODB_PASSWORD)
+
+  mongoose.connect(mongodbpath, {
     useMongoClient: true
   });
   mongoose.Promise = global.Promise;

@@ -1,8 +1,8 @@
 {
   "host": "localhost",
   "port": 3030,
-  "public": "../public/",
-  "index": "../public/development.html",
+  "public": "../frontend/",
+  "index": "../frontend/development.html",
   "mongodb": "mongodb://localhost:27017/centinela",
   "paginate": {
     "default": 10,

@@ -11,9 +11,7 @@ module.exports = function (app) {
 		{
 			brand: { type: String, required: true }
 		,	model: { type: String, required: true }
-		,	name: { type: String, required: true }
 		,	type: { type: String, required: true }
-		,	description: { type: String, required: true }
 		,	height: { type: Number, required: true }
 		,	width: { type: Number, required: true }
 		,	length: { type: Number, required: true }
