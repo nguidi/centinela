@@ -5,15 +5,21 @@ import view from './flights.stache';
 
 import 'bootstrap/dist/js/bootstrap';
 
+import User from 'centinela/models/user'
 import Flight from 'centinela/models/flight'
 
 export const ViewModel = DefineMap.extend({
+  user: {
+    value: User
+  },
   instances:{
     get () {
-      return Flight.getList()
+      return Flight.getList({'organization._id': this.user.organization._id})
     }
   },
-  instance: Flight
+  instance: {
+    value: new Flight()
+  }
 });
 
 export default Component.extend({

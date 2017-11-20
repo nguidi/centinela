@@ -3,9 +3,17 @@ import DefineMap from 'can-define/map/';
 import './dashboard.less';
 import view from './dashboard.stache';
 
+import User from 'centinela/models/user'
+import Dashboard from 'centinela/models/dashboard'
+
 export const ViewModel = DefineMap.extend({
-  message: {
-    value: 'This is the app-dashboard component'
+  user: {
+    value: User
+  },
+  dashboard: {
+    get () {
+      return Dashboard.getList({'organization._id': this.user.organization._id})
+    }
   }
 });
 

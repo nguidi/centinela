@@ -8,12 +8,16 @@ import 'formvalidation';
 import 'bootstrap-notify';
 import 'node_modules/formvalidation/dist/css/formvalidation.css';
 
+import User from 'centinela/models/user'
 import Equipment from 'centinela/models/equipment'
 
 export const ViewModel = DefineMap.extend({
+  user: {
+    value: User
+  },
   instances:{
     get () {
-      return Equipment.getList()
+      return Equipment.getList({'organization._id': this.user.organization._id})
     }
   },
   instance: {
@@ -37,6 +41,8 @@ export const ViewModel = DefineMap.extend({
     {
       // Pongo el boton en modo loading
       $('button.save:visible').button('loading');
+
+      this.instance.organization = this.user.organization;
 
       this.instance.save()
         .then(

@@ -6,6 +6,15 @@ import feathersServiceBehavior from 'can-connect-feathers/service';
 import behaviors from './behaviors';
 import algebra from './algebra';
 
+var	Organization
+=	DefineMap
+		.extend(
+			{
+				name: 'string'
+			,	cuit: 'string'
+			}
+		);
+
 const Equipment
 = DefineMap
     .extend(
@@ -22,6 +31,11 @@ const Equipment
       ,	width: 'number'
       ,	length: 'number'
       ,	weight: 'number'
+      ,	organization:
+        {
+          Type: Organization
+        ,	value: Organization
+        }
       }
   );
 

@@ -11,6 +11,14 @@ module.exports = function (app) {
 	const batteriesSchema = app.service('batteries').Model.schema;
 	const equipmentsSchema = app.service('equipments').Model.schema;
 
+	const organizationSchema
+	=	new Schema(
+			{
+				name: {type: String, required: true}
+			,	cuit: {type: Number, required: true}
+			}
+    );
+
 	const flights
 	=	new Schema(
 		{
@@ -18,6 +26,7 @@ module.exports = function (app) {
 		,	uav: uavsSchema
 		,	batteries: [ batteriesSchema ]
 		,	equipments: [ equipmentsSchema]
+		,	organization: organizationSchema
 		,	createdAt: { type: Date, default: Date.now }
 		,	updatedAt: { type: Date, default: Date.now }
 		}

@@ -85,7 +85,7 @@
           </a>
         </li>
         <li class="menu-option treeview">
-          <a href="#" on:click="toggleTree(scope.element)">
+          <a on:click="toggleTree(scope.element)">
             <i class="fa fa-map-marker"></i>
             <span>Vuelos</span>
             <span class="pull-right-container">
@@ -124,7 +124,7 @@
                 {{#if isPending}}
                     Loading...
                 {{else}}
-                    <app-users/>
+                    <app-users user:bind="user"/>
                 {{/if}}
             </can-import>
         {{/case}}
@@ -133,7 +133,7 @@
                 {{#if isPending}}
                     Loading...
                 {{else}}
-                    <app-equipment/>
+                    <app-equipment user:bind="user"/>
                 {{/if}}
             </can-import>
         {{/case}}
@@ -142,7 +142,7 @@
                 {{#if isPending}}
                     Loading...
                 {{else}}
-                    <app-batteries/>
+                    <app-batteries user:bind="user"/>
                 {{/if}}
             </can-import>
         {{/case}}
@@ -151,7 +151,7 @@
                 {{#if isPending}}
                     Loading...
                 {{else}}
-                    <app-uavs/>
+                    <app-uavs user:bind="user"/>
                 {{/if}}
             </can-import>
         {{/case}}
@@ -160,7 +160,7 @@
                 {{#if isPending}}
                     Loading...
                 {{else}}
-                    <app-flights/>
+                    <app-flights user:bind="user"/>
                 {{/if}}
             </can-import>
         {{/case}}
@@ -169,7 +169,7 @@
                 {{#if isPending}}
                     Loading...
                 {{else}}
-                    <app-planification/>
+                    <app-planification user:bind="user"/>
                 {{/if}}
             </can-import>
         {{/case}}
@@ -178,7 +178,7 @@
                 {{#if isPending}}
                     Loading...
                 {{else}}
-                    <app-dashboard/>
+                    <app-dashboard user:bind="user"/>
                 {{/if}}
             </can-import>
         {{/default}}

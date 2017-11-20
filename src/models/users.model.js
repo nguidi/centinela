@@ -10,7 +10,7 @@ module.exports = function (app) {
 	=	new Schema(
 			{
 				name: {type: String, required: true}
-			,	cuil: {type: Number, required: true}
+			,	cuit: {type: Number, required: true}
 			}
 		);
 

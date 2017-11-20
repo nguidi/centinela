@@ -15,19 +15,19 @@ var	Organization
 			}
 		);
 
-const Flight
+const Battery
 = DefineMap
     .extend(
-      'Flight'
+      'Dashboard'
     ,  {
         seal: false
       }
     , {
         _id: 'any'
-      ,	name: 'string'
-      ,	uav: 'any'
-      ,	batteries: 'any'
-      ,	equipments: 'any'
+      ,	users: 'number'
+      ,	batteries: 'number'
+      ,	equipments: 'number'
+      ,	flights: 'number'
       ,	organization:
         {
           Type: Organization
@@ -36,28 +36,28 @@ const Flight
       }
   );
 
-Flight.List
+Battery.List
 = DefineList
     .extend(
       {
-        '#': Flight
+        '#': Battery
       }
   );
 
-Flight.connection = connect(
+Battery.connection = connect(
 	[
 		feathersServiceBehavior
 	,	...behaviors
 	]
 ,	{
-		Map: Flight
-	,	List: Flight.List
-	,	feathersService: feathersClient.service('/flights')
-	,	name: 'flights'
+		Map: Battery
+	,	List: Battery.List
+	,	feathersService: feathersClient.service('/dashboard')
+	,	name: 'dashboard'
 	,	algebra
 	}
 );
 
-Flight.algebra = algebra;
+Battery.algebra = algebra;
 
-export default Flight;
+export default Battery;

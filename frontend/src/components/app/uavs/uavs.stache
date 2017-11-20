@@ -80,6 +80,13 @@
                                             </td>
                                         </tr>
                                     {{/each}}
+                                    {{#is instances.value.length 0}}
+                                        <tr role="row" class="danger">
+                                            <td colspan="6">
+                                                No hay UAVs cargados en la organización.
+                                            </td>
+                                        </tr>
+                                    {{/is}}
                                 </tbody>
                             </table>
                         </div>

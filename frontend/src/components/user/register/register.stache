@@ -3,14 +3,14 @@
 		<div class="connecting-line"></div>
 		<ul class="wizard-steps nav nav-tabs" role="tablist">
 			<li role="presentation" class="active">
-				<a href="#user" data-toggle="tab" aria-controls="user" role="tab" title="Datos del usuario" ($click)="setStep('user')">
+				<a href="#user" data-toggle="tab" aria-controls="user" role="tab" title="Datos del usuario">
 					<span class="round-tab">
 						<i class="fa fa-user"></i>
 					</span>
 				</a>
 			</li>
 			<li role="presentation" class="disabled">
-				<a href="#organization" data-toggle="tab" aria-controls="step3" role="tab" title="Datos de la organización" ($click)="setStep('organization')">
+				<a href="#organization" data-toggle="tab" aria-controls="step3" role="tab" title="Datos de la organización">
 					<span class="round-tab">
 						<i class="fa fa-briefcase"></i>
 					</span>
@@ -36,7 +36,7 @@
 				<p>Ingrese a continuación sus datos</p>
 				<div class="form-group">
 					<label for="email" class="control-label">Email *</label>
-					<input type="email" class="form-control" name="email" placeholder="Email" {($value)}="user.email" 
+					<input type="email" class="form-control" name="email" placeholder="Email" value:bind="user.email" 
 						data-fv-notempty="true"
 						data-fv-notempty-message="Debe ingresar un email." 
 
@@ -49,7 +49,7 @@
 				</div>
 				<div class="form-group">
 					<label for="password" class="control-label">Contraseña *</label>
-					<input type="password" class="form-control" name="password" placeholder="Contraseña" {($value)}="user.password" 
+					<input type="password" class="form-control" name="password" placeholder="Contraseña" value:bind="user.password" 
 						data-fv-notempty="true"
 						data-fv-notempty-message="Debe ingresar una contraseña." 
 
@@ -73,7 +73,7 @@
 				</div>
 				<div class="form-group">
 					<label for="firstName" class="control-label">Nombre *</label>
-					<input type="text" class="form-control" name="firstName" placeholder="Nombre" {($value)}="user.name" 
+					<input type="text" class="form-control" name="firstName" placeholder="Nombre" value:bind="user.person.name" 
 						data-fv-notempty="true"
 						data-fv-notempty-message="Debe ingresar su nombre."
 
@@ -87,7 +87,7 @@
 				</div>
 				<div class="form-group">
 					<label for="lastName" class="control-label">Apellido *</label>
-					<input type="text" class="form-control" name="apellido" placeholder="Apellido" {($value)}="user.lastname" 
+					<input type="text" class="form-control" name="apellido" placeholder="Apellido" value:bind="user.person.lastName" 
 						data-fv-notempty="true"
 						data-fv-notempty-message="Debe ingresar su apellido."
 
@@ -101,7 +101,7 @@
 				</div>
 				<div class="form-group">
 					<label for="dni" class="control-label">DNI *</label>
-					<input type="text" class="form-control" name="dni" placeholder="DNI" {($value)}="user.dni" 
+					<input type="text" class="form-control" name="dni" placeholder="DNI" value:bind="user.person.dni" 
 						data-fv-notempty="true"
 						data-fv-notempty-message="Debe ingresar su DNI."
 
@@ -115,7 +115,7 @@
 				</div>
 				<div class="form-group">
 					<label for="birthday" class="control-label">Fecha de Nacimiento *</label>
-					<input type="text" class="form-control" name="birthday" placeholder="DD/MM/AAAA" {($value)}="user.birthday" 
+					<input type="text" class="form-control datepicker" id="birthday" name="birthday" placeholder="DD/MM/AAAA" value="" 
 						data-fv-notempty="true"
 						data-fv-notempty-message="Debe ingresar su fecha de nacimiento."
 
@@ -129,7 +129,12 @@
 				</p>
 				<ul class="list-inline pull-right">
 					<li>
-						<button type="button" class="btn btn-primary next-step" ($click)="setStep('organization')">
+						<a href="{{routeUrl page='login' }}" class="btn btn-default">
+							Ingresar
+						</a>
+					</li>
+					<li>
+						<button type="button" class="btn btn-primary next-step" on:click="nextStep()">
 							Siguiente
 						</button>
 					</li>
@@ -140,7 +145,7 @@
 				<p>Ingrese a continuación los datos de su organización</p>
 				<div class="form-group">
 					<label for="organizationName" class="control-label">Nombre *</label>
-					<input type="text" class="form-control" name="organizationName" placeholder="Nombre de la organización" {($value)}="user.organization.name"
+					<input type="text" class="form-control" name="organizationName" placeholder="Nombre de la organización" value:bind="user.organization.name"
 						data-fv-notempty="true"
 						data-fv-notempty-message="Debe ingresar el nombre de su organización." 
 
@@ -149,7 +154,7 @@
 				</div>
 				<div class="form-group">
 					<label for="organizationCUIT" class="control-label">CUIT *</label>
-					<input type="text" class="form-control" name="organizationCUIT" placeholder="CUIT de la organización" {($value)}="user.organization.cuit"
+					<input type="text" class="form-control" name="organizationCUIT" placeholder="CUIT de la organización" value:bind="user.organization.cuit"
 						data-fv-notempty="true"
 						data-fv-notempty-message="Debe ingresar el CUIT de su organización." 
 
@@ -162,12 +167,12 @@
 				</p>
 				<ul class="list-inline pull-right">
 					<li>
-						<button type="button" class="btn btn-default prev-step" ($click)="setStep('organization')">
+						<button type="button" class="btn btn-default prev-step" on:click="prevStep()">
 							Anterior
 						</button>
 					</li>
 					<li>
-						<button type="button" class="btn btn-primary next-step" ($click)="nextStep()">
+						<button type="button" class="btn btn-primary next-step" on:click="nextStep()">
 							Siguiente
 						</button>
 					</li>
@@ -180,13 +185,13 @@
 					<dt>Email</dt>
 					<dd>{{user.email}}</dd>
 					<dt>Nombre</dt>
-					<dd>{{user.name}}</dd>
+					<dd>{{user.person.name}}</dd>
 					<dt>Apellido</dt>
-					<dd>{{user.lastname}}</dd>
+					<dd>{{user.person.lastName}}</dd>
 					<dt>DNI</dt>
-					<dd>{{user.dni}}</dd>
+					<dd>{{user.person.dni}}</dd>
 					<dt>Fecha de Nacimiento</dt>
-					<dd>{{user.birthday}}</dd>
+					<dd>{{user.readableBirthday()}}</dd>
 				</dl>
 				<h4><ins>Datos de su organización</ins></h4>
 				<dl class="dl-horizontal">
@@ -197,12 +202,12 @@
 				</dl>					
 				<ul class="list-inline pull-right">
 					<li>
-						<button type="button" class="btn btn-default prev-step" ($click)="prevStep()">
+						<button type="button" class="btn btn-default prev-step" on:click="prevStep()">
 							Anterior
 						</button>
 					</li>
 					<li>
-						<button type="button" class="btn btn-primary next-step" ($click)="register()">
+						<button type="button" class="btn btn-primary register-user" on:click="register()">
 							Registrarse
 						</button>
 					</li>

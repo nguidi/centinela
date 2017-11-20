@@ -76,6 +76,13 @@
                                             </td>
                                         </tr>
                                     {{/each}}
+                                    {{#is instances.value.length 0}}
+                                        <tr role="row" class="danger">
+                                            <td colspan="5">
+                                                No hay usuarios cargados en la organización.
+                                            </td>
+                                        </tr>
+                                    {{/is}}
                                 </tbody>
                             </table>
                         </div>

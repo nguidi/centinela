@@ -10,8 +10,11 @@
             Home
         </a>
     </li>
-    <li class="active">
+    <li>
         Vuelos
+    </li>
+    <li class="active">
+        Realizados
     </li>
     </ol>
 </section>
@@ -62,6 +65,13 @@
                                             <td>{{#equipments}} {{name}} {{/equipments}}</td>
                                         </tr>
                                     {{/each}}
+                                    {{#is instances.value.length 0}}
+                                        <tr role="row" class="danger">
+                                            <td colspan="4">
+                                                No hay vuelos realizados en la organización.
+                                            </td>
+                                        </tr>
+                                    {{/is}}
                                 </tbody>
                             </table>
                         </div>

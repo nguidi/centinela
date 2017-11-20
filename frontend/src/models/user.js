@@ -8,16 +8,14 @@ import algebra from './algebra';
 
 import moment from 'moment';
 
-var	Contact
+var	Person
 =	DefineMap
 		.extend(
 		    {
-				country: 'string'
-			,	state: 'string'
-			,	city: 'string'
-			,	postalcode: 'string'
-			,	address: 'string'
-			,	phone: 'string'
+				name: 'string'
+			,	lastName: 'string'
+			,	dni: 'string'
+			,	birthday: 'string'
 			}
 		);
 
@@ -41,22 +39,15 @@ var User
 				_id: 'any'
 			,	email: 'string'
 			,	password: 'string'
-			,	confpassword: 'string'
-			,	name: 'string'
-			,	lastname: 'string'
-			,	dni: 'string'
-			,	birthday: 'string'
-			,	contact:
+			,	person:
 				{
-					value: Contact
-				}
-			,	contact:
-				{
-					value: Contact
+					Type: Person
+				,	value: Person
 				}
 			,	organization:
 				{
-					value: Organization
+					Type: Organization
+				,	value: Organization
 				}
 			,	readableBirthday: function()
 				{

@@ -6,6 +6,14 @@ module.exports = function (app) {
 	const mongooseClient = app.get('mongooseClient');
 	const { Schema } = mongooseClient;
 
+	const organizationSchema
+	=	new Schema(
+			{
+				name: {type: String, required: true}
+			,	cuit: {type: Number, required: true}
+			}
+    );
+
 	const batteries
 	=	new Schema(
 			{
@@ -19,6 +27,7 @@ module.exports = function (app) {
 			,	weight: { type: Number, required: true }
 			,	discharge: { type: Number, required: true }
 			,	dischargePeak: { type: Number, required: true }
+			,	organization: organizationSchema
 			,	createdAt: { type: Date, default: Date.now }
 			,	updatedAt: { type: Date, default: Date.now }
 			}

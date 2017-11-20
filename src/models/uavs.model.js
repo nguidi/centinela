@@ -7,6 +7,14 @@ module.exports = function (app) {
 	const mongooseClient = app.get('mongooseClient');
 	const { Schema } = mongooseClient;
 
+	const organizationSchema
+	=	new Schema(
+			{
+				name: {type: String, required: true}
+			,	cuit: {type: Number, required: true}
+			}
+    );
+
 	const uavs
 	=	new Schema(
 		{
@@ -17,6 +25,7 @@ module.exports = function (app) {
 		,	width: { type: Number, required: true }
 		,	length: { type: Number, required: true }
 		,	weight: { type: Number, required: true }
+		,	organization: organizationSchema
 		,	createdAt: { type: Date, default: Date.now }
 		,	updatedAt: { type: Date, default: Date.now }
 		}

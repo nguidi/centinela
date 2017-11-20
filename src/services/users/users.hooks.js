@@ -37,10 +37,74 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [
+      function(hook) {
+        return  hook.app.service('dashboard').find({
+                  query: {
+                    'organization._id':  hook.result.organization._id
+                  }
+                }).then(function(dashboards){
+                  if (dashboards.total) {
+                    return hook.app.service('dashboard')
+                            .patch(
+                              dashboards.data[0]._id
+                            , {
+                                $inc:
+                                {
+                                  'users': 1
+                                }
+                              }
+                            ).then(function(dashboards){
+                              // Returning will resolve the promise with the `hook` object
+                              return hook;
+                            });
+                  } else {
+                    return hook.app.service('dashboard')
+                            .create(
+                              {
+                                organization: hook.result.organization
+                              , users: 1
+                              , equipments: 0
+                              , batteries: 0
+                              , uavs: 0
+                              , flights: 0
+                              }
+                            ).then(function(dashboards){
+                              // Returning will resolve the promise with the `hook` object
+                              return hook;
+                            });
+                  }
+                });
+      }
+    ],
     update: [],
     patch: [],
-    remove: []
+    remove: [
+      function(hook) {
+        return  hook.app.service('dashboard').find({
+                  query: {
+                    'organization._id':  hook.result.organization._id
+                  }
+                }).then(function(dashboards){
+                  if (dashboards.total) {
+                    return hook.app.service('dashboard')
+                            .patch(
+                              dashboards.data[0]._id
+                            , {
+                                $inc:
+                                {
+                                  'users': -1
+                                }
+                              }
+                            ).then(function(dashboards){
+                              // Returning will resolve the promise with the `hook` object
+                              return hook;
+                            });
+                  } else 
+                    return hook;
+                });
+      }
+    ]
   },
 
   error: {

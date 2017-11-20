@@ -10,6 +10,8 @@ const flights = require('./flights/flights.service.js');
 const equipments = require('./equipments/equipments.service.js');
 const users = require('./users/users.service.js');
 
+const dashboard = require('./dashboard/dashboard.service.js');
+
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
 
@@ -17,7 +19,7 @@ module.exports = function () {
   app.configure(auth(app.get('auth')))
     .configure(jwt())
     .configure(local())
- 
+
   app.service('authentication').hooks({
     before: {
       create: [
@@ -36,4 +38,5 @@ module.exports = function () {
   app.configure(batteries);
   app.configure(equipments);
   app.configure(flights);
+  app.configure(dashboard);
 };
