@@ -6,7 +6,8 @@ module.exports = {
     find: [
       function(hook)
       {
-        hook.params.query = { 'organization._id': hook.params.user.organization._id};
+        if (hook.params.user)
+          hook.params.query = { 'organization._id': hook.params.user.organization._id};
         return hook;
       }
     ],
@@ -17,7 +18,7 @@ module.exports = {
         Object.assign(
           hook.data
         , {
-            organization: hook.params.user.organization
+            organization: hook.params.user ? hook.params.user.organization : hook.data.organization
           }
         );
         return hook;
