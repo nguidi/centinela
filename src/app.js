@@ -34,6 +34,9 @@ app.use('/', feathers.static(app.get('public')));
 app.get('/recoverme', function(req, res) {
     res.sendFile(app.get('recoverme'));
 });
+app.get('/joinorganization', function(req, res) {
+    res.sendFile(app.get('joinorganization'));
+});
 // Host de enviroment main html
 app.get('/', function(req, res) {
     res.sendFile(app.get('index'));

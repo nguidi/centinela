@@ -76,6 +76,34 @@ module.exports = function () {
 	}
 
 	app.use(
+		'/joinorganization'
+	,	{
+			create: function(data, params, cb)
+			{
+				app.service('users').get(data.token)
+					.then(
+						function(user)
+						{
+							if (user.email == data.email && user.person.dni == data.dni)
+								app.service('users')
+									.patch(
+										data.token
+									,	data.user
+									).then(
+										function()
+										{
+											cb(null, {correct: true, msg: 'Usuario registrado'});
+										}
+									)
+							else
+								cb(null, {correct: false, msg: 'Datos incrrectos'});
+						}
+					)
+			}
+		}
+	);
+
+	app.use(
 		'/recoverPassword'
 	,	{
 			find(params, cb)

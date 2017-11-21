@@ -27,15 +27,16 @@ module.exports = function (app) {
 	=	new Schema(
 			{
 				email: { type: String, required: true }
-			,	password: {type: String, required: true}
+			,	password: {type: String}
+			,	pending: {type: Boolean}
 			,	organization: organizationSchema
 			,	profile: profileSchema
 			,	person:
 				{
-					name: { type: String, required: true}
-				,	lastName: { type: String, required: true}
+					name: { type: String}
+				,	lastName: { type: String}
 				,	dni: { type: Number, required: true}
-				,	birthday: { type: Date, required: true }
+				,	birthday: { type: Date}
 				,	license:
 					{
 						number: { type: Number}

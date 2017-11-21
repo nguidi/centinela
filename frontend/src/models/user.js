@@ -25,7 +25,18 @@ var	Organization
 			{
 				name: 'string'
 			,	cuit: 'string'
-			, _id: 'any'
+			, 	_id: 'any'
+			}
+		);
+
+var	Profile
+=	DefineMap
+		.extend(
+			{
+				name: 'string'
+			,	description: 'string'
+			,	type: 'number'
+			, 	_id: 'any'
 			}
 		);
 
@@ -50,6 +61,12 @@ var User
 					Type: Organization
 				,	value: Organization
 				}
+			,	profile:
+				{
+					Type: Profile
+				,	value: Profile
+				}
+			,	pending: 'boolean'
 			,	readableBirthday: function()
 				{
 					return moment(this.person.birthday).format('DD/MM/YYYY');

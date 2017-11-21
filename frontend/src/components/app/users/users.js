@@ -45,6 +45,32 @@ export const ViewModel = DefineMap.extend({
       // Pongo el boton en modo loading
       $('button.save:visible').button('loading');
 
+      switch(this.instance.profile.type) {
+        case 1:
+          this.instance.profile = {
+            type: 1
+          , name: 'Administrador'
+          , description: 'Administrador de la organización'
+          }
+          break;
+        case 2:
+          this.instance.profile = {
+            type: 2
+          , name: 'Despachante'
+          , description: 'Despachante de la organización'
+          }
+          break;
+        case 3:
+          this.instance.profile = {
+            type: 3
+          , name: 'Piloto'
+          , description: 'Piloto de la organización'
+          }
+          break;
+      }
+
+      this.instance.pending = true;
+
       this.instance.save()
         .then(
           function()
@@ -103,6 +129,30 @@ export const ViewModel = DefineMap.extend({
     {
       // Pongo el boton en modo loading
       $('button.save:visible').button('loading');
+
+      switch(this.instance.profile.type) {
+        case 1:
+          this.instance.profile = {
+            type: 1
+          , name: 'Administrador'
+          , description: 'Administrador de la organización'
+          }
+          break;
+        case 2:
+          this.instance.profile = {
+            type: 2
+          , name: 'Despachante'
+          , description: 'Despachante de la organización'
+          }
+          break;
+        case 3:
+          this.instance.profile = {
+            type: 3
+          , name: 'Piloto'
+          , description: 'Piloto de la organización'
+          }
+          break;
+      }
 
       this.instance.save()
         .then(
@@ -181,7 +231,7 @@ export const ViewModel = DefineMap.extend({
           $('.modal:visible').modal('hide');
 
           // Reseteo los valores de la instancia
-          self.instance = new Equipment({});
+          self.instance = new User({});
         }
       ).catch(
         function()
@@ -228,7 +278,7 @@ export default Component.extend({
     inserted: function()
     {
       //	Validador de Formularios
-			$('form').formValidation();
+			$('#createUser form.create, #editUser form.edit').formValidation();
       
       //	modales
       $('.modal').modal({ show: false })

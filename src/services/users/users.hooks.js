@@ -1,5 +1,6 @@
 const auth = require('feathers-authentication');
 const local = require('feathers-authentication-local');
+var MailHelper = require('sendgrid').mail;
 
 const {
   queryWithCurrentUser,
@@ -92,6 +93,38 @@ module.exports = {
                             });
                   }
                 });
+      },
+      function(hook)
+      {
+        if (hook.result.pending) {
+          var user = hook.result;
+          var fromEmail = new MailHelper.Email('no-reply@centinela.azurewebsites.net');
+          var toEmail = new MailHelper.Email(user.email);
+          var subject = 'Invitacion a '+user.organization.name;
+          var content = new MailHelper.Content('text/plain', 'Hola, fue invitado a formar parte de '+user.organization.name+'. Siga el siguiente enlace para ingresar a Centinela http://centinela.azurewebsites.net/joinorganization?'+user._id);
+          var mail = new MailHelper.Mail(fromEmail, subject, toEmail, content);
+          
+          var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
+          var request
+          =	sg.emptyRequest(
+              {
+                method: 'POST'
+              ,	path: '/v3/mail/send'
+              ,	body: mail.toJSON()
+              }
+            );
+  
+          sg.API(
+            request
+          , function (error, response)
+            {
+              if (error) {
+                console.log('Error response received');
+              }
+              return hook;
+            }
+          );
+        }
       }
     ],
     update: [],

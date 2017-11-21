@@ -61,9 +61,9 @@
                                 </thead>
                                 <tbody>
                                     {{#each instances.value}}
-                                        <tr role="row">
+                                        <tr role="row" {{#if pending}} class="warning" {{/if}}>
                                             <td>{{email}}</td>
-                                            <td>{{person.lastName}}, {{person.name}}</td>
+                                            <td>{{#unless pending}} {{person.lastName}}, {{person.name}} {{/unless}}</td>
                                             <td>{{person.dni}}</td>
                                             <td>{{profile.name}}</td>
                                             <td>
@@ -137,18 +137,41 @@
       </div>
       <div class="modal-body">
         <form class="form-horizontal create" onsubmit="return false;"
+            data-fv-framework="bootstrap"
+            data-fv-icon-valid="fa fa-check"
+            data-fv-icon-invalid="fa fa-times"
+            data-fv-icon-validating="fa fa-refresh">
             <p>A continuación ingrese los datos del nuevo usuario:</p>
             <div class="box-body">
                 <div class="form-group">
                     <label for="email" class="col-sm-2 control-label">Email</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" name="email" placeholder="Email">
+                        <input type="email" class="form-control" name="email" placeholder="Email" value:bind="instance.email"
+                            data-fv-notempty="true"
+                            data-fv-notempty-message="Debe ingresar un email." 
+
+                            maxlength="128"
+                            minlength="8"
+                            data-fv-stringlength-message="El email debe tener entre de 8 y 128 caracteres de largo."
+
+                            data-fv-field="email"
+                            data-fv-emailaddress-message="El email ingresado es incorrecto.">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="dni" class="col-sm-2 control-label">DNI</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="dni" placeholder="DNI">
+                        <input type="text" class="form-control" name="dni" placeholder="DNI" value:bind="instance.person.dni"
+                            data-fv-notempty="true"
+                            data-fv-notempty-message="Debe ingresar su DNI."
+
+                            maxlength="8"
+                            minlength="7"
+                            data-fv-stringlength-message="El DNI debe tener entre de 7 y 8 caracteres de largo."
+
+                            data-fv-regexp="true"
+                            data-fv-regexp-regexp="^[0-9]+$"
+                            data-fv-regexp-message="El nombre solo puede contener caracteres numericos.">
                     </div>
                 </div>
                 <div class="form-group">
@@ -156,7 +179,10 @@
                         Rol
                     </label>
                     <div class="col-sm-10">
-                        <select class="form-control">
+                        <select class="form-control" value:bind="instance.profile.type" 
+                            data-fv-notempty="true"
+                            data-fv-notempty-message="Debe seleccionar el rol del usuario.">
+                            <option value="">Seleccione un Rol</option>
                             <option value="1">Administrador</option>
                             <option value="2">Despachante</option>
                             <option value="3">Piloto de UAV</option>
@@ -187,20 +213,60 @@
       </div>
       <div class="modal-body">
         <form class="form-horizontal edit" onsubmit="return false;">
-            <p>A continuación edite el rol del usuario <b>{{instance.person.lastName}} {{instance.person.name}}</b></p>
+            <p>A continuación edite el rol del usuario <b> {{#if instance.pending}} {{instance.email}} {{else}} {{instance.person.lastName}} {{instance.person.name}} {{/if}}</b></p>
             <div class="box-body">
+                 <div class="form-group">
+                    <label for="email" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control disabled" name="email" placeholder="Email" value:bind="instance.email" disabled
+                            data-fv-notempty="true"
+                            data-fv-notempty-message="Debe ingresar un email." 
+
+                            maxlength="128"
+                            minlength="8"
+                            data-fv-stringlength-message="El email debe tener entre de 8 y 128 caracteres de largo."
+
+                            data-fv-field="email"
+                            data-fv-emailaddress-message="El email ingresado es incorrecto.">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="dni" class="col-sm-2 control-label">DNI</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control disabled" name="dni" placeholder="DNI" value:bind="instance.person.dni" disabled
+                            data-fv-notempty="true"
+                            data-fv-notempty-message="Debe ingresar su DNI."
+
+                            maxlength="8"
+                            minlength="7"
+                            data-fv-stringlength-message="El DNI debe tener entre de 7 y 8 caracteres de largo."
+
+                            data-fv-regexp="true"
+                            data-fv-regexp-regexp="^[0-9]+$"
+                            data-fv-regexp-message="El nombre solo puede contener caracteres numericos.">
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="profile" class="col-sm-2 control-label">
                         Rol
                     </label>
                     <div class="col-sm-10">
-                        <select class="form-control">
-                            <option value="1" {{#eq(instance.profile.type,1)}} selected {{/eq}}>Administrador</option>
-                            <option value="2" {{#eq(instance.profile.type,2)}} selected {{/eq}}>Despachante</option>
-                            <option value="3" {{#eq(instance.profile.type,3)}} selected {{/eq}}>Piloto de UAV</option>
+                        <select class="form-control"  name="profile"  value:bind="instance.profile.type"
+                            data-fv-notempty="true"
+                            data-fv-notempty-message="Debe seleccionar el rol del usuario.">
+
+                            <option value="">Seleccione un Rol</option>
+                            <option value="1">Administrador</option>
+                            <option value="2">Despachante</option>
+                            <option value="3">Piloto de UAV</option>
                         </select>
                     </div>
                 </div>
+                {{#if instance.pending}}
+                    <p>
+                       <b>Nota</b>: <span class="text-warning"> Usuario pendiente de activación.</span>
+                    </p>
+                {{/if}}
             </div>
             <!-- /.box-footer -->
         </form>
