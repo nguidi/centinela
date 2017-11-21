@@ -1,0 +1,108 @@
+<div class="panel-holder row">
+    <div class="col-xs-6">
+        <div class="panel panel-primary ">
+            <div class="panel-heading">
+                Pilotos de la organización
+            </div>
+            <div class="panel-body">
+                {{#if pilots.isResolved}}
+                <table class="table table-bordered table-hover dataTable organization-pilots">
+                    <thead>
+                        <tr role="row">
+                            <th>
+                                Nombre y apellido
+                            </th>
+                            <th>
+                                DNI
+                            </th>
+                            <th>
+                                Licencia
+                            </th>
+                            <th>
+                                Validez
+                            </th>
+                            <th class="actions text-center">
+                                <i class="fa fa-cogs"></i>                                   
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each pilots.value}}
+                            <tr role="row" pilot-index="{{scope.index}}">
+                                <td>{{person.lastName}}, {{person.name}}</td>
+                                <td>{{person.dni}}</td>
+                                <td>{{person.license.number}}</td>
+                                <td>{{readableLicenseExpirationDate()}}</td>
+                                <td class="text-center">
+                                    <a on:click="addPilot(., scope.index)">
+                                        <i class="fa fa-arrow-right text-primary"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {{/each}}
+                        {{#is pilots.value.length 0}}
+                            <tr role="row" class="danger">
+                                <td colspan="6">
+                                    No hay pilotos cargados en la organización.
+                                </td>
+                            </tr>
+                        {{/is}}
+                    </tbody>
+                </table>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Piloto seleccionado
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-hover dataTable">
+                    <thead>
+                        <tr role="row">
+                            <th>
+                                Nombre y apellido
+                            </th>
+                            <th>
+                                DNI
+                            </th>
+                            <th>
+                                Licencia
+                            </th>
+                            <th>
+                                Validez
+                            </th>
+                            <th class="actions text-center">
+                                <i class="fa fa-cogs"></i>                                   
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each selectedPilot}}
+                            <tr role="row">
+                                <td>{{person.lastName}}, {{person.name}}</td>
+                                <td>{{person.dni}}</td>
+                                <td>{{person.license.number}}</td>
+                                <td>{{readableLicenseExpirationDate()}}</td>
+                                <td class="text-center">
+                                    <a on:click="removePilot(.)">
+                                        <i class="fa fa-times text-danger"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {{/each}}
+                        {{#is selectedPilot.length 0}}
+                            <tr role="row" class="danger">
+                                <td colspan="6">
+                                    No se seleccionó ningun piloto.
+                                </td>
+                            </tr>
+                        {{/is}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

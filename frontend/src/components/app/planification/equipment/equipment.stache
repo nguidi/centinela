@@ -1,0 +1,116 @@
+<div class="panel-holder row">
+    <div class="col-xs-6">
+        <div class="panel panel-primary ">
+            <div class="panel-heading">
+                Equipamiento de la organización
+            </div>
+            <div class="panel-body">
+                {{#if equipment.isResolved}}
+                <table class="table table-bordered table-hover dataTable organization-equipment">
+                    <thead>
+                        <tr role="row">
+                            <th>
+                                Marca
+                            </th>
+                            <th>
+                                Modelo
+                            </th>
+                            <th>
+                                Tipo
+                            </th>
+                            <th>
+                                Dimenciones (mm)
+                            </th>
+                            <th>
+                                Peso (gr)
+                            </th>
+                            <th class="actions text-center">
+                                <i class="fa fa-cogs"></i>                                   
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each equipment.value}}
+                            <tr role="row" equipment-index="{{_id}}">
+                                <td>{{brand}}</td>
+                                <td>{{model}}</td>
+                                <td>{{type}}</td>
+                                <td>{{height}}x{{width}}x{{length}}</td>
+                                <td>{{weight}}</td>
+                                <td class="text-center">
+                                    <a on:click="addEquipment(.)">
+                                        <i class="fa fa-arrow-right text-primary"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {{/each}}
+                        {{#is equipment.value.length 0}}
+                            <tr role="row" class="danger">
+                                <td colspan="6">
+                                    No hay equipamiento cargado en la organización.
+                                </td>
+                            </tr>
+                        {{/is}}
+                    </tbody>
+                </table>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Equipamiento seleccionado
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-hover dataTable selected-equipment">
+                    <thead>
+                        <tr role="row">
+                            <th>
+                                Marca
+                            </th>
+                            <th>
+                                Modelo
+                            </th>
+                            <th>
+                                Tipo
+                            </th>
+                            <th>
+                                Dimenciones (mm)
+                            </th>
+                            <th>
+                                Peso (gr)
+                            </th>
+                            <th class="actions text-center">
+                                <i class="fa fa-cogs"></i>                                   
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each selectedEquipment}}
+                            <tr role="row">
+                                <td>{{brand}}</td>
+                                <td>{{model}}</td>
+                                <td>{{type}}</td>
+                                <td>{{height}}x{{width}}x{{length}}</td>
+                                <td>{{weight}}</td>
+                                <td class="text-center">
+                                    <a on:click="removeEquipment(.)">
+                                        <i class="fa fa-times text-danger"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {{/each}}
+                        {{#is selectedEquipment.length 0}}
+                            <tr role="row" class="danger">
+                                <td colspan="6">
+                                    No se seleccionó ningun equipamiento.
+                                </td>
+                            </tr>
+                        {{/is}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

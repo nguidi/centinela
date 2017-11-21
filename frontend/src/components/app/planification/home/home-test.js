@@ -1,8 +1,8 @@
 import QUnit from 'steal-qunit';
-import { ViewModel } from './planification';
+import { ViewModel } from './home';
 
 // ViewModel unit tests
-QUnit.module('centinela/components/app/planification');
+QUnit.module('centinela/components/planification/home');
 
 QUnit.test('Has message', function(){
   var vm = new ViewModel();

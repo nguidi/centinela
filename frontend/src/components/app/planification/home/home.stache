@@ -1,0 +1,163 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+    Gestión de Vuelos
+    </h1>
+    <ol class="breadcrumb">
+    <li>
+        <a href="#">
+            <i class="fa fa-users"></i>
+            Home
+        </a>
+    </li>
+    <li>
+        Vuelos
+    </li>
+    <li class="active">
+        Planificación
+    </li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="wizard">
+                        <div class="wizard-inner">
+                            <div class="connecting-line"></div>
+                            <ul class="nav nav-tabs" role="tablist">
+
+                                <li role="presentation" class="active">
+                                    <a href="#selectUAV" data-toggle="tab" aria-controls="selectUAV" role="tab" title="UAV">
+                                        <span class="round-tab">
+                                            <i class="fa fa-plane"></i>
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <li role="presentation" class="disabled">
+                                    <a href="#selectPilot" data-toggle="tab" aria-controls="selectPilot" role="tab" title="Piloto">
+                                        <span class="round-tab">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <li role="presentation" class="disabled">
+                                    <a href="#selectEquipment" data-toggle="tab" aria-controls="selectEquipment" role="tab" title="Equipamiento">
+                                        <span class="round-tab">
+                                            <i class="fa fa-camera"></i>
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <li role="presentation" class="disabled">
+                                    <a href="#selectBatteries" data-toggle="tab" aria-controls="selectBatteries" role="tab" title="Baterias">
+                                        <span class="round-tab">
+                                            <i class="fa fa-battery-3"></i>
+                                        </span>
+                                    </a>
+                                </li>                           
+
+                                <li role="presentation" class="disabled">
+                                    <a href="#selectPath" data-toggle="tab" aria-controls="selectPath" role="tab" title="Camino">
+                                        <span class="round-tab">
+                                            <i class="fa fa-map-marker"></i>
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <li role="presentation" class="disabled">
+                                    <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Completo">
+                                        <span class="round-tab">
+                                            <i class="fa fa-check"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <form role="form">
+                            <div class="tab-content">
+                                <div class="tab-pane active" role="tabpanel" id="selectUAV">
+                                    <can-import from="centinela/components/app/planification/uavs/">
+                                        {{#if isPending}}
+                                            Loading...
+                                        {{else}}
+                                            <app-planification-uavs user:bind="user" selectedUAV:bind="uav"/>
+                                        {{/if}}
+                                    </can-import>
+                                    <ul class="list-inline pull-right">
+                                        <li><button type="button" class="btn btn-primary btn-info-full next-step" on:click="nextStep()">Siguiente</button></li>
+                                    </ul>
+                                </div>
+                                <div class="tab-pane" role="tabpanel" id="selectPilot">
+                                    <can-import from="centinela/components/app/planification/pilot/">
+                                        {{#if isPending}}
+                                            Loading...
+                                        {{else}}
+                                            <app-planification-pilot user:bind="user" selectedPilot:bind="pilot"/>
+                                        {{/if}}
+                                    </can-import>
+                                    <ul class="list-inline pull-right">
+                                        <li><button type="button" class="btn btn-default prev-step" on:click="prevStep()">Volver</button></li>
+                                        <li><button type="button" class="btn btn-primary next-step" on:click="nextStep()">Siguiente</button></li>
+                                    </ul>
+                                </div>
+                                <div class="tab-pane" role="tabpanel" id="selectEquipment">
+                                    <can-import from="centinela/components/app/planification/equipment/">
+                                        {{#if isPending}}
+                                            Loading...
+                                        {{else}}
+                                            <app-planification-equipment user:bind="user" selectedEquipment:bind="equipment"/>
+                                        {{/if}}
+                                    </can-import>
+                                    <ul class="list-inline pull-right">
+                                        <li><button type="button" class="btn btn-default prev-step" on:click="prevStep()">Volver</button></li>
+                                        <li><button type="button" class="btn btn-primary next-step" on:click="nextStep()">Siguiente</button></li>
+                                    </ul>
+                                </div>
+                                <div class="tab-pane" role="tabpanel" id="selectBatteries">
+                                    <can-import from="centinela/components/app/planification/batteries/">
+                                        {{#if isPending}}
+                                            Loading...
+                                        {{else}}
+                                            <app-planification-batteries user:bind="user" selectedBatteries:bind="batteries"/>
+                                        {{/if}}
+                                    </can-import>
+                                    <ul class="list-inline pull-right">
+                                        <li><button type="button" class="btn btn-default prev-step" on:click="prevStep()">Volver</button></li>
+                                        <li><button type="button" class="btn btn-primary next-step" on:click="nextStep()">Siguiente</button></li>
+                                    </ul>
+                                </div>
+                                <div class="tab-pane" role="tabpanel" id="selectPath">
+                                    <can-import from="centinela/components/app/planification/path/">
+                                        {{#if isPending}}
+                                            Loading...
+                                        {{else}}
+                                            <app-planification-path user:bind="user" selectedPath:bind="path"/>
+                                        {{/if}}
+                                    </can-import>
+                                    <ul class="list-inline pull-right">
+                                        <li><button type="button" class="btn btn-default prev-step" on:click="prevStep()">Volver</button></li>
+                                        <li><button type="button" class="btn btn-primary next-step" on:click="nextStep()">Siguiente</button></li>
+                                    </ul>
+                                </div>
+                                <div class="tab-pane" role="tabpanel" id="complete">
+                                    <h3>Ruta de vuelo optima</h3>
+                                    <p>You have successfully completed all steps.</p>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+</section>

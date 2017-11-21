@@ -22,94 +22,94 @@
 <!-- Main content -->
 <section class="content">
     <div class="row">
-    <div class="col-xs-12">
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">
-                    Vuelos de la organización
-                </h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-                <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                    <div class="row">
-                        <div class="col-sm-6"></div>
-                        <div class="col-sm-6"></div>
-                    </div>
-                    {{#if instances.isResolved}}
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <table class="table table-bordered table-hover dataTable">
-                                <thead>
-                                    <tr role="row">
-                                        <th>
-                                            Nombre
-                                        </th>
-                                        <th>
-                                            UAV
-                                        </th>
-                                        <th>
-                                            Baterias
-                                        </th>
-                                        <th>
-                                            Vuelos
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {{#each instances.value}}
-                                        <tr role="row" data-toggle="modal" data-target="#previewFlight">
-                                            <td>{{name}}</td>
-                                            <td>{{uav.name}}</td>
-                                            <td>{{#batteries}} {{brand}}-{{model}} {{/batteries}}</td>
-                                            <td>{{#equipments}} {{name}} {{/equipments}}</td>
-                                        </tr>
-                                    {{/each}}
-                                    {{#is instances.value.length 0}}
-                                        <tr role="row" class="danger">
-                                            <td colspan="4">
-                                                No hay vuelos realizados en la organización.
-                                            </td>
-                                        </tr>
-                                    {{/is}}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-5">
-                            <div class="dataTables_info" role="status" aria-live="polite">
-                                Mostrando {{instances.value.length}} de {{instances.value.total}}
-                            </div>
-                        </div>
-                        <div class="col-sm-7">
-                            <div class="dataTables_paginate paging_simple_numbers">
-                                <ul class="pagination">
-                                    <li class="paginate_button previous disabled">
-                                        <a href="#">
-                                            Anterior
-                                        </a>
-                                    </li>
-                                    <li class="paginate_button active">
-                                        <a href="#">
-                                            1
-                                        </a>
-                                    </li>
-                                    <li class="paginate_button next disabled">
-                                        <a href="#">
-                                            Siguiente
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    {{/if}}
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">
+                        Vuelos de la organización
+                    </h3>
                 </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                        <div class="row">
+                            <div class="col-sm-6"></div>
+                            <div class="col-sm-6"></div>
+                        </div>
+                        {{#if instances.isResolved}}
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered table-hover dataTable">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>
+                                                Nombre
+                                            </th>
+                                            <th>
+                                                UAV
+                                            </th>
+                                            <th>
+                                                Baterias
+                                            </th>
+                                            <th>
+                                                Vuelos
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each instances.value}}
+                                            <tr role="row" data-toggle="modal" data-target="#previewFlight">
+                                                <td>{{name}}</td>
+                                                <td>{{uav.name}}</td>
+                                                <td>{{#batteries}} {{brand}}-{{model}} {{/batteries}}</td>
+                                                <td>{{#equipments}} {{name}} {{/equipments}}</td>
+                                            </tr>
+                                        {{/each}}
+                                        {{#is instances.value.length 0}}
+                                            <tr role="row" class="danger">
+                                                <td colspan="4">
+                                                    No hay vuelos realizados en la organización.
+                                                </td>
+                                            </tr>
+                                        {{/is}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <div class="dataTables_info" role="status" aria-live="polite">
+                                    Mostrando {{instances.value.length}} de {{instances.value.total}}
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="dataTables_paginate paging_simple_numbers">
+                                    <ul class="pagination">
+                                        <li class="paginate_button previous disabled">
+                                            <a href="#">
+                                                Anterior
+                                            </a>
+                                        </li>
+                                        <li class="paginate_button active">
+                                            <a href="#">
+                                                1
+                                            </a>
+                                        </li>
+                                        <li class="paginate_button next disabled">
+                                            <a href="#">
+                                                Siguiente
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+                <!-- /.box-body -->
             </div>
-            <!-- /.box-body -->
         </div>
-    </div>
     </div>
 </section>
 <!-- /.content -->

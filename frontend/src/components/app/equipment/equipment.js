@@ -21,7 +21,11 @@ export const ViewModel = DefineMap.extend({
     }
   },
   instance: {
-    value: new Equipment()
+    value: new Equipment({})
+  , set: function()
+    {
+      this.instances = Equipment.getList({'organization._id': this.user.organization._id})
+    }  
   },
   setToEdit: function(instanceToEdit)
   {
@@ -69,7 +73,9 @@ export const ViewModel = DefineMap.extend({
             $('.modal:visible').modal('hide');
 
             // Reseteo los valores de la instancia
-            self.instance = new Equipment();
+            self.instance = new Equipment({});
+            $('#createEquipment form.create')[0].reset();
+            $('#createEquipment form.create').data('formValidation').resetForm();
           }
         ).catch(
           function()
@@ -126,7 +132,9 @@ export const ViewModel = DefineMap.extend({
             $('.modal:visible').modal('hide');
 
             // Reseteo los valores de la instancia
-            self.instance = new Equipment();
+            self.instance = new Equipment({});
+            $('#editEquipment form.edit')[0].reset();
+            $('#editEquipment form.edit').data('formValidation').resetForm();
           }
         ).catch(
           function()
@@ -176,7 +184,7 @@ export const ViewModel = DefineMap.extend({
           $('.modal:visible').modal('hide');
 
           // Reseteo los valores de la instancia
-          self.instance = new Equipment();
+          self.instance = new Equipment({});
         }
       ).catch(
         function()
@@ -223,10 +231,10 @@ export default Component.extend({
     inserted: function()
     {
       //	Validador de Formularios
-      $('.modal').modal({ show: false })
-
-      //	Validador de Formularios
 			$('form').formValidation();
+      
+      //	modales
+      $('.modal').modal({ show: false })
     }
   }
 });

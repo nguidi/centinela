@@ -165,7 +165,7 @@
             </can-import>
         {{/case}}
         {{#case "planification"}}
-            <can-import from="centinela/components/app/planification/">
+            <can-import from="centinela/components/app/planification/home/">
                 {{#if isPending}}
                     Loading...
                 {{else}}

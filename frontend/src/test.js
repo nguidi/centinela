@@ -33,6 +33,18 @@ import 'centinela/components/app/dashboard/dashboard-test';
 
 import 'centinela/components/user/email-sent/email-sent-test';
 
+import 'centinela/components/planification/home/home-test';
+
+import 'centinela/components/app/planification/uavs/uavs-test';
+
+import 'centinela/components/app/planification/pilot/pilot-test';
+
+import 'centinela/components/app/planification/equipment/equipment-test';
+
+import 'centinela/components/app/planification/batteries/batteries-test';
+
+import 'centinela/components/app/planification/path/path-test';
+
 F.attach(QUnit);
 
 QUnit.module('centinela functional smoke test', {

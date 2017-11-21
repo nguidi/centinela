@@ -18,7 +18,11 @@ export const ViewModel = DefineMap.extend({
     }
   },
   instance: {
-    value: new Flight()
+    value: new Flight({})
+  , set: function()
+    {
+      this.instances = Flight.getList({'organization._id': this.user.organization._id})
+    }  
   }
 });
 

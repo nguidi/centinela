@@ -140,7 +140,7 @@
         </h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal"
+        <form class="form-horizontal create"
             data-fv-framework="bootstrap"
             data-fv-icon-valid="fa fa-check"
             data-fv-icon-invalid="fa fa-times"
@@ -276,7 +276,7 @@
         </h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal"
+        <form class="form-horizontal edit"
             data-fv-framework="bootstrap"
             data-fv-icon-valid="fa fa-check"
             data-fv-icon-invalid="fa fa-times"

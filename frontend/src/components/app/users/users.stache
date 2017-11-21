@@ -136,7 +136,7 @@
         </h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal">
+        <form class="form-horizontal create">
             <p>A continuación ingrese los datos del nuevo usuario:</p>
             <div class="box-body">
                 <div class="form-group">
@@ -186,7 +186,7 @@
         </h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal">
+        <form class="form-horizontal edit">
             <p>A continuación edite el rol del usuario <b>{{instance.person.lastName}} {{instance.person.name}}</b></p>
             <div class="box-body">
                 <div class="form-group">

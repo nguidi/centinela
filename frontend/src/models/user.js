@@ -53,6 +53,10 @@ var User
 				{
 					return moment(this.person.birthday).format('DD/MM/YYYY');
 				}
+			,	readableLicenseExpirationDate: function()
+				{
+					return moment(this.person.license.expirationDate).format('DD/MM/YYYY');
+				}
 			}
 		);
 

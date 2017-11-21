@@ -20,7 +20,11 @@ export const ViewModel = DefineMap.extend({
     }
   },
   instance: {
-    value: new UAV()
+    value: new UAV({})
+  , set: function()
+    {
+      this.instances = UAV.getList({'organization._id': this.user.organization._id})
+    }  
   },
   setToEdit: function(instanceToEdit)
   {
@@ -68,7 +72,9 @@ export const ViewModel = DefineMap.extend({
             $('.modal:visible').modal('hide');
 
             // Reseteo los valores de la instancia
-            self.instance = new UAV();
+            self.instance = new UAV({});
+            $('#createUAV form.create')[0].reset();
+            $('#createUAV form.create').data('formValidation').resetForm();
           }
         ).catch(
           function()
@@ -125,7 +131,9 @@ export const ViewModel = DefineMap.extend({
             $('.modal:visible').modal('hide');
 
             // Reseteo los valores de la instancia
-            self.instance = new UAV();
+            self.instance = new UAV({});
+            $('#editUAV form.edit')[0].reset();
+            $('#editUAV form.edit').data('formValidation').resetForm();
           }
         ).catch(
           function()
@@ -175,7 +183,7 @@ export const ViewModel = DefineMap.extend({
           $('.modal:visible').modal('hide');
 
           // Reseteo los valores de la instancia
-          self.instance = new UAV();
+          self.instance = new UAV({});
         }
       ).catch(
         function()
@@ -222,6 +230,9 @@ export default Component.extend({
     inserted: function()
     {
       //	Validador de Formularios
+			$('form').formValidation();
+      
+      //	modales
       $('.modal').modal({ show: false })
     }
   }

@@ -20,7 +20,11 @@ export const ViewModel = DefineMap.extend({
     }
   },
   instance: {
-    value: new Battery()
+    value: new Battery({})
+  , set: function()
+    {
+      this.instances = Battery.getList({'organization._id': this.user.organization._id})
+    }  
   },
   setToEdit: function(instanceToEdit)
   {
@@ -68,7 +72,9 @@ export const ViewModel = DefineMap.extend({
             $('.modal:visible').modal('hide');
 
             // Reseteo los valores de la instancia
-            self.instance = new Battery();
+            self.instance = new Battery({});
+            $('#createBattery form.create')[0].reset();
+            $('#createBattery form.edit').data('formValidation').resetForm();
           }
         ).catch(
           function()
@@ -125,7 +131,9 @@ export const ViewModel = DefineMap.extend({
             $('.modal:visible').modal('hide');
 
             // Reseteo los valores de la instancia
-            self.instance = new Battery();
+            self.instance = new Battery({});
+            $('#editBattery form.edit')[0].reset();
+            $('#editBattery form.edit').data('formValidation').resetForm();
           }
         ).catch(
           function()
@@ -175,12 +183,11 @@ export const ViewModel = DefineMap.extend({
           $('.modal:visible').modal('hide');
 
           // Reseteo los valores de la instancia
-          self.instance = new Equipment();
+          self.instance = new Battery({});
         }
       ).catch(
         function()
         {
-          console.log("Chatch",arguments)
           // Muestro la notificacion
           $.notify(
             {
@@ -222,7 +229,11 @@ export default Component.extend({
     inserted: function()
     {
       //	Validador de Formularios
+			$('form').formValidation();
+
+      //	modales
       $('.modal').modal({ show: false })
+      
     }
   }
 });

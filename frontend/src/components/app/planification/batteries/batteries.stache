@@ -1,0 +1,124 @@
+<div class="panel-holder row">
+    <div class="col-xs-6">
+        <div class="panel panel-primary ">
+            <div class="panel-heading">
+                Baterias de la organización
+            </div>
+            <div class="panel-body">
+                {{#if batteries.isResolved}}
+                <table class="table table-bordered table-hover dataTable batteries-equipment">
+                    <thead>
+                        <tr role="row">
+                            <th>
+                                Marca
+                            </th>
+                            <th>
+                                Modelo
+                            </th>
+                            <th>
+                                Configuración
+                            </th>
+                            <th>
+                                Capacidad
+                            </th>
+                            <th>
+                                Dimenciones (mm)
+                            </th>
+                            <th>
+                                Peso
+                            </th>
+                            <th class="actions text-center">
+                                <i class="fa fa-cogs"></i>                                   
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each batteries.value}}
+                            <tr role="row" battery-index="{{_id}}">
+                                <td>{{brand}}</td>
+                                <td>{{model}}</td>
+                                <td>{{configuration}}</td>
+                                <td>{{capacity}}</td>
+                                <td>{{height}}x{{width}}x{{length}}</td>
+                                <td>{{weight}}</td>
+                                <td class="text-center">
+                                    <a on:click="addBattery(.)">
+                                        <i class="fa fa-arrow-right text-primary"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {{/each}}
+                        {{#is batteries.value.length 0}}
+                            <tr role="row" class="danger">
+                                <td colspan="7">
+                                    No hay baterias cargadas en la organización.
+                                </td>
+                            </tr>
+                        {{/is}}
+                    </tbody>
+                </table>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Batterias seleccionadas
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-hover dataTable selected-batteries">
+                    <thead>
+                        <tr role="row">
+                            <th>
+                                Marca
+                            </th>
+                            <th>
+                                Modelo
+                            </th>
+                            <th>
+                                Configuración
+                            </th>
+                            <th>
+                                Capacidad
+                            </th>
+                            <th>
+                                Dimenciones (mm)
+                            </th>
+                            <th>
+                                Peso
+                            </th>
+                            <th class="actions text-center">
+                                <i class="fa fa-cogs"></i>                                   
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each selectedBatteries}}
+                            <tr role="row">
+                                <td>{{brand}}</td>
+                                <td>{{model}}</td>
+                                <td>{{configuration}}</td>
+                                <td>{{capacity}}</td>
+                                <td>{{height}}x{{width}}x{{length}}</td>
+                                <td>{{weight}}</td>
+                                <td class="text-center">
+                                    <a on:click="removeBattery(.)">
+                                        <i class="fa fa-times text-danger"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {{/each}}
+                        {{#is selectedBatteries.length 0}}
+                            <tr role="row" class="danger">
+                                <td colspan="7">
+                                    No se seleccionó ninguna bateria.
+                                </td>
+                            </tr>
+                        {{/is}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div><p>{{message}}</p>
