@@ -31,6 +31,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(favicon(path.join(app.get('public'), 'favicon.ico')));
 // Host the public folder
 app.use('/', feathers.static(app.get('public')));
+app.get('/recoverme', function(req, res) {
+    res.sendFile(app.get('recoverme'));
+});
 // Host de enviroment main html
 app.get('/', function(req, res) {
     res.sendFile(app.get('index'));

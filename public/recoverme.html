@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Centinela</title>
+		<meta charset="utf-8">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link href="dist/bundles/centinela/index.css"  rel="stylesheet">
+        <style>
+            .recover-success,
+            .recover-password-error {
+                display: none;
+            }
+        </style>
+    </head>
+	<body>
+		<div class="register-box">
+            <div class="panel panel-dark panel-flat">
+                    <div class="panel-heading text-center">
+                        <a href="#">
+                            <img src="/images/logo-w-s.png" alt="Image" class="block-center logo">
+                        </a>
+                    </div>
+                    <div class="panel-body">
+                        <div class="recover-success">
+                            <p class="text-center">Contraseña recuperada correctamente!</p>
+                            <p class="text-center">Ya podes acceder a Centinela!</p>
+                            <a href="../" class="btn btn-block btn-primary">
+                                Ingresar
+                            </a>
+                        </div>
+                        <div class="recover-password">
+                            <p class="text-center pv">
+                                Recupere su contraseña
+                            </p>
+                            <form role="form" class="mb-lg" onsubmit="return false;">
+                                <div class="form-group has-feedback">
+                                    <input name="email" type="email" placeholder="E-mail" autocomplete="off" required class="form-control"
+                                        data-fv-notempty="true"
+                                        data-fv-notempty-message="Debe ingresar un email." 
+                
+                                        maxlength="128"
+                                        minlength="8"
+                                        data-fv-stringlength-message="El email debe tener entre de 8 y 128 caracteres de largo."
+                
+                                        data-fv-field="email"
+                                        data-fv-emailaddress-message="El email ingresado es incorrecto.">
+                                    <span class="fa fa-envelope form-control-feedback text-muted"></span>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <input name="dni" type="text" placeholder="DNI" autocomplete="off" required class="form-control"
+                                        data-fv-notempty="true"
+                                        data-fv-notempty-message="Debe ingresar su DNI."
+                
+                                        maxlength="8"
+                                        minlength="7"
+                                        data-fv-stringlength-message="El DNI debe tener entre de 7 y 8 caracteres de largo."
+                
+                                        data-fv-regexp="true"
+                                        data-fv-regexp-regexp="^[0-9]+$"
+                                        data-fv-regexp-message="El nombre solo puede contener caracteres numericos.">
+                                    <span class="fa fa-user form-control-feedback text-muted"></span>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <input name="password" type="password" placeholder="Contraseña" required class="form-control"
+                                        data-fv-notempty="true"
+                                        data-fv-notempty-message="Debe ingresar una contraseña." 
+                
+                                        maxlength="24"
+                                        minlength="8"
+                                        data-fv-stringlength-message="La contraseña debe tener entre de 8 y 24 caracteres de largo."
+                
+                                        data-fv-regexp="true"
+                                        data-fv-regexp-regexp="^[a-zA-Z0-9]+$"
+                                        data-fv-regexp-message="La contraseña solo puede contener caracteres alfanumericos">
+                                    <span class="fa fa-lock form-control-feedback text-muted"></span>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <input name="confirmPassword" type="password" placeholder="Confirme su contraseña" required class="form-control"
+                                        data-fv-notempty="true"
+                                        data-fv-notempty-message="Debe ingresar una contraseña." 
+                
+                                        data-fv-identical="true"
+                                        data-fv-identical-field="password"
+                                        data-fv-identical-message="Las contraseñas ingresadas no coinciden.">
+                                    <span class="fa fa-lock form-control-feedback text-muted"></span>
+                                </div>
+                                <div class="callout callout-danger recover-password-error">
+                                    <p>Usuario o contraseña incorrectos</p>
+                                </div>
+                                <button class="btn btn-block btn-primary mt-lg recover-password">
+                                    Recuperar
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-lg text-center">
+                    <span>©</span>
+                    <span>2017</span>
+                    <span>-</span>
+                    <span>Centinela</span>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/formvalidation@0.6.2-dev/dist/js/formValidation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/formvalidation@0.6.2-dev/dist/js/framework/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/formvalidation@0.6.2-dev/dist/js/language/es_ES.js"></script>
+    <script>
+        // Shorthand for $( document ).ready()
+        $(function() {
+            $('form').formValidation();
+
+            $('button.recover-password').click(
+                function()
+                {
+                    $('.recover-password-error').hide()
+
+                    $('form').data('formValidation').validate();
+
+                    if ($('form').data('formValidation').isValid())
+                        $.ajax(
+                            {
+                                type: "POST"
+                            ,   url: '/recoverPassword'
+                            ,   data:
+                                {
+                                    email: $('[name="email"]').val()
+                                ,   password: $('[name="password"]').val()
+                                ,   dni: $('[name="dni"]').val()
+                                ,   token: location.href.split('?')[1]
+                                }
+                            }
+                        ).then(
+                            function(data)
+                            {
+                                if (data.correct) {
+                                    $('.recover-password').hide()
+                                    $('.recover-success').show()
+                                } else
+                                    $('.recover-password-error').show()
+                            }
+                        );
+                    
+                }
+            )
+        });
+    </script>
+</html>

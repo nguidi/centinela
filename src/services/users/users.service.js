@@ -75,7 +75,6 @@ module.exports = function () {
 		service.filter(filters);
 	}
 
-	//	Custom methods
 	app.use(
 		'/recoverPassword'
 	,	{
@@ -91,13 +90,13 @@ module.exports = function () {
 						{
 							console.log(result)
 							if (result.total) {
-								// do complex stuff here
+
 								const user = result.data[0];
 								
 								var fromEmail = new MailHelper.Email('no-reply@centinela.azurewebsites.net');
 								var toEmail = new MailHelper.Email(user.email);
 								var subject = 'Recupere su cuenta';
-								var content = new MailHelper.Content('text/plain', 'Para recuperar su contraseña, por favor ingrese al siguiente enlace http://centinela.azurewebsites.net/recoverme/'+user._id);
+								var content = new MailHelper.Content('text/plain', 'Para recuperar su contraseña, por favor ingrese al siguiente enlace http://centinela.azurewebsites.net/recoverme?'+user._id);
 								var mail = new MailHelper.Mail(fromEmail, subject, toEmail, content);
 								
 								var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
@@ -125,6 +124,30 @@ module.exports = function () {
 							}
 						}
 					);
+			}
+		,	create: function(data, params, cb)
+			{
+				app.service('users').get(data.token)
+					.then(
+						function(user)
+						{
+							if (user.email == data.email && user.person.dni == data.dni)
+								app.service('users')
+									.patch(
+										data.token
+									,	{
+											password: data.password
+										}
+									).then(
+										function()
+										{
+											cb(null, {correct: true, msg: 'Contraseña actualizada'});
+										}
+									)
+							else
+								cb(null, {correct: false, msg: 'Datos incrrectos'});
+						}
+					)
 			}
 	  }
 	);

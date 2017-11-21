@@ -3,6 +3,8 @@
   "port": 3030,
   "public": "../frontend/",
   "index": "../frontend/development.html",
+  "recoverme": "../public/recoverme.html",
+  "joinorganization": "../public/joinorganization.html",
   "mongodb": "mongodb://localhost:27017/centinela",
   "paginate": {
     "default": 10,

@@ -3,5 +3,7 @@
   "port": "PORT",
   "public": "../public/",
   "index": "../public/index.html",
+  "recoverme": "../public/recoverme.html",
+  "joinorganization": "../public/joinorganization.html",
   "mongodb": "mongodb://{{user}}:{{password}}@centinela.documents.azure.com:10255/?ssl=true"  
 }
