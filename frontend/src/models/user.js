@@ -75,6 +75,35 @@ var User
 				{
 					return moment(this.person.license.expirationDate).format('DD/MM/YYYY');
 				}
+			//	profile control
+			,	canTouchUsers: function()
+				{
+					return (this.profile.type == 1)
+				}
+			,	canTouchEquipment: function()
+				{
+					return ([1,2].indexOf(this.profile.type) >= 0)
+				}
+			,	canTouchBatteries: function()
+				{
+					return ([1,2].indexOf(this.profile.type) >= 0)
+				}
+			,	canTouchUAVs: function()
+				{
+					return ([1,2].indexOf(this.profile.type) >= 0)
+				}
+			,	canTouchFlights: function()
+				{
+					return ([1,2].indexOf(this.profile.type) >= 0)
+				}
+			,	canSeeFlights: function()
+				{
+					return ([1,3].indexOf(this.profile.type) >= 0)
+				}
+			,	canCreateFlights: function()
+				{
+					return ([1,2].indexOf(this.profile.type) >= 0)
+				}
 			}
 		);
 

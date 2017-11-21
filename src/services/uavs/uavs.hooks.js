@@ -6,6 +6,7 @@ module.exports = {
     find: [
       function(hook)
       {
+        console.log(hook)
         hook.params.query = { 'organization._id': hook.params.user.organization._id};
         return hook;
       }
