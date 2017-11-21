@@ -14,15 +14,11 @@ export const ViewModel = DefineMap.extend({
   },
   instances:{
     get () {
-      return Flight.getList({'organization._id': this.user.organization._id})
+      return Flight.getList()
     }
   },
   instance: {
     value: new Flight({})
-  , set: function()
-    {
-      this.instances = Flight.getList({'organization._id': this.user.organization._id})
-    }  
   }
 });
 

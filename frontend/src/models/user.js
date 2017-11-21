@@ -4,7 +4,7 @@ import connect from 'can-connect';
 import feathersClient from './feathers-client';
 import feathersServiceBehavior from 'can-connect-feathers/service';
 import behaviors from './behaviors';
-import algebra from './algebra';
+import set from 'can-set';
 
 import moment from 'moment';
 
@@ -25,6 +25,7 @@ var	Organization
 			{
 				name: 'string'
 			,	cuit: 'string'
+			, _id: 'any'
 			}
 		);
 
@@ -67,6 +68,10 @@ User.List
 				'#': User
 			}
 		);
+
+const algebra = new set.Algebra(
+	set.props.id('_id')
+);
 
 User.connection = connect(
 	[

@@ -9,3 +9,5 @@ import 'centinela/models/uav-test';
 import 'centinela/models/flight-test';
 
 import 'centinela/models/dashboard-test';
+
+import 'centinela/models/dummy-test';

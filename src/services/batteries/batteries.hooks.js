@@ -3,9 +3,26 @@
 module.exports = {
   before: {
     all: [],
-    find: [],
+    find: [
+      function(hook)
+      {
+        hook.params.query = { 'organization._id': hook.params.user.organization._id};
+        return hook;
+      }
+    ],
     get: [],
-    create: [],
+    create: [
+      function(hook)
+      {
+        Object.assign(
+          hook.data
+        , {
+            organization: hook.params.user.organization
+          }
+        );
+        return hook;
+      }
+    ],
     update: [],
     patch: [],
     remove: []

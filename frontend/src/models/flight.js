@@ -4,14 +4,15 @@ import connect from 'can-connect';
 import feathersClient from './feathers-client';
 import feathersServiceBehavior from 'can-connect-feathers/service';
 import behaviors from './behaviors';
-import algebra from './algebra';
+import set from 'can-set';
 
 var	Organization
 =	DefineMap
 		.extend(
 			{
 				name: 'string'
-			,	cuit: 'string'
+      ,	cuit: 'string'
+      , _id: 'any'
 			}
 		);
 
@@ -43,6 +44,10 @@ Flight.List
         '#': Flight
       }
   );
+
+const algebra = new set.Algebra(
+  set.props.id('_id')
+);
 
 Flight.connection = connect(
 	[

@@ -17,15 +17,16 @@ export const ViewModel = DefineMap.extend({
   },
   instances:{
     get () {
-      return Equipment.getList({'organization._id': this.user.organization._id})
+      return Equipment.getList()
     }
   },
   instance: {
-    value: new Equipment({})
-  , set: function()
-    {
-      this.instances = Equipment.getList({'organization._id': this.user.organization._id})
-    }  
+    value: new Equipment({}) 
+  },
+  setToCreate: function()
+  {
+    this.instance = new Equipment({});
+    $('#createEquipment').modal('toggle');
   },
   setToEdit: function(instanceToEdit)
   {
@@ -45,8 +46,6 @@ export const ViewModel = DefineMap.extend({
     {
       // Pongo el boton en modo loading
       $('button.save:visible').button('loading');
-
-      this.instance.organization = this.user.organization;
 
       this.instance.save()
         .then(
@@ -231,7 +230,7 @@ export default Component.extend({
     inserted: function()
     {
       //	Validador de Formularios
-			$('form').formValidation();
+			$('#createEquipment form.create, #editEquipment form.edit').formValidation();
       
       //	modales
       $('.modal').modal({ show: false })

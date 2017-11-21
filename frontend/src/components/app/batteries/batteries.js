@@ -13,18 +13,21 @@ import Battery from 'centinela/models/battery'
 export const ViewModel = DefineMap.extend({
   user: {
     value: User
+  , Type: User
   },
   instances:{
-    get () {
-      return Battery.getList({'organization._id': this.user.organization._id})
+    Type: Battery.List
+  ,  get () {
+      return Battery.getList({})
     }
   },
   instance: {
     value: new Battery({})
-  , set: function()
-    {
-      this.instances = Battery.getList({'organization._id': this.user.organization._id})
-    }  
+  },
+  setToCreate: function()
+  {
+    this.instance = new Battery({});
+    $('#createBattery').modal('toggle');
   },
   setToEdit: function(instanceToEdit)
   {
@@ -38,15 +41,11 @@ export const ViewModel = DefineMap.extend({
   },
   create: function()
   {
-    var self = this;
-
     if (this.validateForm())
     {
       // Pongo el boton en modo loading
       $('button.save:visible').button('loading');
-
-      this.instance.organization = this.user.organization;
-
+      
       this.instance.save()
         .then(
           function()
@@ -72,9 +71,8 @@ export const ViewModel = DefineMap.extend({
             $('.modal:visible').modal('hide');
 
             // Reseteo los valores de la instancia
-            self.instance = new Battery({});
             $('#createBattery form.create')[0].reset();
-            $('#createBattery form.edit').data('formValidation').resetForm();
+            $('#createBattery form.create').data('formValidation').resetForm();
           }
         ).catch(
           function()
@@ -131,7 +129,6 @@ export const ViewModel = DefineMap.extend({
             $('.modal:visible').modal('hide');
 
             // Reseteo los valores de la instancia
-            self.instance = new Battery({});
             $('#editBattery form.edit')[0].reset();
             $('#editBattery form.edit').data('formValidation').resetForm();
           }
@@ -164,7 +161,6 @@ export const ViewModel = DefineMap.extend({
       .then(
         function()
         {
-          console.log("then",arguments)
           // Muestro la notificacion
           $.notify(
             {
@@ -181,9 +177,6 @@ export const ViewModel = DefineMap.extend({
           
           // Oculto el modal
           $('.modal:visible').modal('hide');
-
-          // Reseteo los valores de la instancia
-          self.instance = new Battery({});
         }
       ).catch(
         function()
@@ -229,7 +222,7 @@ export default Component.extend({
     inserted: function()
     {
       //	Validador de Formularios
-			$('form').formValidation();
+			$('#createBattery form.create, #editBattery form.edit').formValidation();
 
       //	modales
       $('.modal').modal({ show: false })

@@ -16,15 +16,16 @@ export const ViewModel = DefineMap.extend({
   },
   instances:{
     get () {
-      return UAV.getList({'organization._id': this.user.organization._id})
+      return UAV.getList()
     }
   },
   instance: {
-    value: new UAV({})
-  , set: function()
-    {
-      this.instances = UAV.getList({'organization._id': this.user.organization._id})
-    }  
+    value: new UAV({}) 
+  },
+  setToCreate: function()
+  {
+    this.instance = new UAV({});
+    $('#createUAV').modal('toggle');
   },
   setToEdit: function(instanceToEdit)
   {
@@ -44,8 +45,6 @@ export const ViewModel = DefineMap.extend({
     {
       // Pongo el boton en modo loading
       $('button.save:visible').button('loading');
-
-      this.instance.organization = this.user.organization;
 
       this.instance.save()
         .then(
@@ -164,7 +163,6 @@ export const ViewModel = DefineMap.extend({
       .then(
         function()
         {
-          console.log("then",arguments)
           // Muestro la notificacion
           $.notify(
             {
@@ -188,7 +186,6 @@ export const ViewModel = DefineMap.extend({
       ).catch(
         function()
         {
-          console.log("Chatch",arguments)
           // Muestro la notificacion
           $.notify(
             {
@@ -230,7 +227,7 @@ export default Component.extend({
     inserted: function()
     {
       //	Validador de Formularios
-			$('form').formValidation();
+			$('#createUAV form.create, #editUAV form.edit').formValidation();
       
       //	modales
       $('.modal').modal({ show: false })

@@ -12,13 +12,30 @@ module.exports = {
     find: [
     //  auth.hooks.authenticate('jwt'),
     //  queryWithCurrentUser()
+      function(hook)
+      {
+        if (hook.params.user)
+          hook.params.query = { 'organization._id': hook.params.user.organization._id};
+        return hook;
+      }
     ],
     get: [
     //  auth.hooks.authenticate('jwt'),
     //  restrictToOwner({ ownerField: '_id' })
     ],
     create: [
-      local.hooks.hashPassword()
+      local.hooks.hashPassword(),
+      function(hook)
+      {
+        if (hook.params.user)
+          Object.assign(
+            hook.data
+          , {
+              organization: hook.params.user.organization
+            }
+          );
+        return hook;
+      }
     ],
     update: [
     //  auth.hooks.authenticate('jwt'),

@@ -15,15 +15,16 @@ export const ViewModel = DefineMap.extend({
   },
   instances:{
     get () {
-      return User.getList({'organization._id': this.user.organization._id})
+      return User.getList()
     }
   },
   instance: {
     value: new User({})
-  , set: function()
-    {
-      this.instances = User.getList({'organization._id': this.user.organization._id})
-    }  
+  },
+  setToCreate: function()
+  {
+    this.instance = new User({});
+    $('#createUser').modal('toggle');
   },
   setToEdit: function(instanceToEdit)
   {
@@ -43,8 +44,6 @@ export const ViewModel = DefineMap.extend({
     {
       // Pongo el boton en modo loading
       $('button.save:visible').button('loading');
-
-      this.instance.organization = this.user.organization;
 
       this.instance.save()
         .then(

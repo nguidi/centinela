@@ -19,116 +19,116 @@
 <!-- Main content -->
 <section class="content">
     <div class="row">
-    <div class="col-xs-12">
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">
-                    Baterias de la organización
-                </h3>
-                <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#createBattery">
-                    Nuevo bateria
-                </button>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-                <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                    <div class="row">
-                        <div class="col-sm-6"></div>
-                        <div class="col-sm-6"></div>
-                    </div>
-                    {{#if instances.isResolved}}
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <table class="table table-bordered table-hover dataTable">
-                                <thead>
-                                    <tr role="row">
-                                        <th>
-                                            Marca
-                                        </th>
-                                        <th>
-                                            Modelo
-                                        </th>
-                                        <th>
-                                            Configuración
-                                        </th>
-                                        <th>
-                                            Capacidad
-                                        </th>
-                                        <th>
-                                            Dimenciones (mm)
-                                        </th>
-                                        <th>
-                                            Peso
-                                        </th>
-                                        <th class="actions text-center">
-                                            <i class="fa fa-cogs"></i>                                   
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {{#each instances.value}}
-                                        <tr role="row">
-                                            <td>{{brand}}</td>
-                                            <td>{{model}}</td>
-                                            <td>{{configuration}}</td>
-                                            <td>{{capacity}}</td>
-                                            <td>{{height}}x{{width}}x{{length}}</td>
-                                            <td>{{weight}}</td>
-                                            <td>
-                                                <a class="pull-right" on:click="setToRemove(.)">
-                                                    <i class="fa fa-times text-danger pull-right"></i>
-                                                </a>
-                                                <a class="pull-right" on:click="setToEdit(.)">
-                                                    <i class="fa fa-pencil text-primary pull-right"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    {{/each}}
-                                    {{#is instances.value.length 0}}
-                                        <tr role="row" class="danger">
-                                            <td colspan="7">
-                                                No hay baterias cargadas en la organización.
-                                            </td>
-                                        </tr>
-                                    {{/is}}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-5">
-                            <div class="dataTables_info" role="status" aria-live="polite">
-                                Mostrando {{instances.value.length}} de {{instances.value.total}}
-                            </div>
-                        </div>
-                        <div class="col-sm-7">
-                            <div class="dataTables_paginate paging_simple_numbers">
-                                <ul class="pagination">
-                                    <li class="paginate_button previous disabled">
-                                        <a href="#">
-                                            Anterior
-                                        </a>
-                                    </li>
-                                    <li class="paginate_button active">
-                                        <a href="#">
-                                            1
-                                        </a>
-                                    </li>
-                                    <li class="paginate_button next disabled">
-                                        <a href="#">
-                                            Siguiente
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    {{/if}}
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">
+                        Baterias de la organización
+                    </h3>
+                    <button type="button" class="btn btn-primary pull-right" on:click="setToCreate()">
+                        Nueva bateria
+                    </button>
                 </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                        <div class="row">
+                            <div class="col-sm-6"></div>
+                            <div class="col-sm-6"></div>
+                        </div>
+                        {{#if instances.isResolved}}
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered table-hover dataTable">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>
+                                                Marca
+                                            </th>
+                                            <th>
+                                                Modelo
+                                            </th>
+                                            <th>
+                                                Configuración
+                                            </th>
+                                            <th>
+                                                Capacidad
+                                            </th>
+                                            <th>
+                                                Dimenciones (mm)
+                                            </th>
+                                            <th>
+                                                Peso
+                                            </th>
+                                            <th class="actions text-center">
+                                                <i class="fa fa-cogs"></i>                                   
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each instances.value}}
+                                            <tr role="row">
+                                                <td>{{brand}}</td>
+                                                <td>{{model}}</td>
+                                                <td>{{configuration}}</td>
+                                                <td>{{capacity}}</td>
+                                                <td>{{height}}x{{width}}x{{length}}</td>
+                                                <td>{{weight}}</td>
+                                                <td>
+                                                    <a class="pull-right" on:click="setToRemove(.)">
+                                                        <i class="fa fa-times text-danger pull-right"></i>
+                                                    </a>
+                                                    <a class="pull-right" on:click="setToEdit(.)">
+                                                        <i class="fa fa-pencil text-primary pull-right"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {{/each}}
+                                        {{#is instances.value.length 0}}
+                                            <tr role="row" class="danger">
+                                                <td colspan="7">
+                                                    No hay baterias cargadas en la organización.
+                                                </td>
+                                            </tr>
+                                        {{/is}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <div class="dataTables_info" role="status" aria-live="polite">
+                                    Mostrando {{instances.value.length}} de {{instances.value.total}}
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="dataTables_paginate paging_simple_numbers">
+                                    <ul class="pagination">
+                                        <li class="paginate_button previous disabled">
+                                            <a href="#">
+                                                Anterior
+                                            </a>
+                                        </li>
+                                        <li class="paginate_button active">
+                                            <a href="#">
+                                                1
+                                            </a>
+                                        </li>
+                                        <li class="paginate_button next disabled">
+                                            <a href="#">
+                                                Siguiente
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+                <!-- /.box-body -->
             </div>
-            <!-- /.box-body -->
         </div>
-    </div>
     </div>
 </section>
 <!-- /.content -->
@@ -144,7 +144,7 @@
         </h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal create"
+        <form class="form-horizontal create" onsubmit="return false;"
             data-fv-framework="bootstrap"
             data-fv-icon-valid="fa fa-check"
             data-fv-icon-invalid="fa fa-times"
@@ -187,16 +187,19 @@
                 <div class="form-group">
                     <label for="dni" class="col-sm-2 control-label">Capacidad</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="capacity" placeholder="Capacidad" value:from="instance.capacity"
-                            data-fv-notempty="true"
-                            data-fv-notempty-message="Debe ingresar la capacidad." 
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="capacity" placeholder="Capacidad" value:bind="instance.capacity"
+                                data-fv-notempty="true"
+                                data-fv-notempty-message="Debe ingresar la capacidad." 
 
-                            maxlength="8"
-                            data-fv-stringlength-message="La capacidad no debe superar los 8 caracteres de largo."
+                                maxlength="8"
+                                data-fv-stringlength-message="La capacidad no debe superar los 8 caracteres de largo."
 
-                            data-fv-regexp="true"
-                            data-fv-regexp-regexp="^[0-9]+$"
-                            data-fv-regexp-message="La capacidad solo puede contener caracteres numericos.">
+                                data-fv-regexp="true"
+                                data-fv-regexp-regexp="^[0-9]+$"
+                                data-fv-regexp-message="La capacidad solo puede contener caracteres numericos.">
+                            <span class="input-group-addon">mAh</span>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -274,33 +277,37 @@
                 <div class="form-group">
                     <label for="dni" class="col-sm-2 control-label">Descarga</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="discharge" placeholder="Descarga" value:from="instance.discharge"
-                            data-fv-notempty="true"
-                            data-fv-notempty-message="Debe ingresar la descarga." 
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="discharge" placeholder="Descarga" value:bind="instance.discharge"
+                                data-fv-notempty="true"
+                                data-fv-notempty-message="Debe ingresar la descarga." 
 
-                            maxlength="8"
-                            data-fv-stringlength-message="La descarga no debe superar los 8 caracteres de largo."
+                                maxlength="8"
+                                data-fv-stringlength-message="La descarga no debe superar los 8 caracteres de largo."
 
-                            data-fv-regexp="true"
-                            data-fv-regexp-regexp="^[0-9]+$"
-                            data-fv-regexp-message="La descarga solo puede contener caracteres numericos.">
-                    </div>>
+                                data-fv-regexp="true"
+                                data-fv-regexp-regexp="^[0-9]+$"
+                                data-fv-regexp-message="La descarga solo puede contener caracteres numericos.">
+                            <span class="input-group-addon">C</span>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="dni" class="col-sm-2 control-label">Pico de descarga</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="dischargePeak" placeholder="Pico de descarga" value:from="instance.dischargePeak"
-                            data-fv-notempty="true"
-                            data-fv-notempty-message="Debe ingresar el pico de descarga." 
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="dischargePeak" placeholder="Pico de descarga" value:bind="instance.dischargePeak"
+                                data-fv-notempty="true"
+                                data-fv-notempty-message="Debe ingresar el pico de descarga." 
 
-                            maxlength="8"
-                            data-fv-stringlength-message="El pico de descarga no debe superar los 8 caracteres de largo."
+                                maxlength="8"
+                                data-fv-stringlength-message="El pico de descarga no debe superar los 8 caracteres de largo."
 
-                            data-fv-regexp="true"
-                            data-fv-regexp-regexp="^[0-9]+$"
-                            data-fv-regexp-message="El pico de descarga solo puede contener caracteres numericos.">
-                    </div>>
+                                data-fv-regexp="true"
+                                data-fv-regexp-regexp="^[0-9]+$"
+                                data-fv-regexp-message="El pico de descarga solo puede contener caracteres numericos.">
+                            <span class="input-group-addon">C</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -309,7 +316,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" on:click="create()">Crear</button>
+        <button type="button" class="btn btn-primary save" data-loading-text="Creando" on:click="create()">Crear</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -326,12 +333,12 @@
         </h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal edit"
+        <form class="form-horizontal edit" onsubmit="return false;"
             data-fv-framework="bootstrap"
             data-fv-icon-valid="fa fa-check"
             data-fv-icon-invalid="fa fa-times"
             data-fv-icon-validating="fa fa-refresh">
-            <p>A continuación edito los datos del bateria <b>{{instance.name}}</b></p>
+            <p>A continuación edito los datos del bateria <b>{{instance.brand}} {{instance.model}}</b></p>
             <div class="box-body">
                 <div class="form-group">
                     <label for="dni" class="col-sm-2 control-label">Marca</label>
@@ -369,16 +376,19 @@
                 <div class="form-group">
                     <label for="dni" class="col-sm-2 control-label">Capacidad</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="capacity" placeholder="Capacidad" value:from="instance.capacity"
-                            data-fv-notempty="true"
-                            data-fv-notempty-message="Debe ingresar la capacidad." 
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="capacity" placeholder="Capacidad" value:bind="instance.capacity"
+                                data-fv-notempty="true"
+                                data-fv-notempty-message="Debe ingresar la capacidad." 
 
-                            maxlength="8"
-                            data-fv-stringlength-message="La capacidad no debe superar los 8 caracteres de largo."
+                                maxlength="8"
+                                data-fv-stringlength-message="La capacidad no debe superar los 8 caracteres de largo."
 
-                            data-fv-regexp="true"
-                            data-fv-regexp-regexp="^[0-9]+$"
-                            data-fv-regexp-message="La capacidad solo puede contener caracteres numericos.">
+                                data-fv-regexp="true"
+                                data-fv-regexp-regexp="^[0-9]+$"
+                                data-fv-regexp-message="La capacidad solo puede contener caracteres numericos.">
+                            <span class="input-group-addon">mAh</span>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -456,33 +466,37 @@
                 <div class="form-group">
                     <label for="dni" class="col-sm-2 control-label">Descarga</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="discharge" placeholder="Descarga" value:from="instance.discharge"
-                            data-fv-notempty="true"
-                            data-fv-notempty-message="Debe ingresar la descarga." 
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="discharge" placeholder="Descarga" value:bind="instance.discharge"
+                                data-fv-notempty="true"
+                                data-fv-notempty-message="Debe ingresar la descarga." 
 
-                            maxlength="8"
-                            data-fv-stringlength-message="La descarga no debe superar los 8 caracteres de largo."
+                                maxlength="8"
+                                data-fv-stringlength-message="La descarga no debe superar los 8 caracteres de largo."
 
-                            data-fv-regexp="true"
-                            data-fv-regexp-regexp="^[0-9]+$"
-                            data-fv-regexp-message="La descarga solo puede contener caracteres numericos.">
-                    </div>>
+                                data-fv-regexp="true"
+                                data-fv-regexp-regexp="^[0-9]+$"
+                                data-fv-regexp-message="La descarga solo puede contener caracteres numericos.">
+                            <span class="input-group-addon">C</span>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="dni" class="col-sm-2 control-label">Pico de descarga</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="dischargePeak" placeholder="Pico de descarga" value:from="instance.dischargePeak"
-                            data-fv-notempty="true"
-                            data-fv-notempty-message="Debe ingresar el pico de descarga." 
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="dischargePeak" placeholder="Pico de descarga" value:bind="instance.dischargePeak"
+                                data-fv-notempty="true"
+                                data-fv-notempty-message="Debe ingresar el pico de descarga." 
 
-                            maxlength="8"
-                            data-fv-stringlength-message="El pico de descarga no debe superar los 8 caracteres de largo."
+                                maxlength="8"
+                                data-fv-stringlength-message="El pico de descarga no debe superar los 8 caracteres de largo."
 
-                            data-fv-regexp="true"
-                            data-fv-regexp-regexp="^[0-9]+$"
-                            data-fv-regexp-message="El pico de descarga solo puede contener caracteres numericos.">
-                    </div>>
+                                data-fv-regexp="true"
+                                data-fv-regexp-regexp="^[0-9]+$"
+                                data-fv-regexp-message="El pico de descarga solo puede contener caracteres numericos.">
+                            <span class="input-group-addon">C</span>
+                        </div>
                     </div>
                 </div>
             </div>
