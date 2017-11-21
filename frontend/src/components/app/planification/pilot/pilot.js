@@ -12,7 +12,7 @@ export const ViewModel = DefineMap.extend({
 
 , pilots: {
     get() {
-      return User.getList({'organization._id': this.user.organization._id, "profile.type": 3})
+      return User.getList({"profile.type": 3})
     }
   }
 

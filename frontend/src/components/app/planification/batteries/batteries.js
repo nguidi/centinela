@@ -11,9 +11,9 @@ export const ViewModel = DefineMap.extend({
     value: User
   }
 
-, battery: {
+, batteries: {
     get() {
-      return Battery.getList({'organization._id': this.user.organization._id})
+      return Battery.getList()
     }
   }
 
@@ -22,18 +22,18 @@ export const ViewModel = DefineMap.extend({
     value: new Battery.List([])
   }
 
-, selectedBatteries: function(batteryToAdd)
+, addBattery: function(batteryToAdd)
   {
-    if (this.selectedBattery.indexOf(batteryToAdd) == -1) {
-      this.selectedBattery.push(batteryToAdd);
-      $('.organization-battery tr[battery-index="'+batteryToAdd._id+'"]').addClass('active');
+    if (this.selectedBatteries.indexOf(batteryToAdd) == -1) {
+      this.selectedBatteries.push(batteryToAdd);
+      $('.organization-batteries tr[battery-index="'+batteryToAdd._id+'"]').addClass('active');
     }
   }
 
 , removeBattery: function(batteryToRemove)
   {
-    this.selectedBattery.pop();
-    $('.organization-battery tr[battery-index="'+batteryToRemove._id+'"]').removeClass('active');
+    this.selectedBatteries.pop();
+    $('.organization-batteries tr[battery-index="'+batteryToRemove._id+'"]').removeClass('active');
   }
 });
 

@@ -6,7 +6,7 @@
             </div>
             <div class="panel-body">
                 {{#if batteries.isResolved}}
-                <table class="table table-bordered table-hover dataTable batteries-equipment">
+                <table class="table table-bordered table-hover dataTable organization-batteries">
                     <thead>
                         <tr role="row">
                             <th>
@@ -67,7 +67,7 @@
                 Batterias seleccionadas
             </div>
             <div class="panel-body">
-                <table class="table table-bordered table-hover dataTable selected-batteries">
+                <table class="table table-bordered table-hover dataTable organization-batteries">
                     <thead>
                         <tr role="row">
                             <th>

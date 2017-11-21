@@ -13,7 +13,7 @@ export const ViewModel = DefineMap.extend({
 
 , equipment: {
     get() {
-      return Equipment.getList({'organization._id': this.user.organization._id})
+      return Equipment.getList()
     }
   }
 

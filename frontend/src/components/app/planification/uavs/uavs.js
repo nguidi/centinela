@@ -14,7 +14,7 @@ export const ViewModel = DefineMap.extend({
 
 ,  uavs: {
     get() {
-      return UAV.getList({'organization._id': this.user.organization._id})
+      return UAV.getList({})
     }
   }
 

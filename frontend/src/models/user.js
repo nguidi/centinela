@@ -73,7 +73,8 @@ var User
 				}
 			,	readableLicenseExpirationDate: function()
 				{
-					return moment(this.person.license.expirationDate).format('DD/MM/YYYY');
+
+					return this.person.license && moment(this.person.license.expirationDate).format('DD/MM/YYYY');
 				}
 			//	profile control
 			,	canTouchUsers: function()
