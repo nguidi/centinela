@@ -5,6 +5,7 @@ import view from './users.stache';
 
 import 'bootstrap/dist/js/bootstrap';
 import 'formvalidation';
+import 'centinela/pagination.min.js';
 import 'node_modules/formvalidation/dist/css/formvalidation.css';
 
 import User from 'centinela/models/user'
@@ -14,8 +15,25 @@ export const ViewModel = DefineMap.extend({
     value: User
   },
   instances:{
-    get () {
-      return User.getList()
+    value () {
+      var self = this;
+      return  User.getList().then(
+                function(raw)
+                {
+                  if (raw.total) {
+                    $('.pagination').data('twbsPagination').destroy();
+                    $('.pagination').twbsPagination({
+                      totalPages: Math.ceil(raw.total/raw.limit)
+                    , startPage: Math.ceil(raw.skip/raw.limit) + 1
+                    , onPageClick: function (event, page) {
+                        self.instances = User.getList({$skip: (page-1)*raw.limit})
+                      }
+                    });
+                  }
+
+                  return raw;
+                }
+              )
     }
   },
   instance: {
@@ -281,7 +299,13 @@ export default Component.extend({
 			$('#createUser form.create, #editUser form.edit').formValidation();
       
       //	modales
-      $('.modal').modal({ show: false })
+      $('.modal').modal({ show: false });
+
+      // paginador
+      $('.pagination').twbsPagination({
+        totalPages: 1,
+        visiblePages: 5
+      });
     }
   }
 });

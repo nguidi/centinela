@@ -9,8 +9,6 @@ import User from '~/models/user';
 // Uncomment this line if you don't have a Feathers Server running, but want to test auth.
 // import '~/models/fixtures/';
 
-window.Session = Session
-
 const AppViewModel = DefineMap.extend({
 
   /**

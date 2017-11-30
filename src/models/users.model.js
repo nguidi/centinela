@@ -27,7 +27,7 @@ module.exports = function (app) {
 	=	new Schema(
 			{
 				email: { type: String, required: true, maxlength: 128, minlegth: 8}
-			,	password: {type: String, maxlength: 24, minlegth: 8}
+			,	password: {type: String, minlegth: 8}
 			,	pending: {type: Boolean}
 			,	organization: organizationSchema
 			,	profile: profileSchema

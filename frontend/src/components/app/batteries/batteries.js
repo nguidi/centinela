@@ -5,6 +5,7 @@ import view from './batteries.stache';
 
 import 'bootstrap/dist/js/bootstrap';
 import 'formvalidation';
+import 'centinela/pagination.min.js';
 import 'node_modules/formvalidation/dist/css/formvalidation.css';
 
 import User from 'centinela/models/user'
@@ -16,9 +17,25 @@ export const ViewModel = DefineMap.extend({
   , Type: User
   },
   instances:{
-    Type: Battery.List
-  ,  get () {
-      return Battery.getList({})
+    value () {
+      var self = this;
+      return  Battery.getList().then(
+                function(raw)
+                {
+                  if (raw.total) {
+                    $('.pagination').data('twbsPagination').destroy();
+                    $('.pagination').twbsPagination({
+                      totalPages: Math.ceil(raw.total/raw.limit)
+                    , startPage: Math.ceil(raw.skip/raw.limit) + 1
+                    , onPageClick: function (event, page) {
+                        self.instances = Battery.getList({$skip: (page-1)*raw.limit})
+                      }
+                    });
+                  }
+
+                  return raw;
+                }
+              )
     }
   },
   instance: {
@@ -227,6 +244,11 @@ export default Component.extend({
       //	modales
       $('.modal').modal({ show: false })
       
+      // paginador
+      $('.pagination').twbsPagination({
+        totalPages: 1,
+        visiblePages: 5
+      });
     }
   }
 });

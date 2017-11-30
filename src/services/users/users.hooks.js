@@ -15,8 +15,13 @@ module.exports = {
       queryWithCurrentUser(),
       function(hook)
       {
-        if (hook.params.user)
-          hook.params.query = { 'organization._id': hook.params.user.organization._id};
+        if (hook.params.user) {
+          hook.params.query = { 
+            'organization._id': hook.params.user.organization._id,
+            $skip: hook.params.query.$skip
+          };
+        }
+        
         return hook;
       }
     ],
