@@ -9,7 +9,7 @@ module.exports = function (app) {
 	const organizationSchema
 	=	new Schema(
 			{
-				name: {type: String, required: true}
+				name: {type: String, required: true, minlegth: 3}
 			,	cuit: {type: Number, required: true}
 			}
     );
@@ -17,13 +17,13 @@ module.exports = function (app) {
 	const equipments
 	=	new Schema(
 		{
-			brand: { type: String, required: true }
-		,	model: { type: String, required: true }
-		,	type: { type: String, required: true }
-		,	height: { type: Number, required: true }
-		,	width: { type: Number, required: true }
-		,	length: { type: Number, required: true }
-		,	weight: { type: Number, required: true }
+			brand: { type: String, required: true, maxlength: 128, minlegth: 3  }
+		,	model: { type: String, required: true, maxlength: 128, minlegth: 3  }
+		,	type: { type: String, required: true, maxlength: 128, minlegth: 3  }
+		,	height: { type: Number, required: true, max: 99999999 }
+		,	width: { type: Number, required: true, max: 99999999 }
+		,	length: { type: Number, required: true, max: 99999999 }
+		,	weight: { type: Number, required: true, max: 99999999 }
 		,	organization: organizationSchema
 		,	createdAt: { type: Date, default: Date.now }
 		,	updatedAt: { type: Date, default: Date.now }

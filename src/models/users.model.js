@@ -9,7 +9,7 @@ module.exports = function (app) {
 	const organizationSchema
 	=	new Schema(
 			{
-				name: {type: String, required: true}
+				name: {type: String, required: true, minlegth: 3}
 			,	cuit: {type: Number, required: true}
 			}
 		);
@@ -26,15 +26,15 @@ module.exports = function (app) {
 	const users
 	=	new Schema(
 			{
-				email: { type: String, required: true }
-			,	password: {type: String}
+				email: { type: String, required: true, maxlength: 128, minlegth: 8}
+			,	password: {type: String, maxlength: 24, minlegth: 8}
 			,	pending: {type: Boolean}
 			,	organization: organizationSchema
 			,	profile: profileSchema
 			,	person:
 				{
-					name: { type: String}
-				,	lastName: { type: String}
+					name: { type: String, maxlength: 32, minlegth: 3}
+				,	lastName: { type: String, maxlength: 32, minlegth: 3}
 				,	dni: { type: Number, required: true}
 				,	birthday: { type: Date}
 				,	license:

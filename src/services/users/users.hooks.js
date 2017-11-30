@@ -11,8 +11,8 @@ module.exports = {
   before: {
     all: [],
     find: [
-    //  auth.hooks.authenticate('jwt'),
-    //  queryWithCurrentUser()
+      auth.hooks.authenticate('jwt'),
+      queryWithCurrentUser(),
       function(hook)
       {
         if (hook.params.user)
@@ -21,8 +21,8 @@ module.exports = {
       }
     ],
     get: [
-    //  auth.hooks.authenticate('jwt'),
-    //  restrictToOwner({ ownerField: '_id' })
+      auth.hooks.authenticate('jwt'),
+      restrictToOwner({ ownerField: '_id' })
     ],
     create: [
       local.hooks.hashPassword(),
@@ -39,13 +39,13 @@ module.exports = {
       }
     ],
     update: [
-    //  auth.hooks.authenticate('jwt'),
-    //  restrictToOwner({ ownerField: '_id' }),
+      auth.hooks.authenticate('jwt'),
+      restrictToOwner({ ownerField: '_id' }),
       local.hooks.hashPassword()
     ],
     patch: [
-    //  auth.hooks.authenticate('jwt'),
-    //  restrictToOwner({ ownerField: '_id' }),
+      auth.hooks.authenticate('jwt'),
+      restrictToOwner({ ownerField: '_id' }),
       local.hooks.hashPassword()
     ],
     remove: []

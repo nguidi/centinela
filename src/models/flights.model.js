@@ -14,19 +14,32 @@ module.exports = function (app) {
 	const organizationSchema
 	=	new Schema(
 			{
-				name: {type: String, required: true}
+				name: {type: String, required: true, minlegth: 3}
 			,	cuit: {type: Number, required: true}
+			}
+	);
+	
+	const pointsSchema
+	=	new Schema(
+			{
+				name: {type: String, required: true, minlegth: 3}
+			,	description: {type: String, maxlength: 128}
+			,	lat: {type: Number, required: true}
+			,	lng: {type: Number, required: true}
 			}
     );
 
 	const flights
 	=	new Schema(
 		{
-			name: { type: String, required: true }
+			name: { type: String, required: true, maxlength: 128, minlegth: 3 }
+		,	flightDate: { type: Date, required: true }
 		,	uav: uavsSchema
 		,	batteries: [ batteriesSchema ]
 		,	equipments: [ equipmentsSchema]
 		,	organization: organizationSchema
+		,	startPoint: pointsSchema
+		,	checkPoints: [ pointsSchema ]
 		,	createdAt: { type: Date, default: Date.now }
 		,	updatedAt: { type: Date, default: Date.now }
 		}

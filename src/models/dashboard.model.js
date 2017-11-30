@@ -9,7 +9,7 @@ module.exports = function (app) {
   const organizationSchema
 	=	new Schema(
 			{
-				name: {type: String, required: true}
+				name: {type: String, required: true, minlegth: 3}
 			,	cuit: {type: Number, required: true}
 			}
     );
