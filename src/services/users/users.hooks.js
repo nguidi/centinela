@@ -1,6 +1,8 @@
 const auth = require('feathers-authentication');
 const local = require('feathers-authentication-local');
 var MailHelper = require('sendgrid').mail;
+const setOrganization = require('../../hooks/setOrganization');
+const search = require('../../hooks/search');
 
 const {
   queryWithCurrentUser,
@@ -12,18 +14,10 @@ module.exports = {
     all: [],
     find: [
       auth.hooks.authenticate('jwt'),
-      queryWithCurrentUser(),
-      function(hook)
-      {
-        if (hook.params.user) {
-          hook.params.query = { 
-            'organization._id': hook.params.user.organization._id,
-            $skip: hook.params.query.$skip
-          };
-        }
-        
-        return hook;
-      }
+      setOrganization(),
+      search({  // regex search on given fields
+        fields: ['email', 'person.name', 'person.lastName']
+      })
     ],
     get: [
       auth.hooks.authenticate('jwt'),

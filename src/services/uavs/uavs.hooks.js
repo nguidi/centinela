@@ -1,4 +1,6 @@
 const auth = require('feathers-authentication');
+const setOrganization = require('../../hooks/setOrganization');
+const search = require('../../hooks/search');
 
 module.exports = {
   before: {
@@ -6,17 +8,10 @@ module.exports = {
       auth.hooks.authenticate('jwt')
     ],
     find: [
-      function(hook)
-      {
-        if (hook.params.user) {
-          hook.params.query = { 
-            'organization._id': hook.params.user.organization._id,
-            $skip: hook.params.query.$skip
-          };
-        }
-        
-        return hook;
-      }
+      setOrganization(),
+      search({  // regex search on given fields
+        fields: ['model', 'brand', 'size']
+      })
     ],
     get: [],
     create: [
