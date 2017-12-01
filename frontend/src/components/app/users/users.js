@@ -14,27 +14,51 @@ export const ViewModel = DefineMap.extend({
   user: {
     value: User
   },
+  filter:
+  {
+    value: ''
+  },
+  skip:
+  {
+    value: ''
+  , set: function(val)
+    {
+      var self = this;
+      this.instances = User.getList({$skip: val, search: this.filter})
+    }
+  },
   instances:{
     value () {
-      var self = this;
-      return  User.getList().then(
-                function(raw)
-                {
-                  if (raw.total) {
-                    $('.pagination').data('twbsPagination').destroy();
-                    $('.pagination').twbsPagination({
-                      totalPages: Math.ceil(raw.total/raw.limit)
-                    , startPage: Math.ceil(raw.skip/raw.limit) + 1
-                    , onPageClick: function (event, page) {
-                        self.instances = User.getList({$skip: (page-1)*raw.limit})
-                      }
-                    });
-                  }
-
-                  return raw;
-                }
-              )
+      return  User.getList()
     }
+    /*,
+    set (promise) {
+      var self = this;
+
+      promise.then(
+        function(raw)
+        {
+          console.log(raw)
+          if (raw.total) {
+            $('.pagination').data('twbsPagination').destroy();
+            $('.pagination').twbsPagination({
+              totalPages: Math.ceil(raw.total/raw.limit)
+            , startPage: Math.ceil(raw.skip/raw.limit) + 1
+            , onPageClick: function (event, page) {
+                let firstInstance = ((page-1)*raw.limit+1);
+                let lastInstance = (((page-1)*raw.limit)+raw.limit) > raw.total ? raw.total : (((page-1)*raw.limit)+raw.limit); 
+                $('span.displayed-instances').html(firstInstance+' al '+lastInstance);
+                $('span.total-instances').html(raw.total);
+                //self.skip = (page-1)*raw.limit;
+              }
+            });
+            
+          }
+          
+          return raw;
+        }
+      )
+    }*/
   },
   instance: {
     value: new User({})
@@ -43,6 +67,11 @@ export const ViewModel = DefineMap.extend({
   {
     this.instance = new User({});
     $('#createUser').modal('toggle');
+  },
+  search: function()
+  {
+    this.filter = $('[name=search]').val();
+    this.skip = 0;
   },
   setToEdit: function(instanceToEdit)
   {
