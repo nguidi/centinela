@@ -16,7 +16,7 @@
 	<div class="clearfix">
 		<div class="checkbox c-checkbox pull-left mt0">
 			<label>
-				<input type="checkbox" value="" name="remember">
+				<input type="checkbox" name="remember" checked:bind="loginForm.rememberMe">
 				Recordarme
 			</label>
 		</div>

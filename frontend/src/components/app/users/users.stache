@@ -129,7 +129,7 @@
         </h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal create" onsubmit="return false;"
+        <form class="form-horizontal form-instance create" onsubmit="return false;"
             data-fv-framework="bootstrap"
             data-fv-icon-valid="fa fa-check"
             data-fv-icon-invalid="fa fa-times"
@@ -205,7 +205,7 @@
         </h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal edit" onsubmit="return false;">
+        <form class="form-horizontal form-instance edit" onsubmit="return false;">
             <p>A continuación edite el rol del usuario <b> {{#if instance.pending}} {{instance.email}} {{else}} {{instance.person.lastName}} {{instance.person.name}} {{/if}}</b></p>
             <div class="box-body">
                  <div class="form-group">

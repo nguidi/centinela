@@ -22,13 +22,22 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">
-                        Baterias de la organización
-                    </h3>
-                    <button type="button" class="btn btn-primary pull-right" on:click="setToCreate()">
-                        Nueva bateria
-                    </button>
-                </div>
+                <form class="form-inline" onsubmit="return false;">
+                    <div class="table-holder">
+                        <div class="table-search">
+                            <input class="form-control" type="text" name="search" placeholder="Ingrese el modelo o la marca de la bateria a buscar">
+                        </div>
+                        <div class="table-actions">
+                            <button type="button" class="btn btn-info" on:click="search()">
+                                Buscar
+                            </button>
+                            <button type="button" class="btn btn-primary" on:click="setToCreate()">
+                                Nueva bateria
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -96,16 +105,14 @@
                             </div>
                         </div>
                         {{/if}}
-                        <div class="row">
-                            <div class="col-sm-5">
-                                <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
-                                    Mostrando <span class="displayed-instances"></span> de <span class="total-instances"></span>
-                                </div>
+                        <div class="col-sm-5">
+                            <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
+                                Mostrando del <span class="displayed-instances"></span> baterias de un total de <span class="total-instances"></span>.
                             </div>
-                            <div class="col-sm-7">
-                                <div class="dataTables_paginate paging_simple_numbers">
-                                    <ul class="pagination"></ul>
-                                </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="dataTables_paginate paging_simple_numbers">
+                                <ul class="pagination"></ul>
                             </div>
                         </div>
                     </div>
@@ -128,7 +135,7 @@
         </h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal create" onsubmit="return false;"
+        <form class="form-horizontal form-instance create" onsubmit="return false;"
             data-fv-framework="bootstrap"
             data-fv-icon-valid="fa fa-check"
             data-fv-icon-invalid="fa fa-times"
@@ -136,8 +143,8 @@
             <p>A continuación ingrese los datos del nuevo bateria:</p>
             <div class="box-body">
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Marca</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Marca</label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="brand" placeholder="Marca" value:bind="instance.brand"
                             data-fv-notempty="true"
                             data-fv-notempty-message="Debe ingresar un marca." 
@@ -147,8 +154,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Modelo</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Modelo</label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="model" placeholder="Modelo" value:bind="instance.model"
                             data-fv-notempty="true"
                             data-fv-notempty-message="Debe ingresar un modelo." 
@@ -158,19 +165,24 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Configuración</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="configuration" placeholder="Tipo" value:bind="instance.configuration"
+                    <label for="dni" class="col-sm-3 control-label">Configuración</label>
+                    <div class="col-sm-9">
+                        <select class="form-control"  name="profile"  value:bind="instance.configuration"
                             data-fv-notempty="true"
-                            data-fv-notempty-message="Debe ingresar la configuración." 
+                            data-fv-notempty-message="Debe seleccionar la configuración de la bateria.">
 
-                            maxlength="128"
-                            data-fv-stringlength-message="La configuración no puede superar los 128 caracteres de largo.">
+                            <option value="">Seleccione una configuración</option>
+                            <option value="C1">C1 - Una Celda</option>
+                            <option value="C2">C2 - Dos Celdas</option>
+                            <option value="C3">C3 - Tres Celdas</option>
+                            <option value="C4">C4 - Cuatro Celdas</option>
+                            <option value="C6">C6 - Seis Celdas</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Capacidad</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Capacidad</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="capacity" placeholder="Capacidad" value:bind="instance.capacity"
                                 data-fv-notempty="true"
@@ -187,8 +199,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Altura</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Altura</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="height" placeholder="Altura" value:bind="instance.height"
                                 data-fv-notempty="true"
@@ -205,8 +217,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Ancho</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Ancho</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="width" placeholder="Ancho" value:bind="instance.width"
                                 data-fv-notempty="true"
@@ -223,8 +235,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Largo</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Largo</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="length" placeholder="Largo" value:bind="instance.length"
                                 data-fv-notempty="true"
@@ -241,8 +253,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Peso</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Peso</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="weight" placeholder="Peso" value:bind="instance.weight"
                                 data-fv-notempty="true"
@@ -259,8 +271,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Descarga</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Descarga</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="discharge" placeholder="Descarga" value:bind="instance.discharge"
                                 data-fv-notempty="true"
@@ -277,8 +289,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Pico de descarga</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Pico de descarga</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="dischargePeak" placeholder="Pico de descarga" value:bind="instance.dischargePeak"
                                 data-fv-notempty="true"
@@ -317,7 +329,7 @@
         </h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal edit" onsubmit="return false;"
+        <form class="form-horizontal form-instance edit" onsubmit="return false;"
             data-fv-framework="bootstrap"
             data-fv-icon-valid="fa fa-check"
             data-fv-icon-invalid="fa fa-times"
@@ -325,8 +337,8 @@
             <p>A continuación edito los datos del bateria <b>{{instance.brand}} {{instance.model}}</b></p>
             <div class="box-body">
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Marca</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Marca</label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="brand" placeholder="Marca" value:bind="instance.brand"
                             data-fv-notempty="true"
                             data-fv-notempty-message="Debe ingresar un marca." 
@@ -336,8 +348,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Modelo</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Modelo</label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="model" placeholder="Modelo" value:bind="instance.model"
                             data-fv-notempty="true"
                             data-fv-notempty-message="Debe ingresar un modelo." 
@@ -347,8 +359,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Configuración</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Configuración</label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="configuration" placeholder="Tipo" value:bind="instance.configuration"
                             data-fv-notempty="true"
                             data-fv-notempty-message="Debe ingresar la configuración." 
@@ -358,8 +370,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Capacidad</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Capacidad</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="capacity" placeholder="Capacidad" value:bind="instance.capacity"
                                 data-fv-notempty="true"
@@ -376,8 +388,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Altura</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Altura</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="height" placeholder="Altura" value:bind="instance.height"
                                 data-fv-notempty="true"
@@ -394,8 +406,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Ancho</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Ancho</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="width" placeholder="Ancho" value:bind="instance.width"
                                 data-fv-notempty="true"
@@ -412,8 +424,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Largo</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Largo</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="length" placeholder="Largo" value:bind="instance.length"
                                 data-fv-notempty="true"
@@ -430,8 +442,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Peso</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Peso</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="weight" placeholder="Peso" value:bind="instance.weight"
                                 data-fv-notempty="true"
@@ -448,8 +460,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Descarga</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Descarga</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="discharge" placeholder="Descarga" value:bind="instance.discharge"
                                 data-fv-notempty="true"
@@ -466,8 +478,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Pico de descarga</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Pico de descarga</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="dischargePeak" placeholder="Pico de descarga" value:bind="instance.dischargePeak"
                                 data-fv-notempty="true"

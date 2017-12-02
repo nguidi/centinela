@@ -10,7 +10,7 @@ module.exports = {
     find: [
       setOrganization(),
       search({  // regex search on given fields
-        fields: ['brand', 'model', 'capacity']
+        fields: ['brand', 'model']
       })
     ],
     get: [],

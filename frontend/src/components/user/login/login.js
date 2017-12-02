@@ -11,12 +11,18 @@ import 'bootstrap/dist/js/bootstrap';
 import 'formvalidation';
 import 'node_modules/formvalidation/dist/js/framework/bootstrap.js';
 import 'node_modules/formvalidation/dist/css/formvalidation.css';
+import CryptoJS from 'crypto-js/core';
+import AES from 'crypto-js/aes';
+
+window.AES = AES
+window.CryptoJS = CryptoJS
 
 export const ViewModel = DefineMap.extend({
   loginForm: {
     value: {
-      email: ''
-    , password: ''
+      email: localStorage.userName || ''
+    , password: localStorage.userPassword ? AES.decrypt(localStorage.userPassword, "U2FsdGVkX").toString(CryptoJS.enc.Utf8) : ''
+    , rememberMe: localStorage.userRememberMe || false
     }
   }
 , user: {
@@ -55,6 +61,16 @@ export const ViewModel = DefineMap.extend({
           $(el).button('reset');
           //  Seteamos el usuario logeado e ingresamos al home de la app
           self.user = user;
+          //  Validamos que este seteado la casilla "Recordarme" y seteamos la informacion
+          if (this.loginForm.rememberMe) {
+            localStorage.setItem('userName', this.loginForm.email);
+            localStorage.setItem('userPassword', AES.encrypt(this.loginForm.password, "U2FsdGVkX"));
+            localStorage.setItem('userRememberMe', this.loginForm.rememberMe);
+          } else {
+            localStorage.removeItem('userName');
+            localStorage.removeItem('userPassword');
+            localStorage.removeItem('userRememberMe');
+          }
         }
       ).catch(function(error){
           //  Ocurrio un error al autentificar

@@ -22,12 +22,21 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">
-                    Equipamiento de la organización
-                </h3>
-                <button type="button" class="btn btn-primary pull-right" on:click="setToCreate()">
-                    Nuevo equipamiento
-                </button>
+                <form class="form-inline" onsubmit="return false;">
+                    <div class="table-holder">
+                        <div class="table-search">
+                            <input class="form-control" type="text" name="search" placeholder="Ingrese el modelo o la marca del equipamiento a buscar">
+                        </div>
+                        <div class="table-actions">
+                            <button type="button" class="btn btn-info" on:click="search()">
+                                Buscar
+                            </button>
+                            <button type="button" class="btn btn-primary" on:click="setToCreate()">
+                                Nuevo equipamiento
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -95,7 +104,7 @@
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
-                                Mostrando <span class="displayed-instances"></span> de <span class="total-instances"></span>
+                                Mostrando del <span class="displayed-instances"></span> equipamientos de un total de <span class="total-instances"></span>.
                             </div>
                         </div>
                         <div class="col-sm-7">
@@ -124,7 +133,7 @@
         </h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal create" onsubmit="return false;"
+        <form class="form-horizontal form-instance create" onsubmit="return false;"
             data-fv-framework="bootstrap"
             data-fv-icon-valid="fa fa-check"
             data-fv-icon-invalid="fa fa-times"
@@ -133,8 +142,8 @@
             <p>A continuación ingrese los datos del nuevo equipamiento:</p>
             <div class="box-body">
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Marca</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Marca</label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="brand" placeholder="Marca" value:bind="instance.brand"
                             data-fv-notempty="true"
                             data-fv-notempty-message="Debe ingresar un marca." 
@@ -144,8 +153,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Modelo</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Modelo</label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="model" placeholder="Modelo" value:bind="instance.model"
                             data-fv-notempty="true"
                             data-fv-notempty-message="Debe ingresar un modelo." 
@@ -155,8 +164,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Tipo</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Tipo</label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="type" placeholder="Tipo" value:bind="instance.type"
                             data-fv-notempty="true"
                             data-fv-notempty-message="Debe ingresar el tipo." 
@@ -166,8 +175,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Altura</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Altura</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="height" placeholder="Altura" value:bind="instance.height"
                                 data-fv-notempty="true"
@@ -184,8 +193,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Ancho</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Ancho</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="width" placeholder="Ancho" value:bind="instance.width"
                                 data-fv-notempty="true"
@@ -202,8 +211,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Largo</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Largo</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="length" placeholder="Largo" value:bind="instance.length"
                                 data-fv-notempty="true"
@@ -220,8 +229,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Peso</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Peso</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="weight" placeholder="Peso" value:bind="instance.weight"
                                 data-fv-notempty="true"
@@ -260,7 +269,7 @@
         </h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal edit" onsubmit="return false;"
+        <form class="form-horizontal form-instance edit" onsubmit="return false;"
             data-fv-framework="bootstrap"
             data-fv-icon-valid="fa fa-check"
             data-fv-icon-invalid="fa fa-times"
@@ -268,8 +277,8 @@
             <p>A continuación edito los datos del equipamiento <b>{{instance.brand}} - {{instance.name}}</b></p>
             <div class="box-body">
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Marca</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Marca</label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="brand" placeholder="Marca" value:bind="instance.brand"
                             data-fv-notempty="true"
                             data-fv-notempty-message="Debe ingresar un marca." 
@@ -279,8 +288,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Modelo</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Modelo</label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="model" placeholder="Modelo" value:bind="instance.model"
                             data-fv-notempty="true"
                             data-fv-notempty-message="Debe ingresar un modelo." 
@@ -290,8 +299,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Tipo</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Tipo</label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="type" placeholder="Tipo" value:bind="instance.type"
                             data-fv-notempty="true"
                             data-fv-notempty-message="Debe ingresar el tipo." 
@@ -301,8 +310,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Altura</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Altura</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="height" placeholder="Altura" value:bind="instance.height"
                                 data-fv-notempty="true"
@@ -319,8 +328,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Ancho</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Ancho</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="width" placeholder="Ancho" value:bind="instance.width"
                                 data-fv-notempty="true"
@@ -337,8 +346,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Largo</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Largo</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="length" placeholder="Largo" value:bind="instance.length"
                                 data-fv-notempty="true"
@@ -355,8 +364,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Peso</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Peso</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="weight" placeholder="Peso" value:bind="instance.weight"
                                 data-fv-notempty="true"

@@ -20,8 +20,7 @@ module.exports = {
       })
     ],
     get: [
-      auth.hooks.authenticate('jwt'),
-      restrictToOwner({ ownerField: '_id' })
+      auth.hooks.authenticate('jwt')
     ],
     create: [
       local.hooks.hashPassword(),
@@ -39,12 +38,10 @@ module.exports = {
     ],
     update: [
       auth.hooks.authenticate('jwt'),
-      restrictToOwner({ ownerField: '_id' }),
       local.hooks.hashPassword()
     ],
     patch: [
       auth.hooks.authenticate('jwt'),
-      restrictToOwner({ ownerField: '_id' }),
       local.hooks.hashPassword()
     ],
     remove: []

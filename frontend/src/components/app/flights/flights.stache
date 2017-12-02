@@ -25,10 +25,19 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">
-                        Vuelos de la organización
-                    </h3>
-                </div>
+                <form class="form-inline" onsubmit="return false;">
+                    <div class="table-holder">
+                        <div class="table-search">
+                            <input class="form-control" type="text" name="search" placeholder="Ingrese el nombre o la fecha del vuelo a buscar">
+                        </div>
+                        <div class="table-actions">
+                            <button type="button" class="btn btn-info" on:click="search()">
+                                Buscar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -79,15 +88,15 @@
                         {{/if}}
                         <div class="row">
                             <div class="col-sm-5">
-                                <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
-                                    Mostrando <span class="displayed-instances"></span> de <span class="total-instances"></span>
-                                </div>
+                            <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
+                                Mostrando del <span class="displayed-instances"></span> vuelo de un total de <span class="total-instances"></span>.
                             </div>
-                            <div class="col-sm-7">
-                                <div class="dataTables_paginate paging_simple_numbers">
-                                    <ul class="pagination"></ul>
-                                </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="dataTables_paginate paging_simple_numbers">
+                                <ul class="pagination"></ul>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>
