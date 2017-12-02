@@ -141,8 +141,8 @@
             <p>A continuación ingrese los datos del nuevo UAV:</p>
             <div class="box-body">
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Marca</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Marca</label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="brand" placeholder="Marca" value:bind="instance.brand"
                             data-fv-notempty="true"
                             data-fv-notempty-message="Debe ingresar un marca." 
@@ -152,8 +152,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Modelo</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Modelo</label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="model" placeholder="Modelo" value:bind="instance.model"
                             data-fv-notempty="true"
                             data-fv-notempty-message="Debe ingresar un modelo." 
@@ -163,8 +163,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Tamaño</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Tamaño</label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="size" placeholder="Tamaño" value:bind="instance.size"
                             data-fv-notempty="true"
                             data-fv-notempty-message="Debe ingresar el tamaño." 
@@ -178,8 +178,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Altura</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Altura</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="height" placeholder="Altura" value:bind="instance.height"
                                 data-fv-notempty="true"
@@ -196,8 +196,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Ancho</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Ancho</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="width" placeholder="Ancho" value:bind="instance.width"
                                 data-fv-notempty="true"
@@ -214,8 +214,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Largo</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Largo</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="length" placeholder="Largo" value:bind="instance.length"
                                 data-fv-notempty="true"
@@ -232,8 +232,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Peso</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Peso</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="weight" placeholder="Peso" value:bind="instance.weight"
                                 data-fv-notempty="true"
@@ -280,8 +280,8 @@
             <p>A continuación edito los datos del UAV <b>{{instance.name}}</b></p>
             <div class="box-body">
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Marca</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Marca</label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="brand" placeholder="Marca" value:bind="instance.brand"
                             data-fv-notempty="true"
                             data-fv-notempty-message="Debe ingresar un marca." 
@@ -291,8 +291,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Modelo</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Modelo</label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="model" placeholder="Modelo" value:bind="instance.model"
                             data-fv-notempty="true"
                             data-fv-notempty-message="Debe ingresar un modelo." 
@@ -302,8 +302,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Tamaño</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Tamaño</label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="size" placeholder="Tamaño" value:bind="instance.size"
                             data-fv-notempty="true"
                             data-fv-notempty-message="Debe ingresar el tamaño." 
@@ -313,8 +313,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Altura</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Altura</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="height" placeholder="Altura" value:bind="instance.height"
                                 data-fv-notempty="true"
@@ -331,8 +331,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Ancho</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Ancho</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="width" placeholder="Ancho" value:bind="instance.width"
                                 data-fv-notempty="true"
@@ -349,8 +349,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Largo</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Largo</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="length" placeholder="Largo" value:bind="instance.length"
                                 data-fv-notempty="true"
@@ -367,8 +367,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-sm-2 control-label">Peso</label>
-                    <div class="col-sm-10">
+                    <label for="dni" class="col-sm-3 control-label">Peso</label>
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <input type="text" class="form-control" name="weight" placeholder="Peso" value:bind="instance.weight"
                                 data-fv-notempty="true"
