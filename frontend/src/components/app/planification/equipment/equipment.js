@@ -3,8 +3,10 @@ import DefineMap from 'can-define/map/';
 import './equipment.less';
 import view from './equipment.stache';
 
-import User from 'centinela/models/user'
-import Equipment from 'centinela/models/equipment'
+import 'centinela/pagination.min.js';
+
+import User from 'centinela/models/user';
+import Equipment from 'centinela/models/equipment';
 
 export const ViewModel = DefineMap.extend({
   user: {
@@ -55,8 +57,8 @@ export const ViewModel = DefineMap.extend({
     self.count = count;
     self.total = total;
     if (total > 0) {
-      $('app-planification-equipment .pagination').data('twbsPagination').destroy();
-      $('app-planification-equipment .pagination').twbsPagination({
+      $('app-planification-equipment .instances-pagination .pagination').data('twbsPagination').destroy();
+      $('app-planification-equipment .instances-pagination .pagination').twbsPagination({
         totalPages: Math.ceil(total/limit)
       , startPage: Math.ceil(skip/limit) + 1
       , initiateStartPageClick: false
@@ -91,8 +93,7 @@ export const ViewModel = DefineMap.extend({
 
 , removeEquipment: function(equipmentToRemove)
   {
-    this.selectedEquipment.pop();
-    $('.organization-equipment tr[equipment-index="'+equipmentToRemove._id+'"]').removeClass('active');
+    this.selectedEquipment.splice(this.selectedEquipment.indexOf(equipmentToRemove),1)
   }
 });
 

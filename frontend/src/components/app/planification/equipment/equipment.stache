@@ -1,5 +1,5 @@
 <div class="panel-holder row">
-    <div class="col-xs-6">
+    <div class="col-xs-12 col-md-6">
         <div class="panel panel-primary ">
             <div class="panel-heading">
                 Equipamiento de la organización
@@ -66,13 +66,13 @@
                     </tbody>
                 </table>
                 {{/if}}
-                <div class="paginate-holder">
+                <div class="paginate-holder instances-pagination">
                     <ul class="pagination"></ul>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-xs-6">
+    <div class="col-xs-12 col-md-6">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 Equipamiento seleccionado
@@ -125,6 +125,9 @@
                         {{/is}}
                     </tbody>
                 </table>
+                <div class="paginate-holder selected-pagination">
+                    <ul class="pagination"></ul>
+                </div>
             </div>
         </div>
     </div>

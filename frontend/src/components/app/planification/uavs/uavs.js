@@ -8,7 +8,6 @@ import 'centinela/pagination.min.js';
 import User from 'centinela/models/user'
 import UAV from 'centinela/models/uav'
 
-
 export const ViewModel = DefineMap.extend({
 
   user: {

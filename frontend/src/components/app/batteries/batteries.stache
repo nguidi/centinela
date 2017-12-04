@@ -105,12 +105,12 @@
                             </div>
                         </div>
                         {{/if}}
-                        <div class="col-sm-5">
-                            <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
+                        <div class="hidden-sm col-md-5">
+                            <div class="dataTables_info" role="status" aria-live="polite">
                                 Mostrando del <span class="displayed-instances"></span> baterias de un total de <span class="total-instances"></span>.
                             </div>
                         </div>
-                        <div class="col-sm-7">
+                        <div class="col-sm-12 col-md-7">
                             <div class="dataTables_paginate paging_simple_numbers">
                                 <ul class="pagination"></ul>
                             </div>

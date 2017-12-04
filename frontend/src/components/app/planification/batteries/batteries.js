@@ -3,8 +3,10 @@ import DefineMap from 'can-define/map/';
 import './batteries.less';
 import view from './batteries.stache';
 
-import User from 'centinela/models/user'
-import Battery from 'centinela/models/battery'
+import 'centinela/pagination.min.js';
+
+import User from 'centinela/models/user';
+import Battery from 'centinela/models/battery';
 
 export const ViewModel = DefineMap.extend({
   user: {
@@ -55,8 +57,8 @@ export const ViewModel = DefineMap.extend({
     self.count = count;
     self.total = total;
     if (total > 0) {
-      $('app-planification-batteries .pagination').data('twbsPagination').destroy();
-      $('app-planification-batteries .pagination').twbsPagination({
+      $('app-planification-batteries .instances-pagination .pagination').data('twbsPagination').destroy();
+      $('app-planification-batteries .instances-pagination .pagination').twbsPagination({
         totalPages: Math.ceil(total/limit)
       , startPage: Math.ceil(skip/limit) + 1
       , initiateStartPageClick: false
@@ -91,8 +93,7 @@ export const ViewModel = DefineMap.extend({
 
 , removeBattery: function(batteryToRemove)
   {
-    this.selectedBatteries.pop();
-    $('.organization-batteries tr[battery-index="'+batteryToRemove._id+'"]').removeClass('active');
+    this.selectedBatteries.splice(this.selectedBatteries.indexOf(batteryToRemove),1)
   }
 });
 

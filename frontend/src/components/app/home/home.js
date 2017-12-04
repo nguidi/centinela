@@ -9,6 +9,7 @@ import 'bootstrap/dist/js/bootstrap';
 import 'formvalidation';
 import 'bootstrap-notify';
 import 'bootstrap-datepicker';
+import SimpleScrollbar from 'simple-scrollbar';
 import 'node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js';
 import 'node_modules/formvalidation/dist/css/formvalidation.css';
 
@@ -125,6 +126,9 @@ export default Component.extend({
         format: 'dd/mm/yyyy'
       , language: 'es'
       });
+
+      // Scrollbar
+      SimpleScrollbar.initEl($('.content-wrapper')[0]);
     }
   }
 });

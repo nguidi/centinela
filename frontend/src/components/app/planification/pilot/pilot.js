@@ -3,6 +3,8 @@ import DefineMap from 'can-define/map/';
 import './pilot.less';
 import view from './pilot.stache';
 
+import 'centinela/pagination.min.js';
+
 import User from 'centinela/models/user'
 
 export const ViewModel = DefineMap.extend({
