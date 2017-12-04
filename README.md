@@ -1,6 +1,6 @@
-# centinela
+# Centinela
 
-> Sistema de Planificacion de Rutas de Vuelo para UAVs
+> Sistema de Planificación de Rutas de Vuelo para UAVs
 
 ## About
 
