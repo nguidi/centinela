@@ -1,3 +1,20 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+    Gestión de Baterias
+    </h1>
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">
+                <i class="fa fa-dashboard"></i>
+                Home
+            </a>
+        </li>
+        <li class="active">
+            Dashboard
+        </li>
+    </ol>
+</section>
 <section class="content">
   {{#if dashboard.isResolved}}
     <!-- Small boxes (Stat box) -->
@@ -28,7 +45,7 @@
             <p>Equipos</p>
           </div>
           <div class="icon">
-            <i class="fa fa-camera"></i>
+            <i class="fa fa-drone-equipment"></i>
           </div>
           <a href="{{routeUrl page='equipment'}}" class="small-box-footer">
               Gestionar

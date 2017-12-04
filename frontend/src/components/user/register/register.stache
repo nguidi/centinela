@@ -130,7 +130,7 @@
 				<ul class="list-inline pull-right">
 					<li>
 						<a href="{{routeUrl page='login' }}" class="btn btn-default">
-							Ingresar
+							Regresar
 						</a>
 					</li>
 					<li>

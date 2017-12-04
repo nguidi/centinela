@@ -16,7 +16,7 @@ module.exports = function (opt) {
         });
 
         delete hook.params.query.search
-    
+        
       };
     
     };

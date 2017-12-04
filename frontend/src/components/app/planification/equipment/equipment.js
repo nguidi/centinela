@@ -9,12 +9,72 @@ import Equipment from 'centinela/models/equipment'
 export const ViewModel = DefineMap.extend({
   user: {
     value: User
+  },
+  filter:
+  {
+    value: ''
+  },
+  skip:
+  {
+    value: 0
+  , set: function(val)
+    {
+      var self = this;
+      this.equipment = Equipment.getList({$skip: val, search: this.filter})
+      this.equipment.then(function(raw){
+        self.updatePagination(raw.total, raw.skip, raw.limit, raw.length, self);
+        return raw;
+      });
+      return val;
+    }
+  },
+  limit:
+  {
+    value: 5
+  },
+  count:
+  {
+    value: 0
+  },
+  total:
+  {
+    value: 0
+  },
+  equipment: {
+    value () {
+      var self = this;
+      return  Equipment.getList().then(function(raw){
+                self.updatePagination(raw.total, raw.skip, raw.limit, raw.length, self);
+                return raw;
+              });
+    }
+  },
+  updatePagination: function(total, skip, limit, count, self)
+  {
+    self.limit = limit;
+    self.count = count;
+    self.total = total;
+    if (total > 0) {
+      $('app-planification-equipment .pagination').data('twbsPagination').destroy();
+      $('app-planification-equipment .pagination').twbsPagination({
+        totalPages: Math.ceil(total/limit)
+      , startPage: Math.ceil(skip/limit) + 1
+      , initiateStartPageClick: false
+      , onPageClick: function (event, page) {
+          self.skip = (page-1)*limit;
+        }
+      });
+    }
+  },
+  search: function()
+  {
+    this.filter = $('app-planification-equipment [name=search]').val();
+    this.skip = 0;
   }
 
-, equipment: {
-    get() {
-      return Equipment.getList()
-    }
+, hasBeenSelected: function(possibleEquipment)
+  {
+    return (this.selectedEquipment.indexOf(possibleEquipment) >= 0 ) ? 'active' : ''
   }
 
 , selectedEquipment:
@@ -26,7 +86,6 @@ export const ViewModel = DefineMap.extend({
   {
     if (this.selectedEquipment.indexOf(equipmentToAdd) == -1) {
       this.selectedEquipment.push(equipmentToAdd);
-      $('.organization-equipment tr[equipment-index="'+equipmentToAdd._id+'"]').addClass('active');
     }
   }
 
@@ -40,5 +99,16 @@ export const ViewModel = DefineMap.extend({
 export default Component.extend({
   tag: 'app-planification-equipment',
   ViewModel,
-  view
+  view,
+  events:
+  {
+    inserted: function()
+    {
+      // paginador
+      $('app-planification-equipment .pagination').twbsPagination({
+        totalPages: 1,
+        visiblePages: 5
+      });
+    }
+  }
 });

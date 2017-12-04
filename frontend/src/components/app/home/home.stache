@@ -5,8 +5,7 @@
     <a href="#" class="logo">
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg">
-        <img src="images/favicon.ico">
-        <span> Centinela </span>
+        <img src="images/logo_header.png">
       </span>
     </a>
 
@@ -59,7 +58,7 @@
         </li>
         <li class="menu-option">
           <a href="{{routeUrl page='equipment'}}" on:click="setOption(scope.element)">
-            <i class="fa fa-camera"></i>
+            <i class="fa fa-drone-equipment"></i>
             <span>Equipamiento</span>
             <span class="pull-right-container">
                <i class="fa fa-angle-right pull-right"></i>
@@ -86,7 +85,7 @@
         </li>
         <li class="menu-option treeview">
           <a on:click="toggleTree(scope.element)">
-            <i class="fa fa-map-marker"></i>
+            <i class="fa fa-map-tour"></i>
             <span>Vuelos</span>
             <span class="pull-right-container">
               <i class="tree-marker fa fa-angle-down pull-right"></i>

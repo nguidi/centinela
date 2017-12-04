@@ -5,6 +5,18 @@
                 Equipamiento de la organización
             </div>
             <div class="panel-body">
+                <form class="form-inline" onsubmit="return false;">
+                    <div class="table-holder">
+                        <div class="table-search">
+                            <input class="form-control" type="text" name="search" placeholder="Ingrese la marca o el modelo del equipamiento">
+                        </div>
+                        <div class="table-actions">
+                            <button type="button" class="btn btn-info" on:click="search()">
+                                Buscar
+                            </button>
+                        </div>
+                    </div>
+                </form>
                 {{#if equipment.isResolved}}
                 <table class="table table-bordered table-hover dataTable organization-equipment">
                     <thead>
@@ -19,7 +31,7 @@
                                 Tipo
                             </th>
                             <th>
-                                Dimenciones (mm)
+                                Dimensiones (mm)
                             </th>
                             <th>
                                 Peso (gr)
@@ -31,7 +43,7 @@
                     </thead>
                     <tbody>
                         {{#each equipment.value}}
-                            <tr role="row" equipment-index="{{_id}}">
+                            <tr role="row" equipment-index="{{_id}}" class="{{hasBeenSelected(.)}}">
                                 <td>{{brand}}</td>
                                 <td>{{model}}</td>
                                 <td>{{type}}</td>
@@ -54,6 +66,9 @@
                     </tbody>
                 </table>
                 {{/if}}
+                <div class="paginate-holder">
+                    <ul class="pagination"></ul>
+                </div>
             </div>
         </div>
     </div>
@@ -76,7 +91,7 @@
                                 Tipo
                             </th>
                             <th>
-                                Dimenciones (mm)
+                                Dimensiones (mm)
                             </th>
                             <th>
                                 Peso (gr)
@@ -104,7 +119,7 @@
                         {{#is selectedEquipment.length 0}}
                             <tr role="row" class="danger">
                                 <td colspan="6">
-                                    No se seleccionó ningun equipamiento.
+                                    No se seleccionó ningún equipamiento.
                                 </td>
                             </tr>
                         {{/is}}

@@ -1,0 +1,113 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "IconFont";
+  src:url("fonts/icon.eot");
+  src:url("fonts/icon.eot?#iefix") format("embedded-opentype"),
+    url("fonts/icon.woff") format("woff"),
+    url("fonts/icon.ttf") format("truetype"),
+    url("fonts/icon.svg#icon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 IconFont;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-arrow-right:before {
+  content: "\61";
+}
+.fa-check:before {
+  content: "\62";
+}
+.fa-dashboard:before {
+  content: "\63";
+}
+.fa-cogs:before {
+  content: "\64";
+}
+.fa-battery-3:before {
+  content: "\65";
+}
+.fa-user:before {
+  content: "\66";
+}
+.fa-users:before {
+  content: "\67";
+}
+.fa-circle-o:before {
+  content: "\68";
+}
+.fa-marker:before {
+  content: "\69";
+}
+.fa-times:before {
+  content: "\6a";
+}
+.fa-calendar:before {
+  content: "\6b";
+}
+.fa-calendar-o:before {
+  content: "\6c";
+}
+.fa-clock-o:before {
+  content: "\6d";
+}
+.fa-phone:before {
+  content: "\6e";
+}
+.fa-pencil:before {
+  content: "\6f";
+}
+.fa-envelope:before {
+  content: "\70";
+}
+.fa-lock:before {
+  content: "\71";
+}
+.fa-briefcase:before {
+  content: "\72";
+}
+.fa-angle-up:before {
+  content: "\73";
+}
+.fa-angle-right:before {
+  content: "\74";
+}
+.fa-angle-down:before {
+  content: "\75";
+}
+.fa-angle-left:before {
+  content: "\76";
+}
+.fa-map-marker:before {
+  content: "\77";
+}
+.fa-map:before {
+  content: "\78";
+}
+.fa-plane:before {
+  content: "\79";
+}
+.fa-map-tour:before {
+  content: "\7a";
+}
+.fa-map-o:before {
+  content: "\41";
+}
+.fa-sign-out:before {
+  content: "\42";
+}
+.fa-arrow-circle-right:before {
+  content: "\43";
+}
+.fa-drone-equipment:before {
+  content: "\44";
+}
+

@@ -32,48 +32,48 @@
                             <div class="connecting-line"></div>
                             <ul class="nav nav-tabs" role="tablist">
 
-                                <li role="presentation" class="active">
-                                    <a href="#selectUAV" data-toggle="tab" aria-controls="selectUAV" role="tab" title="UAV">
+                                <li role="presentation" class="active" tab-li="selectUAV">
+                                    <a href="#selectUAV" data-toggle="tab" aria-controls="selectUAV" role="tab" title="UAV" on:click="toggleStep(scope.event, scope.element)">
                                         <span class="round-tab">
                                             <i class="fa fa-plane"></i>
                                         </span>
                                     </a>
                                 </li>
 
-                                <li role="presentation" class="disabled">
-                                    <a href="#selectPilot" data-toggle="tab" aria-controls="selectPilot" role="tab" title="Piloto">
+                                <li role="presentation" class="disabled" tab-li="selectPilot">
+                                    <a href="#selectPilot" data-toggle="tab" aria-controls="selectPilot" role="tab" title="Piloto" on:click="toggleStep(scope.event, scope.element)">
                                         <span class="round-tab">
                                             <i class="fa fa-user"></i>
                                         </span>
                                     </a>
                                 </li>
 
-                                <li role="presentation" class="disabled">
-                                    <a href="#selectEquipment" data-toggle="tab" aria-controls="selectEquipment" role="tab" title="Equipamiento">
+                                <li role="presentation" class="disabled" tab-li="selectEquipment">
+                                    <a href="#selectEquipment" data-toggle="tab" aria-controls="selectEquipment" role="tab" title="Equipamiento" on:click="toggleStep(scope.event, scope.element)">
                                         <span class="round-tab">
-                                            <i class="fa fa-camera"></i>
+                                            <i class="fa fa-drone-equipment"></i>
                                         </span>
                                     </a>
                                 </li>
 
-                                <li role="presentation" class="disabled">
-                                    <a href="#selectBatteries" data-toggle="tab" aria-controls="selectBatteries" role="tab" title="Baterias">
+                                <li role="presentation" class="disabled" tab-li="selectBatteries">
+                                    <a href="#selectBatteries" data-toggle="tab" aria-controls="selectBatteries" role="tab" title="Baterias" on:click="toggleStep(scope.event, scope.element)">
                                         <span class="round-tab">
                                             <i class="fa fa-battery-3"></i>
                                         </span>
                                     </a>
                                 </li>                           
 
-                                <li role="presentation" class="disabled">
-                                    <a href="#selectPath" data-toggle="tab" aria-controls="selectPath" role="tab" title="Camino">
+                                <li role="presentation" class="disabled" tab-li="selectPath">
+                                    <a href="#selectPath" data-toggle="tab" aria-controls="selectPath" role="tab" title="Camino" on:click="toggleStep(scope.event, scope.element)">
                                         <span class="round-tab">
-                                            <i class="fa fa-map-marker"></i>
+                                            <i class="fa fa-map-tour"></i>
                                         </span>
                                     </a>
                                 </li>
 
-                                <li role="presentation" class="disabled">
-                                    <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Completo">
+                                <li role="presentation" class="disabled" tab-li="complete">
+                                    <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Completo" on:click="toggleStep(scope.event, scope.element)">
                                         <span class="round-tab">
                                             <i class="fa fa-check"></i>
                                         </span>

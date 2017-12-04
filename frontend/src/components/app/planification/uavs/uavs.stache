@@ -5,6 +5,18 @@
                 UAVs de la organización
             </div>
             <div class="panel-body">
+                <form class="form-inline" onsubmit="return false;">
+                    <div class="table-holder">
+                        <div class="table-search">
+                            <input class="form-control" type="text" name="search" placeholder="Ingrese la marca o el modelo del UAV">
+                        </div>
+                        <div class="table-actions">
+                            <button type="button" class="btn btn-info" on:click="search()">
+                                Buscar
+                            </button>
+                        </div>
+                    </div>
+                </form>
                 {{#if uavs.isResolved}}
                 <table class="table table-bordered table-hover dataTable organization-uavs">
                     <thead>
@@ -31,14 +43,14 @@
                     </thead>
                     <tbody>
                         {{#each uavs.value}}
-                            <tr role="row" uav-index="{{scope.index}}">
+                            <tr role="row" uav-index="{{_id}}" class="{{hasBeenSelected(.)}}">
                                 <td>{{brand}}</td>
                                 <td>{{model}}</td>
                                 <td>{{size}}</td>
                                 <td>{{height}}x{{width}}x{{length}}</td>
                                 <td>{{weight}}</td>
                                 <td class="text-center">
-                                    <a on:click="addUAV(., scope.index)">
+                                    <a on:click="addUAV(.)">
                                         <i class="fa fa-arrow-right text-primary"></i>
                                     </a>
                                 </td>
@@ -54,6 +66,9 @@
                     </tbody>
                 </table>
                 {{/if}}
+                <div class="paginate-holder">
+                    <ul class="pagination"></ul>
+                </div>
             </div>
         </div>
     </div>

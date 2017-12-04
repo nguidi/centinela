@@ -2,9 +2,21 @@
     <div class="col-xs-6">
         <div class="panel panel-primary ">
             <div class="panel-heading">
-                Baterias de la organización
+                Baterías de la organización
             </div>
             <div class="panel-body">
+                <form class="form-inline" onsubmit="return false;">
+                    <div class="table-holder">
+                        <div class="table-search">
+                            <input class="form-control" type="text" name="search" placeholder="Ingrese la marca o el modelo de la batería">
+                        </div>
+                        <div class="table-actions">
+                            <button type="button" class="btn btn-info" on:click="search()">
+                                Buscar
+                            </button>
+                        </div>
+                    </div>
+                </form>
                 {{#if batteries.isResolved}}
                 <table class="table table-bordered table-hover dataTable organization-batteries">
                     <thead>
@@ -22,7 +34,7 @@
                                 Capacidad
                             </th>
                             <th>
-                                Dimenciones (mm)
+                                Dimensiones (mm)
                             </th>
                             <th>
                                 Peso
@@ -34,7 +46,7 @@
                     </thead>
                     <tbody>
                         {{#each batteries.value}}
-                            <tr role="row" battery-index="{{_id}}">
+                            <tr role="row" battery-index="{{_id}}" class="{{hasBeenSelected(.)}}">
                                 <td>{{brand}}</td>
                                 <td>{{model}}</td>
                                 <td>{{configuration}}</td>
@@ -51,20 +63,23 @@
                         {{#is batteries.value.length 0}}
                             <tr role="row" class="danger">
                                 <td colspan="7">
-                                    No hay baterias cargadas en la organización.
+                                    No hay baterías cargadas en la organización.
                                 </td>
                             </tr>
                         {{/is}}
                     </tbody>
                 </table>
                 {{/if}}
+                <div class="paginate-holder">
+                    <ul class="pagination"></ul>
+                </div>
             </div>
         </div>
     </div>
     <div class="col-xs-6">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                Batterias seleccionadas
+                Baterías seleccionadas
             </div>
             <div class="panel-body">
                 <table class="table table-bordered table-hover dataTable organization-batteries">
@@ -83,7 +98,7 @@
                                 Capacidad
                             </th>
                             <th>
-                                Dimenciones (mm)
+                                Dimensiones (mm)
                             </th>
                             <th>
                                 Peso
@@ -112,7 +127,7 @@
                         {{#is selectedBatteries.length 0}}
                             <tr role="row" class="danger">
                                 <td colspan="7">
-                                    No se seleccionó ninguna bateria.
+                                    No se seleccionó ninguna batería.
                                 </td>
                             </tr>
                         {{/is}}
