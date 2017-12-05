@@ -1,5 +1,6 @@
 import Component from 'can-component';
 import DefineMap from 'can-define/map/';
+import DefineList from 'can-define/list/';
 import './home.less';
 import view from './home.stache';
 
@@ -30,8 +31,12 @@ export const ViewModel= DefineMap.extend({
     value: new Battery.List([])
   }
 
-, path: {
-    value: []
+, points: {
+    value: new DefineList()
+  }
+
+, startPoint: {
+    value: new DefineList()
   }
  
    // methods
@@ -48,7 +53,7 @@ export const ViewModel= DefineMap.extend({
         var msg = 'Debe seleccionar al menos un equipamiento';
         break;
       case 'selectBatteries':
-      var msg = 'Debe seleccionar al menos una bateria';
+      var msg = 'Debe seleccionar al menos una batería';
         break;
       case 'selectPath':
       var msg = 'Debe seleccionar al menos dos puntos a recorrer';
@@ -88,7 +93,7 @@ export const ViewModel= DefineMap.extend({
         isValid =  (this.batteries.length > 0)
         break;
       case 'selectPath':
-        isValid =  (this.path.length > 0)
+        isValid =  ((this.startPoint.length > 0) && (this.points.length > 0))
         break;
       default:
         isValid =  false;
@@ -119,6 +124,7 @@ export const ViewModel= DefineMap.extend({
     } else {
       this.triggerStepAlert(currentStep);
     }
+    window.wizardData = this
   }
 
 , prevStep: function() {

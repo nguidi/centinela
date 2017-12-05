@@ -1,21 +1,49 @@
-<p>{{message}}</p>
+<section class="content-header">
+    <h1>
+    Gestión de recorrido
+    </h1>
+</section>
+
 <div class="row">
     <div class="col-xs-9">
         <div class="map"></div>
     </div>
     <div class="col-xs-3">
+        <h3>Punto de partida</h3>
+        <ul class="list-group">
+            {{#is startPoint.length 0}}
+            <li class="list-group-item item-danger">
+                Sin punto de partida.
+            </li>
+            {{else}}
+                {{#each startPoint}}
+                <li class="list-group-item">
+                    {{name}}
+                    <a class="pull-right" on:click="setToRemove(.)">
+                        <i class="fa fa-times text-danger"></i>
+                    </a>
+                    <a class="pull-right" on:click="setToEdit(.)">
+                        <i class="fa fa-pencil text-primary"></i>
+                    </a>
+                </li>
+                {{/each}}
+            {{/if}}
+        </ul>
         <h3>Puntos a recorrer</h3>
         <ul class="list-group">
             {{#is points.length 0}}
-            <li class="list-group-item item-dangee">
-                Non hay puntos agregados
+            <li class="list-group-item item-danger">
+                No hay puntos agregados
             </li>
             {{else}}
                 {{#each points}}
                 <li class="list-group-item">
                     {{name}}
-                    <a class="pull-right" on:click="removePoint(.)">
-                        <i class="fa fa-times text-danger pull-right"></i>
+                    <a class="pull-right" on:click="setToRemove(.)">
+                        <i class="fa fa-times text-danger"></i>
+                    </a>
+                    <a class="pull-right" on:click="setToEdit(.)">
+                        <i class="fa fa-pencil text-primary"></i>
                     </a>
                 </li>
                 {{/each}}
@@ -40,6 +68,7 @@
             data-fv-icon-valid="fa fa-check"
             data-fv-icon-invalid="fa fa-times"
             data-fv-icon-validating="fa fa-refresh">
+
             <div class="form-group">
                 <label for="dni" class="col-sm-2 control-label">Nombre</label>
                 <div class="col-sm-10">
@@ -51,11 +80,84 @@
                         data-fv-stringlength-message="El nombre no puede superar los 128 caracteres de largo.">
                 </div>
             </div>
+
+            <div class="form-group">
+                <label for="dni" class="col-sm-2 control-label">Descripción</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" value:bind="point.description"></textarea>
+                </div>
+            </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" on:click="cancelMarker()">Cancelar</button>
-        <button type="button" class="btn btn-primary" on:click="addMarker()">Agregar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" on:click="create()">Agregar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- .modal-content -->
+<div id="edit-marker" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">
+            Editar punto
+        </h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal add-point" onsubmit="return false;"
+            data-fv-framework="bootstrap"
+            data-fv-icon-valid="fa fa-check"
+            data-fv-icon-invalid="fa fa-times"
+            data-fv-icon-validating="fa fa-refresh">
+
+            <div class="form-group">
+                <label for="dni" class="col-sm-2 control-label">Nombre</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="name" placeholder="Nombre del punto" value:bind="point.name"
+                        data-fv-notempty="true"
+                        data-fv-notempty-message="Debe ingresar un nombre para el punto." 
+
+                        maxlength="128"
+                        data-fv-stringlength-message="El nombre no puede superar los 128 caracteres de largo.">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="dni" class="col-sm-2 control-label">Descripción</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" value:bind="point.description"></textarea>
+                </div>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" on:click="update()">Editar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- .modal-content -->
+<div id="remove-marker" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">
+            Eliminar punto
+        </h4>
+      </div>
+      <div class="modal-body">
+        <p>¿Está seguro que desea eliminar el punto <b>{{point.name}}</b>?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" on:click="destroy()">Eliminar</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
