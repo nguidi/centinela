@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
-require('dotenv').config() // Loads .env
-
+var x = require('dotenv').config() // Loads .env
 
 const logger = require('winston');
 const app = require('./app');

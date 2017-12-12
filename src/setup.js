@@ -2,7 +2,7 @@
 const fs = require('fs')
 const dotEnvExists = fs.existsSync('.env')
 if (dotEnvExists) {
-  console.log('getEnv.js: .env exists, probably running on development environment')
+  console.log('setup.js: .env exists, probably running on development environment')
   process.exit()
 }
 // On Google Cloud Platform authentication is handled for us
@@ -13,7 +13,7 @@ console.log(`Downloading .env from bucket "${bucketName}"`)
 gcs
   .bucket(bucketName)
   .file('.env')
-  .download({ destination: 'src/.env' })
+  .download({ destination: '.env' })
   .then(() => {
     console.info('setup.js: .env downloaded successfully')
   })
