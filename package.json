@@ -21,13 +21,16 @@
     "npm": ">= 4.2.0"
   },
   "scripts": {
-    "postinstall": "cd frontend && npm install",
+    "setup": "npm install && cd frontend && npm install",
     "test": "npm run eslint && npm run mocha",
     "eslint": "eslint src/. test/. --config .eslintrc.json",
+    "prestart": "node src/setup.js",
     "start": "node src/",
-    "mocha": "mocha test/ --recursive"
+    "mocha": "mocha test/ --recursive",
+    "deploy": "gcloud app deploy"
   },
   "dependencies": {
+    "@google-cloud/storage": "^1.5.1",
     "body-parser": "^1.17.1",
     "compression": "^1.6.2",
     "cors": "^2.8.3",

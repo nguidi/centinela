@@ -5,5 +5,5 @@
   "index": "../public/index.html",
   "recoverme": "../public/recoverme.html",
   "joinorganization": "../public/joinorganization.html",
-  "mongodb": "mongodb://{{user}}:{{password}}@centinela.documents.azure.com:10255/?ssl=true"  
+  "mongodb": "mongodb://{{user}}:{{password}}@centinela-shard-00-00-cezpe.mongodb.net:27017,centinela-shard-00-01-cezpe.mongodb.net:27017,centinela-shard-00-02-cezpe.mongodb.net:27017/test?ssl=true&replicaSet=Centinela-shard-0&authSource=admin"  
 }
