@@ -1,7 +1,7 @@
 {
   "name": "centinela",
   "description": "Sistema de Planificacion de Rutas de Vuelo para UAVs",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "homepage": "",
   "main": "src",
   "keywords": [

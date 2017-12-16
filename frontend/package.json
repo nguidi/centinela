@@ -119,6 +119,7 @@
     "feathers": "^2.1.2",
     "feathers-authentication-client": "^0.3.2",
     "feathers-hooks": "^2.0.1",
+    "feathers-rest": "^1.8.1",
     "feathers-socketio": "^2.0.1",
     "font-awesome": "^4.7.0",
     "formvalidation": "^0.6.2-dev",

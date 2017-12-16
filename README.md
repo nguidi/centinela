@@ -2,56 +2,55 @@
 
 > Sistema de Planificación de Rutas de Vuelo para UAVs
 
-## About
+## Configuración
 
-This project uses [Feathers](http://feathersjs.com). An open source web framework for building modern real-time applications.
-
-## Getting Started
-
-Getting up and running is as easy as 1, 2, 3.
-
-1. Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
-2. Install your dependencies
+1. Instalar [NodeJS](https://nodejs.org/) 7.10.0 o superior.
+2. Instalar [MongoDB](https://www.mongodb.com/es) 3.4.0 o superior.
+3. Descargar el codigo fuente
 
     ```
-    cd path/to/centinela; npm install
+    git clone https://github.com/nguidi/centinela.git
     ```
 
-3. Start your app
+4. Ingresar a la carpeta 
+
+    ```
+    cd lugar/donde/clonamos/centinela;
+    ```
+
+5. Instalar las dependencias de la aplicación 
+
+    ```
+    npm install
+    ```
+
+7. Iniciar el servicio de mongodb
+
+    ```
+    cd lugar/donde/instalamos/mongodb;
+    mongod
+    ```
+
+8. Iniciar la aplicación
 
     ```
     npm start
     ```
 
-## Testing
+8. Ingresar utilizando el navegador a
 
-Simply run `npm test` and all your tests in the `test/` directory will be run.
-
-## Scaffolding
-
-Feathers has a powerful command line interface. Here are a few things it can do:
-
-```
-$ npm install -g feathers-cli             # Install Feathers CLI
-
-$ feathers generate service               # Generate a new Service
-$ feathers generate hook                  # Generate a new Hook
-$ feathers generate model                 # Generate a new Model
-$ feathers help                           # Show all commands
-```
-
-## Help
-
-For more information on all the things you can do with Feathers visit [docs.feathersjs.com](http://docs.feathersjs.com).
+    ```
+    localhost:3030
+    ```
 
 ## Changelog
 
-__0.1.0__
+__1.0.0__
 
 - Initial release
 
 ## License
 
-Copyright (c) 2016
+Copyright (c) 2017
 
 Licensed under the [MIT license](LICENSE).

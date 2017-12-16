@@ -14,9 +14,9 @@ const behaviors = [
   constructorStore,
   constructorCallbacksOnce,
   canMap,
-  canRef,
-  dataCallbacks,
-  realtime
+  canRef
+  ,dataCallbacks
+  ,realtime
 ];
 
 export default behaviors;
