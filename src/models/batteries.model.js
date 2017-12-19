@@ -19,7 +19,12 @@ module.exports = function (app) {
 			{
 				brand: { type: String, required: true, maxlength: 128, minlegth: 3}
 			,	model: { type: String, required: true, maxlength: 128, minlegth: 3}
-			,	configuration: { type: String, required: true, match: /^(\C1)|(\C2)|(\C3)|(\C4)|(\C6)/igm}
+			,	configuration: { type: String, required: true, validate: {
+          validator: function(v) {
+            return /^(c1|c2|c3|c4|c6)$/igm.test(v);
+          },
+          message: '{VALUE} is not a valid battery configuration!'
+        }}
 			,	capacity: { type: Number, required: true, max: 99999999 }
 			,	height: { type: Number, required: true, max: 99999999 }
 			,	width: { type: Number, required: true, max: 99999999 }
