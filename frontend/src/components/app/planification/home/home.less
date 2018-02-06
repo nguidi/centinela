@@ -6,7 +6,7 @@ app-planification {
 		background: #fff;
 	}
 	
-		.wizard .nav-tabs {
+		.wizard .wizard-nav .nav-tabs {
 			position: relative;
 			margin: 0px auto;
 			margin-bottom: 0;
@@ -29,7 +29,7 @@ app-planification {
 		z-index: 1;
 	}
 	
-	.wizard .nav-tabs > li.active > a, .wizard .nav-tabs > li.active > a:hover, .wizard .nav-tabs > li.active > a:focus {
+	.wizard .wizard-nav .nav-tabs > li.active > a, .wizard .nav-tabs > li.active > a:hover, .wizard .nav-tabs > li.active > a:focus {
 		color: #555555;
 		cursor: default;
 		border: 0;
@@ -53,12 +53,12 @@ app-planification {
 	span.round-tab i{
 		color:#555555;
 	}
-	.wizard li.active span.round-tab {
+	.wizard .wizard-nav li.active span.round-tab {
 		background: #fff;
 		border: 2px solid #5bc0de;
 		
 	}
-	.wizard li.active span.round-tab i{
+	.wizard .wizard-nav li.active span.round-tab i{
 		color: #5bc0de;
 	}
 	
@@ -67,11 +67,11 @@ app-planification {
 		border: 2px solid #333;
 	}
 	
-	.wizard .nav-tabs > li {
-		width: 16%;
+	.wizard .wizard-nav .nav-tabs > li {
+		width: 14%;
 	}
 	
-	.wizard .nav-tabs li:after {
+	.wizard .wizard-nav .nav-tabs li:after {
 		content: " ";
 		position: absolute;
 		left: 46%;
@@ -83,7 +83,7 @@ app-planification {
 		transition: 0.1s ease-in-out;
 	}
 	
-	.wizard .nav-tabs li.active:after {
+	.wizard .wizard-nav .nav-tabs li.active:after {
 		content: " ";
 		position: absolute;
 		left: 46%;
@@ -94,25 +94,25 @@ app-planification {
 		border-bottom-color: #5bc0de;
 	}
 
-	.wizard li.with-errors span.round-tab {
+	.wizard .wizard-nav li.with-errors span.round-tab {
 	    background: #fff;
 	    border: 2px solid #dc3545;
 	    
 	}
-	.wizard li.with-errors span.round-tab i{
+	.wizard .wizard-nav li.with-errors span.round-tab i{
 	    color: #dc3545;
 	}
 	
-	.wizard li.done span.round-tab {
+	.wizard .wizard-nav li.done span.round-tab {
 	    background: #fff;
 	    border: 2px solid #28a745;
 	    
 	}
-	.wizard li.done span.round-tab i{
+	.wizard .wizard-nav li.done span.round-tab i{
 	    color: #28a745;
 	}
 	
-	.wizard .nav-tabs > li a {
+	.wizard .wizard-nav .nav-tabs > li a {
 		width: 70px;
 		height: 70px;
 		margin: 0px auto 20px;
@@ -120,7 +120,7 @@ app-planification {
 		padding: 0;
 	}
 	
-		.wizard .nav-tabs > li a:hover {
+		.wizard .wizard-nav .nav-tabs > li a:hover {
 			background: transparent;
 		}
 	
@@ -147,13 +147,13 @@ app-planification {
 			line-height: 50px;
 		}
 	
-		.wizard .nav-tabs > li a {
+		.wizard .wizard-nav .nav-tabs > li a {
 			width: 50px;
 			height: 50px;
 			line-height: 50px;
 		}
 	
-		.wizard li.active:after {
+		.wizard .wizard-nav li.active:after {
 			content: " ";
 			position: absolute;
 			left: 35%;

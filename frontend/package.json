@@ -62,6 +62,8 @@
       "centinela/components/app/planification/path/",
       "centinela/components/app/planification/pilot/",
       "centinela/components/app/planification/uavs/",
+      "centinela/components/app/planification/routes/",
+      "centinela/components/app/planification/complete/",
       "centinela/components/app/uavs/",
       "centinela/components/app/users/",
       "centinela/components/user/login/",

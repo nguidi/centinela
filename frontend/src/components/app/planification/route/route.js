@@ -4,6 +4,8 @@ import DefineList from 'can-define/list/';
 import './route.less';
 import view from './route.stache';
 
+import 'gmap3';
+
 import User from 'centinela/models/user'
 import UAV from 'centinela/models/uav'
 import Equipment from 'centinela/models/equipment'
@@ -90,7 +92,7 @@ export const ViewModel = DefineMap.extend({
 
 , getWeight: function()
   {
-    var w = this.uav.weight;
+    var w = this.uav.get(0).weight;
     this.equipment.each(function(e) {
       w+=e.weight;
     })
@@ -120,12 +122,12 @@ export const ViewModel = DefineMap.extend({
 
 , getConsumption: function(b)
   {
-    var vp = 12; // Media de velocidad DJI
+    var vp = 16; // Media de velocidad DJI
     var mt = Math.ceil(b.capacity*0.0075+3.7);
     var tc = Math.ceil((b.discharge/100)*mt);
-    var wc = this.cellWeightPeak(b.configuration) / (this.getWeight() + b.weight);
-    var tm = (mt - tc) - ((wc > 1) ? 0 : (1-wc)*mt);
-    return (b.capacity/(tm*vp));
+    var wc = (this.getWeight() + b.weight) / this.cellWeightPeak(b.configuration);
+    var tm = (mt - tc) - ((wc > 1) ? 0 : wc*mt);
+    return (b.capacity/(4*tm*vp));
   }
 
 , setCurrentBattery: function(b)
@@ -136,54 +138,126 @@ export const ViewModel = DefineMap.extend({
 
 , calculateRoutes: function()
   {
-    var self = this;
-    var b = 0;
+    var self = this; 
 
     var tempRoutes = permutation(this.points.get());
+    self.routeConsumption = [];
+    self.possiblesRoutes = [];
     
     tempRoutes.map(function(route){
       
-      route.unshift(self.startPoint.get())
-      route.push(self.startPoint.get())
+      route.unshift(self.startPoint.get(0).get())
+      route.push(self.startPoint.get(0).get())
       return route;
     });
 
-    tempRoutes.each(
+    tempRoutes.forEach(
       function(possibleRoute, routeIndex)
       {
         var z = 0;
+        var b = 0;
+        var prevReturn = 0;
+        var gotBattery = true;
+        self.setCurrentBattery(b);
+
         self.routeConsumption.push(0);
-
-        console.log(possibleRoute,(possibleRoute.length - 1))
-
-        while (z < (possibleRoute.length - 1) && (b < self.batteries.length)) {
+        
+        while (z < (possibleRoute.length - 1) && gotBattery) {
           
-          console.log("POSSIBLE", possibleRoute, z)
+          var i = z;
+          var j = z +1;
           
-          var cij = self.currentConsumption*self.getDistance(possibleRoute.get(z),possibleRoute.get(z+1));
-          var cj0 = self.currentConsumption*self.getDistance(possibleRoute.get(z+1),self.startPoint);
+          var cij = self.currentConsumption*self.getDistance(possibleRoute[i],possibleRoute[j]);
+          var cj0 = self.currentConsumption*self.getDistance(possibleRoute[j],self.startPoint.get(0));
           
           if (self.remainingBattery >= (cij + cj0)) {
             self.remainingBattery -= cij;
             self.routeConsumption[routeIndex] += cij;
+            prevReturn = cj0;
           } else {
-            self.remainingBattery -= cj0;
-            self.routeConsumption[routeIndex] +=cj0;
-            possibleRoute.splice(z+1,0,self.startPoint);
-            b++;
+            self.remainingBattery -= prevReturn;
+            self.routeConsumption[routeIndex] += prevReturn;
+            possibleRoute.splice(j,0,self.startPoint.get(0).get());
+            if (b == (self.batteries.length -1))
+              gotBattery = false;
+            else
+              b++;
             self.setCurrentBattery(b);
           }
 
           z++;
         }
+
+        self.possiblesRoutes.push(gotBattery);
       }
-    )
+    );
+
+    return  tempRoutes.map(
+              function(r, i)
+              {
+                return  {
+                          path: r.map(function(p){p.start = (p.name == self.startPoint.get(0).name); return p;})
+                        , consumption:  parseInt(self.routeConsumption.get(i))
+                        , possible: self.possiblesRoutes.get(i)
+                        }
+              }
+            );
+  }
+
+//  view
+
+, routes:
+  {
+    value: new DefineList([])
+  }
+
+, flightRoute:
+  {
+    value: new DefineMap()
+  }
+
+
+, currentPath:
+  {
+    value: undefined
+  }
+
+, routeNumber: function(index)
+  {
+    return index+1;
+  }
+
+, setRoute: function(routeToVisualize)
+  {
+    var self = this;
+    console.log(routeToVisualize)
+    if (self.currentPath)
+      self.currentPath.setMap(null);
+
+    $('.map-routes').data('gmap3')
+      .polyline({
+        strokeColor: "#5bc0de",
+        strokeOpacity: 1.0,
+        strokeWeight: 3,
+        icons: [{
+            icon: {path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW},
+            offset: '100%',
+            repeat: '100px'
+        }],
+        path: routeToVisualize.path.map(function(p){
+                return [p.lat, p.lng]
+              }).get()
+        }).then(function(polyline){
+          self.currentPath = polyline;
+        });
+
+    this.flightRoute = routeToVisualize;
   }
 
 , init: function()
   {
     var self = this;
-
+    /*
     let devData = JSON.parse(localStorage.wizardData);
 
     this.uav = new UAV(devData.uav)
@@ -193,8 +267,56 @@ export const ViewModel = DefineMap.extend({
     this.points = new DefineList(devData.points)
     this.startPoint = new DefineMap(devData.startPoint)
     this.setCurrentBattery(0);
+    */
+    $('[aria-controls=routes]').on(
+      'click'
+    , function()
+      {
+        self.routes = self.calculateRoutes().filter(
+                        function(r)
+                        {
+                          return r.possible
+                        }
+                      ).sort(
+                        function(a,b)
+                        {
+                          return a.consumption < b.consumption
+                        }
+                      ).slice(0,3);
+
+          if (!$('.map-routes').data('gmap3'))
+            $('.map-routes')
+              .gmap3(
+                {
+                  address: "San Martin 1171, Campana, Buenos Aires, Argentina"
+                , zoom: 14
+                , mapTypeId : google.maps.MapTypeId.ROADMAP
+                }
+              ).then(
+                function()
+                {
+                  $('.map-routes').data('gmap3')
+                    .marker(
+                      {
+                        position: [self.startPoint.get(0).lat , self.startPoint.get(0).lng],
+                        icon: 'images/rsz_marker_base.png'
+                      }
+                    );
+        
+                  self.points.each(function(p) {
+                    $('.map-routes').data('gmap3')
+                      .marker(
+                        {
+                          position: [p.lat, p.lng],
+                          icon: 'images/rsz_marker.png'
+                        }
+                      );
+                  });
+                }
+              );
+      }
+    );
     
-    console.log("Calculated Routes", this.calculateRoutes())
   }
 });
 

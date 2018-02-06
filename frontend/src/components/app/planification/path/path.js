@@ -127,21 +127,27 @@ export default Component.extend({
       //	modales
       $('.modal').modal({ show: false })
 
-      // maps
-      $('.map')
-        .gmap3(
-          {
-            address: "San Martin 1171, Campana, Buenos Aires, Argentina"
-          , zoom: 14
-          , mapTypeId : google.maps.MapTypeId.ROADMAP
-          }
-        ).on(
-          'click'
-        , function (gmap, event) {
-            $('#add-marker').data('point', event)
-            $('#add-marker').modal('toggle');
-          }
-        );
+      $('[aria-controls=selectPath]').on(
+        'click'
+      , function()
+        {
+          if (!$('.map').data('gmap3'))
+            $('.map')
+              .gmap3(
+                {
+                  address: "San Martin 1171, Campana, Buenos Aires, Argentina"
+                , zoom: 14
+                , mapTypeId : google.maps.MapTypeId.ROADMAP
+                }
+              ).on(
+                'click'
+              , function (gmap, event) {
+                  $('#add-marker').data('point', event)
+                  $('#add-marker').modal('toggle');
+                }
+              );
+        }
+      )     
     }
   }
 });

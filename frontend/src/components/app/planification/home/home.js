@@ -38,6 +38,14 @@ export const ViewModel= DefineMap.extend({
 , startPoint: {
     value: new DefineList()
   }
+
+, routes: {
+    value: new DefineList()
+  }
+
+, flightRoute: {
+    value: new DefineMap()
+  }
  
    // methods
 , triggerStepAlert: function(stepErrorToTrigger)
@@ -53,10 +61,13 @@ export const ViewModel= DefineMap.extend({
         var msg = 'Debe seleccionar al menos un equipamiento';
         break;
       case 'selectBatteries':
-      var msg = 'Debe seleccionar al menos una batería';
+        var msg = 'Debe seleccionar al menos una batería';
         break;
       case 'selectPath':
-      var msg = 'Debe seleccionar al menos dos puntos a recorrer';
+        var msg = 'Debe seleccionar al menos dos puntos a recorrer';
+        break;
+      case 'routes':
+        var msg = 'Debe existir al menos una ruta optima';
         break;
     }
 
@@ -94,6 +105,9 @@ export const ViewModel= DefineMap.extend({
         break;
       case 'selectPath':
         isValid =  ((this.startPoint.length > 0) && (this.points.length > 0))
+        break;
+      case 'routes':
+        isValid =  (this.routes.length > 0) && (this.flightRoute)
         break;
       default:
         isValid =  false;

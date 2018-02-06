@@ -1,1 +1,61 @@
-<p>{{message}}</p>
+<section class="content-header">
+    <h1>
+        Rutas optimas posibles
+    </h1>
+</section>
+<div class="row">
+    
+    <div class="col-xs-3">
+        {{#is routes.value.length 0}}
+            <div class="callout callout-danger">
+                <h4>No hay ruta optima!</h4>
+                <p>Ninguna ruta es realizable con las baterias selccionadas.</p>
+            </div>
+        {{else}}
+            <h5>Seleccione la ruta deseada</h5>
+            <div class="box-group" id="accordion">
+            {{#each routes}}
+                <div class="panel box box-primary">
+                    <div class="box-header with-border">
+                        <h4>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse-{{scope.index}}" on:click="setRoute(.)">
+                                Ruta N° {{routeNumber(scope.index)}}
+                                <span class="pull-right badge bg-green">{{consumption}}</span>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse-{{scope.index}}" class="panel-collapse collapse">
+                        <div class="box-body">
+                            <ul class="timeline">
+                                
+                                {{#each path}}
+                                    {{#if start}}
+                                        <li class="time-label">
+                                            <span class="bg-green">
+                                                <b>H</b>: {{startPoint.name}}
+                                            </span>
+                                        </li>
+                                    {{else}}
+                                    <li>
+                                        <i class="fa fa-map-marker bg-blue"></i>
+                                        <div class="timeline-item">
+                                            <h3 class="timeline-header">
+                                                {{name}}
+                                            </h3>
+                                        </div>
+                                    </li>
+                                    {{/if}}
+                                {{/each}}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        {{/is}}
+    </div>
+
+    <div class="col-xs-9">
+        <div class="map-routes"></div>
+    </div>
+</div>

@@ -47,6 +47,8 @@ import 'centinela/components/app/planification/path/path-test';
 
 import 'centinela/components/app/planification/route/route-test';
 
+import 'centinela/components/app/planification/complete/complete-test';
+
 F.attach(QUnit);
 
 QUnit.module('centinela functional smoke test', {

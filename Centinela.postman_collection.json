@@ -9,7 +9,50 @@
 		{
 			"name": "Authentication",
 			"description": "",
-			"item": []
+			"item": [
+				{
+					"name": "authentication",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Codigo de respuesta es 201\"] = responseCode.code === 201;",
+									"tests[\"Tiempo de respuesta 800ms\"] = responseTime <= 800;",
+									"tests[\"Token\"] =  jsonData.accessToken !== undefined;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"admin123\",\n  \"strategy\":\"local\"\n  \n}"
+						},
+						"url": {
+							"raw": "{{host}}/authentication",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"authentication"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Users",
@@ -47,7 +90,7 @@
 					},
 					"response": [
 						{
-							"id": "14acd077-a0e7-4d29-8059-bf19afaf8d0d",
+							"id": "68f28ada-293f-4a39-85d8-fecba175a518",
 							"name": "Users",
 							"originalRequest": {
 								"method": "GET",
@@ -66,103 +109,102 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
-							"_postman_previewtype": "text",
 							"header": [
 								{
 									"key": "Access-Control-Allow-Origin",
 									"value": "*",
 									"name": "Access-Control-Allow-Origin",
-									"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+									"description": ""
 								},
 								{
 									"key": "Allow",
 									"value": "GET,POST,PUT,PATCH,DELETE",
 									"name": "Allow",
-									"description": "Valid actions for a specified resource. To be used for a 405 Method not allowed"
+									"description": ""
 								},
 								{
 									"key": "Content-Encoding",
 									"value": "gzip",
 									"name": "Content-Encoding",
-									"description": "The type of encoding used on the data."
+									"description": ""
 								},
 								{
 									"key": "Content-Type",
 									"value": "application/json; charset=utf-8",
 									"name": "Content-Type",
-									"description": "The mime type of this content"
+									"description": ""
 								},
 								{
 									"key": "Date",
 									"value": "Mon, 20 Nov 2017 13:04:41 GMT",
 									"name": "Date",
-									"description": "The date and time that the message was sent"
+									"description": ""
 								},
 								{
 									"key": "ETag",
 									"value": "W/\"1351-mEz9EtReoMtOfmzboDb8lWa5SVY\"",
 									"name": "ETag",
-									"description": "An identifier for a specific version of a resource, often a message digest"
+									"description": ""
 								},
 								{
 									"key": "Server",
 									"value": "Microsoft-IIS/8.0",
 									"name": "Server",
-									"description": "A name for the server"
+									"description": ""
 								},
 								{
 									"key": "Strict-Transport-Security",
 									"value": "max-age=15552000; includeSubDomains",
 									"name": "Strict-Transport-Security",
-									"description": "A HSTS Policy informing the HTTP client how long to cache the HTTPS only policy and whether this applies to subdomains."
+									"description": ""
 								},
 								{
 									"key": "Transfer-Encoding",
 									"value": "chunked",
 									"name": "Transfer-Encoding",
-									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+									"description": ""
 								},
 								{
 									"key": "Vary",
 									"value": "Accept, Accept-Encoding",
 									"name": "Vary",
-									"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+									"description": ""
 								},
 								{
 									"key": "X-Content-Type-Options",
 									"value": "nosniff",
 									"name": "X-Content-Type-Options",
-									"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+									"description": ""
 								},
 								{
 									"key": "X-DNS-Prefetch-Control",
 									"value": "off",
 									"name": "X-DNS-Prefetch-Control",
-									"description": "Custom header"
+									"description": ""
 								},
 								{
 									"key": "X-Download-Options",
 									"value": "noopen",
 									"name": "X-Download-Options",
-									"description": "Custom header"
+									"description": ""
 								},
 								{
 									"key": "X-Frame-Options",
 									"value": "SAMEORIGIN",
 									"name": "X-Frame-Options",
-									"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+									"description": ""
 								},
 								{
 									"key": "X-Powered-By",
 									"value": "ASP.NET",
 									"name": "X-Powered-By",
-									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+									"description": ""
 								},
 								{
 									"key": "X-XSS-Protection",
 									"value": "1; mode=block",
 									"name": "X-XSS-Protection",
-									"description": "Cross-site scripting (XSS) filter"
+									"description": ""
 								}
 							],
 							"cookie": [
@@ -176,7 +218,7 @@
 									"key": "ARRAffinity"
 								}
 							],
-							"responseTime": 315,
+							"responseTime": "315",
 							"body": "{\"total\":9,\"limit\":10,\"skip\":0,\"data\":[{\"_id\":\"5a0b8295fde0f028d8b38996\",\"email\":\"jnaranjo@example.com\",\"password\":\"$2a$12$/gN6o2tY.hHewfoqQMhFcOnUcQe1Brt2MQR.TnJuv1ZGpZmwiLB2a\",\"organization\":{\"name\":\"Centinela\",\"cuil\":12345228912,\"_id\":\"5a0b8295fde0f028d8b38998\"},\"profile\":{\"name\":\"Despanchante\",\"description\":\"Despachante de partes\",\"type\":1,\"_id\":\"5a0b8295fde0f028d8b38997\"},\"updatedAt\":\"2017-11-14T23:56:05.766Z\",\"createdAt\":\"2017-11-14T23:56:05.766Z\",\"person\":{\"name\":\"Jessica\",\"lastName\":\"Naranjo\",\"dni\":12312332,\"birthday\":\"2017-10-23T21:32:00.480Z\"},\"__v\":0},{\"_id\":\"5a0b82a0fde0f028d8b38999\",\"email\":\"mguerrero@example.com\",\"password\":\"$2a$12$9tlSEY7v0bEGP8/eL1yjSuv53MHiR8AjrmEJuSQ.k9d5MljvQ1AS6\",\"organization\":{\"name\":\"Centinela\",\"cuil\":12345228912,\"_id\":\"5a0b82a0fde0f028d8b3899b\"},\"profile\":{\"name\":\"Despanchante\",\"description\":\"Despachante de partes\",\"type\":1,\"_id\":\"5a0b82a0fde0f028d8b3899a\"},\"updatedAt\":\"2017-11-14T23:56:16.749Z\",\"createdAt\":\"2017-11-14T23:56:16.749Z\",\"person\":{\"name\":\"Maria Rosa\",\"lastName\":\"Guerrero\",\"dni\":12315332,\"birthday\":\"2017-10-23T21:32:00.480Z\"},\"__v\":0},{\"_id\":\"5a0b82aafde0f028d8b3899c\",\"email\":\"pgomez@example.com\",\"password\":\"$2a$12$CB7mAqmxtzsjIy0xMAc/q.zyJ5R2dHh4PPfMCBtYiFLbKfrLLQ8lm\",\"organization\":{\"name\":\"Centinela\",\"cuil\":12345228912,\"_id\":\"5a0b82aafde0f028d8b3899e\"},\"profile\":{\"name\":\"Piloto\",\"description\":\"Piloto de UAV\",\"type\":1,\"_id\":\"5a0b82aafde0f028d8b3899d\"},\"updatedAt\":\"2017-11-14T23:56:26.844Z\",\"createdAt\":\"2017-11-14T23:56:26.844Z\",\"person\":{\"name\":\"Pedro\",\"lastName\":\"Gomez\",\"dni\":12315332,\"birthday\":\"2017-10-23T21:32:00.480Z\",\"license\":{\"number\":123412341234,\"creationDate\":\"2017-10-23T21:32:00.480Z\",\"expirationDate\":\"2018-10-29T21:32:00.480Z\"}},\"__v\":0},{\"_id\":\"5a0b82b2fde0f028d8b3899f\",\"email\":\"hpascual@example.com\",\"password\":\"$2a$12$Eyls7hGVdDFv94CGEHL5D.E4Y9USZ5ItOZig8XPpLLKOM3S8INek6\",\"organization\":{\"name\":\"Centinela\",\"cuil\":12345228912,\"_id\":\"5a0b82b2fde0f028d8b389a1\"},\"profile\":{\"name\":\"Piloto\",\"description\":\"Piloto de UAV\",\"type\":1,\"_id\":\"5a0b82b2fde0f028d8b389a0\"},\"updatedAt\":\"2017-11-14T23:56:34.168Z\",\"createdAt\":\"2017-11-14T23:56:34.168Z\",\"person\":{\"name\":\"Hernan\",\"lastName\":\"Pascual\",\"dni\":12315332,\"birthday\":\"2017-10-23T21:32:00.480Z\",\"license\":{\"number\":123412341434,\"creationDate\":\"2017-10-23T21:32:00.480Z\",\"expirationDate\":\"2018-10-29T21:32:00.480Z\"}},\"__v\":0},{\"_id\":\"5a124403d317231758206302\",\"email\":\"poison@gmail.com\",\"password\":\"$2a$12$EUWLMl3LG4fPWf7SNdcvb.Omjk7Sv6fw/H08hoOKwsuBdFwCXBDCG\",\"organization\":{\"name\":\"Poison\",\"cuil\":23564131,\"_id\":\"5a124403d317231758206304\"},\"profile\":{\"name\":\"Administrador\",\"description\":\"Admnistrador\",\"type\":0,\"_id\":\"5a124403d317231758206303\"},\"updatedAt\":\"2017-11-20T02:54:59.136Z\",\"createdAt\":\"2017-11-20T02:54:59.136Z\",\"person\":{\"name\":\"PoisonPoison\",\"lastName\":\"Gauss\",\"dni\":15181317,\"birthday\":\"2017-11-19T23:00:17.552Z\"},\"__v\":0},{\"_id\":\"5a124415d317231758206305\",\"email\":\"poison@gmail.com\",\"password\":\"$2a$12$30d2TLjKtEzqCh3.QWbZBuIKEiO8HZj5D7lbQ0ukRRUQaa5eEhsxu\",\"organization\":{\"name\":\"Poison\",\"cuil\":23564131,\"_id\":\"5a124415d317231758206307\"},\"profile\":{\"name\":\"Administrador\",\"description\":\"Admnistrador\",\"type\":0,\"_id\":\"5a124415d317231758206306\"},\"updatedAt\":\"2017-11-20T02:55:17.086Z\",\"createdAt\":\"2017-11-20T02:55:17.086Z\",\"person\":{\"name\":\"PoisonPoison\",\"lastName\":\"Gauss\",\"dni\":15181317,\"birthday\":\"2017-11-19T23:00:17.552Z\"},\"__v\":0},{\"_id\":\"5a124ed1d317231758206334\",\"email\":\"poison@gmail.com\",\"password\":\"$2a$12$xRHC7HZrQOIXrzue5kSHE..BJufa/MacBmBaM/wXwLvwsEhQGlX0C\",\"organization\":{\"name\":\"Poison\",\"cuil\":23564131,\"_id\":\"5a124ed1d317231758206336\"},\"profile\":{\"name\":\"Administrador\",\"description\":\"Admnistrador\",\"type\":0,\"_id\":\"5a124ed1d317231758206335\"},\"updatedAt\":\"2017-11-20T03:41:05.357Z\",\"createdAt\":\"2017-11-20T03:41:05.357Z\",\"person\":{\"name\":\"PoisonPoison\",\"lastName\":\"Gauss\",\"dni\":15181317,\"birthday\":\"2017-11-19T23:00:17.552Z\"},\"__v\":0},{\"_id\":\"5a124fc7d317231758206344\",\"email\":\"poison@gmail.com\",\"password\":\"$2a$12$rkKoUvBRe7BooUQT0jOBZ.O5UpgefnBXfaeEaXrV/LEwnX/Yfq/Ja\",\"organization\":{\"name\":\"Poison\",\"cuil\":23564131,\"_id\":\"5a124fc7d317231758206346\"},\"profile\":{\"name\":\"Administrador\",\"description\":\"Admnistrador\",\"type\":0,\"_id\":\"5a124fc7d317231758206345\"},\"updatedAt\":\"2017-11-20T03:45:11.512Z\",\"createdAt\":\"2017-11-20T03:45:11.512Z\",\"person\":{\"name\":\"PoisonPoison\",\"lastName\":\"Gauss\",\"dni\":15181317,\"birthday\":\"2017-11-19T23:00:17.552Z\"},\"__v\":0},{\"_id\":\"5a1250a3d317231758206354\",\"email\":\"poison@gmail.com\",\"password\":\"$2a$12$EOqAZwxzgNyKClgVoGBckOxJ4VzGxOAoMTxo8ICAne3BJtZGlLNsS\",\"organization\":{\"name\":\"Poison\",\"cuil\":23564131,\"_id\":\"5a1250a3d317231758206356\"},\"profile\":{\"name\":\"Administrador\",\"description\":\"Admnistrador\",\"type\":0,\"_id\":\"5a1250a3d317231758206355\"},\"updatedAt\":\"2017-11-20T03:48:51.396Z\",\"createdAt\":\"2017-11-20T03:48:51.396Z\",\"person\":{\"name\":\"PoisonPoison\",\"lastName\":\"Gauss\",\"dni\":15181317,\"birthday\":\"2017-11-19T23:00:17.552Z\"},\"__v\":0}]}"
 						}
 					]
@@ -211,7 +253,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"@gmail.com\",\r\n  \"password\": \"rotor\",\r\n  \"organization\": {\r\n    \"name\": \"Elispe\",\r\n    \"cuit\": 21890190222\r\n  },\r\n  \"profile\": {\r\n    \"name\": \"Administrador\",\r\n    \"description\": \"Administrador de Vuelos\",\r\n    \"type\": 1\r\n  },\r\n  \"person\": {\r\n    \"name\": \"Anakin\",\r\n    \"lastName\": \"Skywalker\",\r\n    \"dni\": 654894314,\r\n    \"birthday\": \"2017-11-20T18:39:00.053Z\"\r\n\t}\r\n}"
+							"raw": "{\r\n  \"email\": \"anakin.skywalker@odrerjedi.com\",\r\n  \"password\": \"sith\",\r\n  \"organization\": {\r\n    \"name\": \"Centinela\",\r\n    \"cuit\": 21890190222\r\n  },\r\n  \"profile\": {\r\n    \"name\": \"Administrador\",\r\n    \"description\": \"Administrador de Vuelos\",\r\n    \"type\": 1\r\n  },\r\n  \"person\": {\r\n    \"name\": \"Anakin\",\r\n    \"lastName\": \"Skywalker\",\r\n    \"dni\": 654894314,\r\n    \"birthday\": \"2017-11-20T18:39:00.053Z\"\r\n  }\r\n}"
 						},
 						"url": {
 							"raw": "{{host}}/users",
@@ -273,7 +315,10 @@
 									"tests[\"Codigo de respuesta es 200\"] = responseCode.code === 200;",
 									"tests[\"Tiempo de respuesta 800ms\"] = responseTime <= 800;",
 									"tests[\"Usuario concuerda\"] = jsonData._id === pm.environment.get(\"id_users\");",
-									""
+									"tests[\"Email vacio\"] = jsonData.email === undefined;",
+									"tests[\"Password vacio\"] = jsonData.password === undefined;",
+									"tests[\"Organizacion vacio\"] = jsonData.organization === undefined;",
+									"tests[\"Datos personales vacios\"] = jsonData.person === undefined;"
 								]
 							}
 						}
@@ -316,7 +361,10 @@
 									"tests[\"Codigo de respuesta es 200\"] = responseCode.code === 200;",
 									"tests[\"Tiempo de respuesta 800ms\"] = responseTime <= 800;",
 									"tests[\"Usuario concuerda\"] = jsonData._id === pm.environment.get(\"id_users\");",
-									""
+									"tests[\"Email vacio\"] = jsonData.email === undefined;",
+									"tests[\"Password vacio\"] = jsonData.password === undefined;",
+									"tests[\"Organizacion vacio\"] = jsonData.organization === undefined;",
+									"tests[\"Datos personales vacios\"] = jsonData.person === undefined;"
 								]
 							}
 						}
@@ -331,7 +379,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n            \"email\": \"Aberto@example.com\",\n            \"password\": \"$2a$12$D3JJrpIXBi/3uspJWYSooOkE4Hkckjqam/LM6xCK7CEregx76hh1C\",\n            \"organization\": {\n                \"name\": \"Centinela\",\n                \"cuil\": 12345678912,\n                \"_id\": \"5a0b827dfde0f028d8b38992\"\n            },\n            \"profile\": {\n                \"name\": \"Administrador\",\n                \"description\": \"Administrador del sistema\",\n                \"type\": 1,\n                \"_id\": \"5a0b827dfde0f028d8b38991\"\n            },\n            \"updatedAt\": \"2017-11-14T23:55:41.619Z\",\n            \"createdAt\": \"2017-11-14T23:55:41.619Z\",\n            \"person\": {\n                \"name\": \"Alberto\",\n                \"lastName\": \"Brown\",\n                \"dni\": 12312312,\n                \"birthday\": \"2017-10-23T21:32:00.480Z\"\n\t\t\t}\n}"
+							"raw": "{\n            \"email\": \"Aberto@example.com\",\n            \"password\": \"$2a$12$D3JJrpIXBi/3uspJWYSooOkE4Hkckjqam/LM6xCK7CEregx76hh1C\",\n            \"organization\": {\n                \"name\": \"Centinela\",\n                \"cuil\": 12345678912,\n                \"_id\": \"5a0b827dfde0f028d8b38992\"\n            },\n            \"profile\": {\n                \"name\": \"Administrador\",\n                \"description\": \"Administrador del sistema\",\n                \"type\": 1,\n                \"_id\": \"5a0b827dfde0f028d8b38991\"\n            },\n            \"updatedAt\": \"2017-11-14T23:55:41.619Z\",\n            \"createdAt\": \"2017-11-14T23:55:41.619Z\",\n            \"person\": {\n                \"name\": \"Alberto\",\n                \"lastName\": \"Brown\",\n                \"dni\": 12312312,\n                \"birthday\": \"2017-10-23T21:32:00.480Z\"\n      }\n}"
 						},
 						"url": {
 							"raw": "{{host}}/users/{{id_users}}",
@@ -444,10 +492,12 @@
 									"tests[\"Codigo de respuesta es 201\"] = responseCode.code === 201;",
 									"tests[\"Tiempo de respuesta 800ms\"] = responseTime <= 800;",
 									"tests[\"Organizacion no vacio\"] = jsonData.organization === undefined;",
-									"tests[\"height mayor a 0\"] = jsonData.height > 0;",
-									"tests[\"width mayor a 0\"] = jsonData.width > 0;",
-									"tests[\"length mayor a 0\"] = jsonData.length > 0;",
-									"tests[\"weight mayor a 0\"] = jsonData.weight > 0;"
+									"tests[\"brand longitud es menor o igual a 128\"] = jsonData.brand.length <= 128;",
+									"tests[\"model longitud es menor o igual a 128\"] = jsonData.model.length <= 128;",
+									"tests[\"height es menor o igual 8 caracteres\"] = jsonData.height <= 99999999;",
+									"tests[\"width es menor o igual 8 caracteres\"] = jsonData.width <= 9999999;",
+									"tests[\"length es menor o igual 8 caracteres\"] = jsonData.length <= 99999999;",
+									"tests[\"weight es menor o igual 8 caracteres\"] = jsonData.weight <= 99999999;"
 								]
 							}
 						}
@@ -462,7 +512,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"brand\": \"Dronicito\",\n\t\"model\": \"P-5131\",\n\t\"size\": \"150\",\n\t\"height\": 5,\n\t\"width\": 0,\n\t\"length\": 0,\n\t\"weight\": 5,\n\t    \"organization\": {\n        \"cuit\": 0,\n        \"name\": \"string\",\n        \"_id\": \"5a13723989458e2fcc68a8be\"\n\t}\n}"
+							"raw": "{\n  \"brand\": \"Motorola\",\n  \"model\": \"P-5131\",\n  \"size\": \"150\",\n  \"height\": 57,\n  \"width\": 235,\n  \"length\": 12,\n  \"weight\": 123,\n      \"organization\": {\n        \"cuit\": 21890190222,\n        \"name\": \"Centinela\",\n        \"_id\": \"5a139cc8a5937e55d4eb78ad\"\n  }\n}"
 						},
 						"url": {
 							"raw": "{{host}}/uavs",
@@ -529,8 +579,15 @@
 							"script": {
 								"type": "text/javascript",
 								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
 									"tests[\"Codigo de respuesta es 200\"] = responseCode.code === 200;",
-									"tests[\"Tiempo de respuesta 800ms\"] = responseTime <= 800;"
+									"tests[\"Tiempo de respuesta 800ms\"] = responseTime <= 800;",
+									"tests[\"brand longitud es menor o igual a 128\"] = jsonData.brand.length <= 128;",
+									"tests[\"model longitud es menor o igual a 128\"] = jsonData.model.length <= 128;",
+									"tests[\"height es menor o igual 8 caracteres\"] = jsonData.height <= 99999999;",
+									"tests[\"width es menor o igual 8 caracteres\"] = jsonData.width <= 99999999;",
+									"tests[\"length es menor o igual 8 caracteres\"] = jsonData.length <= 99999999;",
+									"tests[\"weight es menor o igual 8 caracteres\"] = jsonData.weight <= 99999999;"
 								]
 							}
 						}
@@ -545,7 +602,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"brand\": \"Motorola\",\r\n  \"model\": \"A5C-C\",\r\n  \"size\": \"150\",\r\n  \"height\": 0,\r\n  \"width\": 0,\r\n  \"length\": 0,\r\n  \"weight\": 0\r\n}"
+							"raw": "{\n  \"brand\": \"Sony\",\n  \"model\": \"PH-513\",\n  \"size\": \"1500\",\n  \"height\": 57,\n  \"width\": 235,\n  \"length\": 12,\n  \"weight\": 123,\n      \"organization\": {\n        \"cuit\": 21890190222,\n        \"name\": \"Centinela\",\n        \"_id\": \"5a139cc8a5937e55d4eb78ad\"\n  }\n}"
 						},
 						"url": {
 							"raw": "{{host}}/uavs/{{id_UAVs}}",
@@ -569,8 +626,15 @@
 							"script": {
 								"type": "text/javascript",
 								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
 									"tests[\"Codigo de respuesta es 200\"] = responseCode.code === 200;",
-									"tests[\"Tiempo de respuesta 800ms\"] = responseTime <= 800;"
+									"tests[\"Tiempo de respuesta 800ms\"] = responseTime <= 800;",
+									"tests[\"brand longitud es menor o igual a 128\"] = jsonData.brand.length <= 128;",
+									"tests[\"model longitud es menor o igual a 128\"] = jsonData.model.length <= 128;",
+									"tests[\"height es menor o igual 8 caracteres\"] = jsonData.height <= 99999999;",
+									"tests[\"width es menor o igual 8 caracteres\"] = jsonData.width <= 9999999;",
+									"tests[\"length es menor o igual 8 caracteres\"] = jsonData.length <= 99999999;",
+									"tests[\"weight es menor o igual 8 caracteres\"] = jsonData.weight <= 99999999;"
 								]
 							}
 						}
@@ -585,7 +649,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"brand\": \"Motorola\",\r\n  \"model\": \"A5C-C\",\r\n  \"size\": \"150\",\r\n  \"height\": 0,\r\n  \"width\": 0,\r\n  \"length\": 0,\r\n  \"weight\": 0\r\n}"
+							"raw": "{\n  \"brand\": \"Sony\",\n  \"model\": \"PH-513\",\n  \"size\": \"1500\",\n  \"height\": 57,\n  \"width\": 235,\n  \"length\": 12,\n  \"weight\": 123,\n      \"organization\": {\n        \"cuit\": 21890190222,\n        \"name\": \"Centinela\",\n        \"_id\": \"5a139cc8a5937e55d4eb78ad\"\n  }\n}"
 						},
 						"url": {
 							"raw": "{{host}}/uavs/{{id_UAVs}}",
@@ -690,11 +754,8 @@
 									"var jsonData = JSON.parse(responseBody);",
 									"tests[\"Codigo de respuesta es 201\"] = responseCode.code === 201;",
 									"tests[\"Tiempo de respuesta 800ms\"] = responseTime <= 800;",
-									"tests[\"Organizacion no vacio\"] = jsonData.organization === undefined;",
-									"tests[\"height mayor a 0\"] = jsonData.height > 0;",
-									"tests[\"width mayor a 0\"] = jsonData.width > 0;",
-									"tests[\"length mayor a 0\"] = jsonData.length > 0;",
-									"tests[\"weight mayor a 0\"] = jsonData.weight > 0;"
+									"tests[\"Organizacion vacio\"] = jsonData.organization === undefined;",
+									""
 								]
 							}
 						}
@@ -709,7 +770,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"brand\": \"string\",\r\n  \"model\": \"string\",\r\n  \"type\": \"string\",\r\n  \"height\": 0,\r\n  \"width\": 0,\r\n  \"length\": 0,\r\n  \"weight\": 0,\r\n  \"organization\": {\r\n    \"name\": \"Centinela\",\r\n    \"cuit\": 12345678912,\r\n    \"_id\": \"5a0b827dfde0f028d8b38992\"\r\n  }\r\n}"
+							"raw": "{\r\n  \"brand\": \"string\",\r\n  \"model\": \"string\",\r\n  \"type\": \"string\",\r\n  \"height\": 0,\r\n  \"width\": 0,\r\n  \"length\": 0,\r\n  \"weight\": 0,\r\n  \"organization\": {\r\n    \"name\": \"Centinela\",\r\n    \"cuit\": 21890190222,\r\n    \"_id\": \"5a139cc8a5937e55d4eb78ad\"\r\n  }\r\n}"
 						},
 						"url": {
 							"raw": "{{host}}/equipments",
@@ -935,10 +996,14 @@
 									"tests[\"Codigo de respuesta es 201\"] = responseCode.code === 201;",
 									"tests[\"Tiempo de respuesta 800ms\"] = responseTime <= 800;",
 									"tests[\"Organizacion vacio\"] = jsonData.organization === undefined;",
-									"tests[\"height mayor a 0\"] = jsonData.height > 0;",
-									"tests[\"width mayor a 0\"] = jsonData.width > 0;",
-									"tests[\"length mayor a 0\"] = jsonData.length > 0;",
-									"tests[\"weight mayor a 0\"] = jsonData.weight > 0;"
+									"tests[\"brand longitud es menor o igual a 128\"] = jsonData.brand.length <= 128;",
+									"tests[\"model longitud es menor o igual a 128\"] = jsonData.model.length <= 128;",
+									"tests[\"capacity es menor o igual 8 caracteres\"] = jsonData.capacity <= 99999999;",
+									"tests[\"width es menor o igual 8 caracteres\"] = jsonData.width <= 9999999;",
+									"tests[\"length es menor o igual 8 caracteres\"] = jsonData.length <= 99999999;",
+									"tests[\"weight es menor o igual 8 caracteres\"] = jsonData.weight <= 99999999;",
+									"tests[\"discharge es menor o igual 8 caracteres\"] = jsonData.discharge <= 99999999;",
+									"tests[\"dischargePeak es menor o igual 8 caracteres\"] = jsonData.dischargePeak <= 99999999;"
 								]
 							}
 						}
@@ -1018,8 +1083,18 @@
 							"script": {
 								"type": "text/javascript",
 								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
 									"tests[\"Codigo de respuesta es 200\"] = responseCode.code === 200;",
-									"tests[\"Tiempo de respuesta 800ms\"] = responseTime <= 800;"
+									"tests[\"Tiempo de respuesta 800ms\"] = responseTime <= 800;",
+									"tests[\"Organizacion vacio\"] = jsonData.organization === undefined;",
+									"tests[\"brand longitud es menor o igual a 128\"] = jsonData.brand.length <= 128;",
+									"tests[\"model longitud es menor o igual a 128\"] = jsonData.model.length <= 128;",
+									"tests[\"capacity es menor o igual 8 caracteres\"] = jsonData.capacity <= 99999999;",
+									"tests[\"width es menor o igual 8 caracteres\"] = jsonData.width <= 9999999;",
+									"tests[\"length es menor o igual 8 caracteres\"] = jsonData.length <= 99999999;",
+									"tests[\"weight es menor o igual 8 caracteres\"] = jsonData.weight <= 99999999;",
+									"tests[\"discharge es menor o igual 8 caracteres\"] = jsonData.discharge <= 99999999;",
+									"tests[\"dischargePeak es menor o igual 8 caracteres\"] = jsonData.dischargePeak <= 99999999;"
 								]
 							}
 						}
@@ -1034,7 +1109,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"brand\": \"Sony\",\n    \"model\": \"LG-8D5\",\n    \"configuration\": \"ok\",\n    \"capacity\": 10000,\n    \"height\": 10,\n    \"width\": 30,\n    \"length\": 16,\n    \"weight\": 10,\n    \"discharge\": 100,\n    \"dischargePeak\": 300,\n    \"organization\": {\n        \"name\": \"Centinela\",\n        \"cuit\": 12345678912,\n        \"_id\": \"5a0b827dfde0f028d8b38992\"\n    }\n}"
+							"raw": "{\r\n  \"brand\": \"LG\",\r\n  \"model\": \"LG-8D5\",\r\n  \"configuration\": \"ok\",\r\n  \"capacity\": 10000,\r\n  \"height\": 10,\r\n  \"width\": 30,\r\n  \"length\": 16,\r\n  \"weight\": 10,\r\n  \"discharge\": 100,\r\n  \"dischargePeak\": 300,\r\n  \"organization\": {\r\n    \"name\": \"Centinela\",\r\n    \"cuit\": 12345678912,\r\n    \"_id\": \"5a0b827dfde0f028d8b38992\"\r\n  }\r\n}"
 						},
 						"url": {
 							"raw": "{{host}}/batteries/{{id_batteries}}",
@@ -1058,8 +1133,18 @@
 							"script": {
 								"type": "text/javascript",
 								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
 									"tests[\"Codigo de respuesta es 200\"] = responseCode.code === 200;",
-									"tests[\"Tiempo de respuesta 800ms\"] = responseTime <= 800;"
+									"tests[\"Tiempo de respuesta 800ms\"] = responseTime <= 800;",
+									"tests[\"Organizacion vacio\"] = jsonData.organization === undefined;",
+									"tests[\"brand longitud es menor o igual a 128\"] = jsonData.brand.length <= 128;",
+									"tests[\"model longitud es menor o igual a 128\"] = jsonData.model.length <= 128;",
+									"tests[\"capacity es menor o igual 8 caracteres\"] = jsonData.capacity <= 99999999;",
+									"tests[\"width es menor o igual 8 caracteres\"] = jsonData.width <= 9999999;",
+									"tests[\"length es menor o igual 8 caracteres\"] = jsonData.length <= 99999999;",
+									"tests[\"weight es menor o igual 8 caracteres\"] = jsonData.weight <= 99999999;",
+									"tests[\"discharge es menor o igual 8 caracteres\"] = jsonData.discharge <= 99999999;",
+									"tests[\"dischargePeak es menor o igual 8 caracteres\"] = jsonData.dischargePeak <= 99999999;"
 								]
 							}
 						}
@@ -1205,7 +1290,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"string\",\r\n  \"uav\": {\r\n\t  \"brand\": \"Dronicito\",\r\n\t  \"model\": \"P-5131\",\r\n\t  \"size\": \"150\",\r\n\t  \"height\": 1,\r\n\t  \"width\": 20,\r\n\t  \"length\": 10,\r\n\t  \"weight\": 11,\r\n\t  \"organization\": {\r\n\t    \"name\": \"Centinela\",\r\n\t    \"cuit\": 12345678912,\r\n\t    \"_id\": \"5a0b827dfde0f028d8b38992\"\r\n\t    }\r\n  },\r\n  \"batteries\": [\r\n    {\r\n\t\t \"brand\": \"LG\",\r\n\t\t \"model\": \"LG-8D5\",\r\n\t\t \"configuration\": \"ok\",\r\n\t\t \"capacity\": 10000,\r\n\t\t \"height\": 10,\r\n\t\t \"width\": 30,\r\n\t\t \"length\": 16,\r\n\t\t \"weight\": 10,\r\n\t\t \"discharge\": 100,\r\n\t\t \"dischargePeak\": 300,\r\n\t\t \"organization\": {\r\n\t\t   \"name\": \"Centinela\",\r\n\t\t   \"cuit\": 12345678912,\r\n\t\t   \"_id\": \"5a0b827dfde0f028d8b38992\"\r\n  }\r\n    }\r\n  ],\r\n  \"equipments\": [\r\n    {\r\n\t  \"brand\": \"string\",\r\n\t  \"model\": \"string\",\r\n\t  \"type\": \"string\",\r\n\t  \"height\": 0,\r\n\t  \"width\": 0,\r\n\t  \"length\": 0,\r\n\t  \"weight\": 0,\r\n\t  \"organization\": {\r\n\t    \"name\": \"Centinela\",\r\n\t    \"cuit\": 12345678912,\r\n\t    \"_id\": \"5a0b827dfde0f028d8b38992\"\r\n\t      }\r\n\t    }\r\n  ],\r\n  \"organization\": {\r\n    \"name\": \"Centinela\",\r\n\t\"cuit\": 12345678912,\r\n\t\"_id\": \"5a0b827dfde0f028d8b38992\"\r\n  }\r\n}"
+							"raw": "{\r\n  \"name\": \"string\",\r\n  \"uav\": {\r\n    \"brand\": \"Dronicito\",\r\n    \"model\": \"P-5131\",\r\n    \"size\": \"150\",\r\n    \"height\": 1,\r\n    \"width\": 20,\r\n    \"length\": 10,\r\n    \"weight\": 11,\r\n    \"organization\": {\r\n      \"name\": \"Centinela\",\r\n      \"cuit\": 12345678912,\r\n      \"_id\": \"5a0b827dfde0f028d8b38992\"\r\n      }\r\n  },\r\n  \"batteries\": [\r\n    {\r\n     \"brand\": \"LG\",\r\n     \"model\": \"LG-8D5\",\r\n     \"configuration\": \"ok\",\r\n     \"capacity\": 10000,\r\n     \"height\": 10,\r\n     \"width\": 30,\r\n     \"length\": 16,\r\n     \"weight\": 10,\r\n     \"discharge\": 100,\r\n     \"dischargePeak\": 300,\r\n     \"organization\": {\r\n       \"name\": \"Centinela\",\r\n       \"cuit\": 12345678912,\r\n       \"_id\": \"5a0b827dfde0f028d8b38992\"\r\n  }\r\n    }\r\n  ],\r\n  \"equipments\": [\r\n    {\r\n    \"brand\": \"string\",\r\n    \"model\": \"string\",\r\n    \"type\": \"string\",\r\n    \"height\": 0,\r\n    \"width\": 0,\r\n    \"length\": 0,\r\n    \"weight\": 0,\r\n    \"organization\": {\r\n      \"name\": \"Centinela\",\r\n      \"cuit\": 12345678912,\r\n      \"_id\": \"5a0b827dfde0f028d8b38992\"\r\n        }\r\n      }\r\n  ],\r\n  \"organization\": {\r\n    \"name\": \"Centinela\",\r\n  \"cuit\": 12345678912,\r\n  \"_id\": \"5a0b827dfde0f028d8b38992\"\r\n  }\r\n}"
 						},
 						"url": {
 							"raw": "{{host}}/flights",
@@ -1284,7 +1369,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"string\",\r\n  \"uav\": {\r\n\t  \"brand\": \"Dronicito\",\r\n\t  \"model\": \"P-5131\",\r\n\t  \"size\": \"150\",\r\n\t  \"height\": 1,\r\n\t  \"width\": 20,\r\n\t  \"length\": 10,\r\n\t  \"weight\": 11,\r\n\t  \"organization\": {\r\n\t    \"name\": \"Centinela\",\r\n\t    \"cuit\": 12345678912,\r\n\t    \"_id\": \"5a0b827dfde0f028d8b38992\"\r\n\t    }\r\n  },\r\n  \"batteries\": [\r\n    {\r\n\t\t \"brand\": \"LG\",\r\n\t\t \"model\": \"LG-8D5\",\r\n\t\t \"configuration\": \"ok\",\r\n\t\t \"capacity\": 10000,\r\n\t\t \"height\": 10,\r\n\t\t \"width\": 30,\r\n\t\t \"length\": 16,\r\n\t\t \"weight\": 10,\r\n\t\t \"discharge\": 100,\r\n\t\t \"dischargePeak\": 300,\r\n\t\t \"organization\": {\r\n\t\t   \"name\": \"Centinela\",\r\n\t\t   \"cuit\": 12345678912,\r\n\t\t   \"_id\": \"5a0b827dfde0f028d8b38992\"\r\n  }\r\n    }\r\n  ],\r\n  \"equipments\": [\r\n    {\r\n\t  \"brand\": \"string\",\r\n\t  \"model\": \"string\",\r\n\t  \"type\": \"string\",\r\n\t  \"height\": 0,\r\n\t  \"width\": 0,\r\n\t  \"length\": 0,\r\n\t  \"weight\": 0,\r\n\t  \"organization\": {\r\n\t    \"name\": \"Centinela\",\r\n\t    \"cuit\": 12345678912,\r\n\t    \"_id\": \"5a0b827dfde0f028d8b38992\"\r\n\t      }\r\n\t    }\r\n  ],\r\n  \"organization\": {\r\n    \"name\": \"Centinela\",\r\n\t\"cuit\": 12345678912,\r\n\t\"_id\": \"5a0b827dfde0f028d8b38992\"\r\n  }\r\n}"
+							"raw": "{\r\n  \"name\": \"string\",\r\n  \"uav\": {\r\n    \"brand\": \"Dronicito\",\r\n    \"model\": \"P-5131\",\r\n    \"size\": \"150\",\r\n    \"height\": 1,\r\n    \"width\": 20,\r\n    \"length\": 10,\r\n    \"weight\": 11,\r\n    \"organization\": {\r\n      \"name\": \"Centinela\",\r\n      \"cuit\": 12345678912,\r\n      \"_id\": \"5a0b827dfde0f028d8b38992\"\r\n      }\r\n  },\r\n  \"batteries\": [\r\n    {\r\n     \"brand\": \"LG\",\r\n     \"model\": \"LG-8D5\",\r\n     \"configuration\": \"ok\",\r\n     \"capacity\": 10000,\r\n     \"height\": 10,\r\n     \"width\": 30,\r\n     \"length\": 16,\r\n     \"weight\": 10,\r\n     \"discharge\": 100,\r\n     \"dischargePeak\": 300,\r\n     \"organization\": {\r\n       \"name\": \"Centinela\",\r\n       \"cuit\": 12345678912,\r\n       \"_id\": \"5a0b827dfde0f028d8b38992\"\r\n  }\r\n    }\r\n  ],\r\n  \"equipments\": [\r\n    {\r\n    \"brand\": \"string\",\r\n    \"model\": \"string\",\r\n    \"type\": \"string\",\r\n    \"height\": 0,\r\n    \"width\": 0,\r\n    \"length\": 0,\r\n    \"weight\": 0,\r\n    \"organization\": {\r\n      \"name\": \"Centinela\",\r\n      \"cuit\": 12345678912,\r\n      \"_id\": \"5a0b827dfde0f028d8b38992\"\r\n        }\r\n      }\r\n  ],\r\n  \"organization\": {\r\n    \"name\": \"Centinela\",\r\n  \"cuit\": 12345678912,\r\n  \"_id\": \"5a0b827dfde0f028d8b38992\"\r\n  }\r\n}"
 						},
 						"url": {
 							"raw": "{{host}}/flights/{{id_fligth}}",
@@ -1324,7 +1409,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"string\",\r\n  \"uav\": {\r\n\t  \"brand\": \"Dronicito\",\r\n\t  \"model\": \"P-5131\",\r\n\t  \"size\": \"150\",\r\n\t  \"height\": 1,\r\n\t  \"width\": 20,\r\n\t  \"length\": 10,\r\n\t  \"weight\": 11,\r\n\t  \"organization\": {\r\n\t    \"name\": \"Centinela\",\r\n\t    \"cuit\": 12345678912,\r\n\t    \"_id\": \"5a0b827dfde0f028d8b38992\"\r\n\t    }\r\n  },\r\n  \"batteries\": [\r\n    {\r\n\t\t \"brand\": \"LG\",\r\n\t\t \"model\": \"LG-8D5\",\r\n\t\t \"configuration\": \"ok\",\r\n\t\t \"capacity\": 10000,\r\n\t\t \"height\": 10,\r\n\t\t \"width\": 30,\r\n\t\t \"length\": 16,\r\n\t\t \"weight\": 10,\r\n\t\t \"discharge\": 100,\r\n\t\t \"dischargePeak\": 300,\r\n\t\t \"organization\": {\r\n\t\t   \"name\": \"Centinela\",\r\n\t\t   \"cuit\": 12345678912,\r\n\t\t   \"_id\": \"5a0b827dfde0f028d8b38992\"\r\n  }\r\n    }\r\n  ],\r\n  \"equipments\": [\r\n    {\r\n\t  \"brand\": \"string\",\r\n\t  \"model\": \"string\",\r\n\t  \"type\": \"string\",\r\n\t  \"height\": 0,\r\n\t  \"width\": 0,\r\n\t  \"length\": 0,\r\n\t  \"weight\": 0,\r\n\t  \"organization\": {\r\n\t    \"name\": \"Centinela\",\r\n\t    \"cuit\": 12345678912,\r\n\t    \"_id\": \"5a0b827dfde0f028d8b38992\"\r\n\t      }\r\n\t    }\r\n  ],\r\n  \"organization\": {\r\n    \"name\": \"Centinela\",\r\n\t\"cuit\": 12345678912,\r\n\t\"_id\": \"5a0b827dfde0f028d8b38992\"\r\n  }\r\n}"
+							"raw": "{\r\n  \"name\": \"string\",\r\n  \"uav\": {\r\n    \"brand\": \"Dronicito\",\r\n    \"model\": \"P-5131\",\r\n    \"size\": \"150\",\r\n    \"height\": 1,\r\n    \"width\": 20,\r\n    \"length\": 10,\r\n    \"weight\": 11,\r\n    \"organization\": {\r\n      \"name\": \"Centinela\",\r\n      \"cuit\": 12345678912,\r\n      \"_id\": \"5a0b827dfde0f028d8b38992\"\r\n      }\r\n  },\r\n  \"batteries\": [\r\n    {\r\n     \"brand\": \"LG\",\r\n     \"model\": \"LG-8D5\",\r\n     \"configuration\": \"ok\",\r\n     \"capacity\": 10000,\r\n     \"height\": 10,\r\n     \"width\": 30,\r\n     \"length\": 16,\r\n     \"weight\": 10,\r\n     \"discharge\": 100,\r\n     \"dischargePeak\": 300,\r\n     \"organization\": {\r\n       \"name\": \"Centinela\",\r\n       \"cuit\": 12345678912,\r\n       \"_id\": \"5a0b827dfde0f028d8b38992\"\r\n  }\r\n    }\r\n  ],\r\n  \"equipments\": [\r\n    {\r\n    \"brand\": \"string\",\r\n    \"model\": \"string\",\r\n    \"type\": \"string\",\r\n    \"height\": 0,\r\n    \"width\": 0,\r\n    \"length\": 0,\r\n    \"weight\": 0,\r\n    \"organization\": {\r\n      \"name\": \"Centinela\",\r\n      \"cuit\": 12345678912,\r\n      \"_id\": \"5a0b827dfde0f028d8b38992\"\r\n        }\r\n      }\r\n  ],\r\n  \"organization\": {\r\n    \"name\": \"Centinela\",\r\n  \"cuit\": 12345678912,\r\n  \"_id\": \"5a0b827dfde0f028d8b38992\"\r\n  }\r\n}"
 						},
 						"url": {
 							"raw": "{{host}}/flights/{{id_fligth}}",
@@ -1364,7 +1449,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"New York\",\r\n  \"uav\":{\r\n    \"brand\": \"Sony\",\r\n    \"model\": \"dd56-32\",\r\n    \"size\": \"150\",\r\n    \"height\": 0,\r\n    \"width\": 0,\r\n    \"length\": 0,\r\n    \"weight\": 0\r\n    },\r\n  \"batteries\": [\r\n    {\r\n      \"brand\": \"Sony\",\r\n      \"model\": \"d95-2\",\r\n      \"configuration\": \"Buena\",\r\n      \"capacity\": 0,\r\n      \"height\": 0,\r\n      \"width\": 0,\r\n      \"length\": 0,\r\n      \"weight\": 0,\r\n      \"discharge\": 0,\r\n      \"dischargePeak\": 0\r\n    }\r\n  ],\r\n  \"equipments\": [\r\n    {\r\n      \"brand\": \"Sony\",\r\n      \"model\": \"S8-2\",\r\n      \"type\": \"Camara\",\r\n      \"height\": 0,\r\n      \"width\": 0,\r\n      \"length\": 0,\r\n      \"weight\": 0\r\n    }\r\n  ]\r\n}"
+							"raw": ""
 						},
 						"url": {
 							"raw": "{{host}}/flights/{{id_fligth}}",
@@ -1451,7 +1536,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"organization\": {\r\n    \"name\": \"Centinela\",\r\n    \"cuit\": 12345678912,\r\n    \"_id\": \"5a0b827dfde0f028d8b38992\"\r\n  },\r\n  \"users\": 1,\r\n  \"equipments\": 1,\r\n  \"batteries\": 1,\r\n  \"flights\": 1,\r\n  \"uavs\": 1\r\n}"
+							"raw": "{\r\n  \"organization\": {\r\n    \"name\": \"Centinela\",\r\n    \"cuit\": 21890190222,\r\n    \"_id\": \"5a139cc8a5937e55d4eb78ad\"\r\n  },\r\n  \"users\": 1,\r\n  \"equipments\": 1,\r\n  \"batteries\": 1,\r\n  \"flights\": 1,\r\n  \"uavs\": 1\r\n}"
 						},
 						"url": {
 							"raw": "{{host}}/dashboard",
