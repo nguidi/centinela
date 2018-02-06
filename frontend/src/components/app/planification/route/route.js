@@ -203,9 +203,7 @@ export const ViewModel = DefineMap.extend({
               }
             );
   }
-
 //  view
-
 , routes:
   {
     value: new DefineList([])
@@ -318,6 +316,7 @@ export const ViewModel = DefineMap.extend({
     );
     
   }
+  */
 });
 
 export default Component.extend({

@@ -157,7 +157,7 @@
                                         <li><button type="button" class="btn btn-primary next-step" on:click="nextStep()">Siguiente</button></li>
                                     </ul>
                                 </div>
-                                <div class="tab-pane" role="tabpanel" id="routes">
+                                <div class="tab-pane" role="tabpanel" id="complete">
                                     <can-import from="centinela/components/app/planification/route/">
                                         {{#if isPending}}
                                             Loading...

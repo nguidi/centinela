@@ -10,7 +10,6 @@
 		<can-import from="centinela/styles.less" />
 		<can-import from="centinela/app" export-as="viewModel" />
 		<can-import from="can-stache/helpers/route" />
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEh2sf0GTqIP7qYQw-2zotElfOJD0oZAA"></script>
 
 		{{#if user}}
 			<can-import from="centinela/components/app/home/">

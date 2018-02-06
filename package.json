@@ -24,7 +24,6 @@
     "setup": "npm install && cd frontend && npm install",
     "test": "npm run eslint && npm run mocha",
     "eslint": "eslint src/. test/. --config .eslintrc.json",
-    "prestart": "node src/setup.js",
     "start": "node src/",
     "mocha": "mocha test/ --recursive",
     "deploy": "gcloud app deploy"
