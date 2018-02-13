@@ -157,7 +157,7 @@
                                         <li><button type="button" class="btn btn-primary next-step" on:click="nextStep()">Siguiente</button></li>
                                     </ul>
                                 </div>
-                                <div class="tab-pane" role="tabpanel" id="complete">
+                                <div class="tab-pane" role="tabpanel" id="routes">
                                     <can-import from="centinela/components/app/planification/route/">
                                         {{#if isPending}}
                                             Loading...
@@ -179,10 +179,25 @@
                                     </ul>
                                 </div>
                                 <div class="tab-pane" role="tabpanel" id="complete">
-
+                                    <can-import from="centinela/components/app/planification/complete/">
+                                        {{#if isPending}}
+                                            Loading...
+                                        {{else}}
+                                            <app-planification-complete
+                                                user:bind="user"
+                                                uav:bind="uav"
+                                                routes:bind="routes"
+                                                flightRoute:bind="flightRoute"
+                                                equipment:bind="equipment"
+                                                batteries:bind="batteries"
+                                                points:bind="points"
+                                                startPoint:bind="startPoint"
+                                                flight:bind="flight"/>
+                                        {{/if}}
+                                    </can-import>
                                     <ul class="list-inline pull-right">
                                         <li><button type="button" class="btn btn-default prev-step" on:click="prevStep()">Volver</button></li>
-                                        <li><button type="button" class="btn btn-primary" on:click="saveFlight()">Siguiente</button></li>
+                                        <li><button type="button" class="btn btn-primary save" on:click="saveFlight()">Guardar</button></li>
                                     </ul>
                                 </div>
                                 <div class="clearfix"></div>

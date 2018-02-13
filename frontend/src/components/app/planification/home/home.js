@@ -4,6 +4,7 @@ import DefineList from 'can-define/list/';
 import './home.less';
 import view from './home.stache';
 
+import Flight from 'centinela/models/flight'
 import User from 'centinela/models/user'
 import UAV from 'centinela/models/uav'
 import Equipment from 'centinela/models/equipment'
@@ -45,6 +46,10 @@ export const ViewModel= DefineMap.extend({
 
 , flightRoute: {
     value: new DefineMap()
+  }
+
+, flight: {
+    value: new Flight()
   }
  
    // methods
@@ -147,6 +152,7 @@ export const ViewModel= DefineMap.extend({
 
 , toggleStep: function(ev, el)
   {
+    console.log(this.flight)
     if (!$(el).parent().hasClass('disabled')) {
 
       let currentStep = $('.wizard .nav-tabs li.active a').attr('aria-controls')
@@ -161,6 +167,92 @@ export const ViewModel= DefineMap.extend({
       }
       
     }
+  }
+
+, validateForm: function()
+{
+  //	Obtengo el validador del formulario
+  var FormValidator
+  =	$('.flight-form').data('formValidation');
+
+  //	Fuerzo la validación el formulario
+  //	Si algun campo no se valido, se mostrara el
+  //	error de validación
+  FormValidator.validate();
+
+  //	Verifico que todo el formulario este OK
+  return (FormValidator.isValid())      
+}
+
+, saveFlight: function()
+  {
+    var self = this;
+
+    if (this.validateForm())
+    {
+      // Pongo el boton en modo loading
+      $('button.save:visible').button('loading');
+      
+      this.flight = new Flight({
+        uav: this.uav.get(0)
+      , pilot: this.pilot
+      , equipment: this.equipment
+      , batteries: this.batteries
+      , points: this.points
+      , startPoint: this.startPoint
+      , flightRoute: this.flightRoute
+      , name: $('[name="flightName"]').val()
+      , flightDate: $('[name="flightDate"]').val()
+      });
+
+      this.flight.save()
+        .then(
+          function()
+          {
+            // Reseteo el boton
+            $('button.save:visible').button('reset');
+              
+            // Muestro la notificacion
+            $.notify(
+              {
+                message: 'Planificación creado correctamente' 
+              }
+            , {
+                type: 'success'
+              , placement: {
+                  from: 'bottom'
+                , align: "right"
+                }
+              }
+            );
+
+            // Reseteo los valores de la instancia
+            self.flight = new Flight({});
+            $('.flight-form')[0].reset();
+            $('.flight-form').data('formValidation').resetForm();
+          }
+        ).catch(
+          function()
+          {
+            // Reseteo el boton
+            $('button.save:visible').button('reset');
+            
+            // Muestro la notificacion
+            $.notify(
+              {
+                message: 'Ocurrio un error al crear la planificación. Intentelo nuevamente.' 
+              }
+            , {
+                type: 'danger'
+              , placement: {
+                  from: 'bottom'
+                , align: "right"
+                }
+              }
+            );
+          }
+        );
+      }    
   }
 
 });

@@ -6,10 +6,10 @@
 <div class="row">
     
     <div class="col-xs-3">
-        {{#is routes.value.length 0}}
+        {{#is routes.length 0}}
             <div class="callout callout-danger">
                 <h4>No hay ruta optima!</h4>
-                <p>Ninguna ruta es realizable con las baterias selccionadas.</p>
+                <p>Ninguna ruta es realizable con la combinación selccionada.</p>
             </div>
         {{else}}
             <h5>Seleccione la ruta deseada</h5>
@@ -20,19 +20,18 @@
                         <h4>
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapse-{{scope.index}}" on:click="setRoute(.)">
                                 Ruta N° {{routeNumber(scope.index)}}
-                                <span class="pull-right badge bg-green">{{consumption}}</span>
+                                <span class="pull-right badge bg-green">{{consumption}} mAh</span>
                             </a>
                         </h4>
                     </div>
                     <div id="collapse-{{scope.index}}" class="panel-collapse collapse">
                         <div class="box-body">
                             <ul class="timeline">
-                                
                                 {{#each path}}
                                     {{#if start}}
                                         <li class="time-label">
                                             <span class="bg-green">
-                                                <b>H</b>: {{startPoint.name}}
+                                                <b>H</b> {{name}}
                                             </span>
                                         </li>
                                     {{else}}

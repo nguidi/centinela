@@ -127,7 +127,7 @@ export const ViewModel = DefineMap.extend({
     var tc = Math.ceil((b.discharge/100)*mt);
     var wc = (this.getWeight() + b.weight) / this.cellWeightPeak(b.configuration);
     var tm = (mt - tc) - ((wc > 1) ? 0 : wc*mt);
-    return (b.capacity/(4*tm*vp));
+    return (b.capacity/(8*tm*vp));
   }
 
 , setCurrentBattery: function(b)
@@ -213,8 +213,6 @@ export const ViewModel = DefineMap.extend({
   {
     value: new DefineMap()
   }
-
-
 , currentPath:
   {
     value: undefined
@@ -228,7 +226,6 @@ export const ViewModel = DefineMap.extend({
 , setRoute: function(routeToVisualize)
   {
     var self = this;
-    console.log(routeToVisualize)
     if (self.currentPath)
       self.currentPath.setMap(null);
 
@@ -270,17 +267,18 @@ export const ViewModel = DefineMap.extend({
       'click'
     , function()
       {
-        self.routes = self.calculateRoutes().filter(
-                        function(r)
-                        {
-                          return r.possible
-                        }
-                      ).sort(
-                        function(a,b)
-                        {
-                          return a.consumption < b.consumption
-                        }
-                      ).slice(0,3);
+        self.routes
+        = self.calculateRoutes().filter(
+            function(r)
+            {
+              return r.possible
+            }
+          ).sort(
+            function(a,b)
+            {
+              return a.consumption < b.consumption
+            }
+          ).slice(0,3);
 
           if (!$('.map-routes').data('gmap3'))
             $('.map-routes')
@@ -316,7 +314,6 @@ export const ViewModel = DefineMap.extend({
     );
     
   }
-  */
 });
 
 export default Component.extend({
